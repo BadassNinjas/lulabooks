@@ -19,10 +19,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/BadassNinjas/badass-utils.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/BadassNinjas/badass-rfs-client.git"
         }
     ],
     "require": {
@@ -33,8 +29,7 @@
         "badassninjas/shopkit-core": "^0.7.5",
         "badassninjas/shopkit-product": "^0.2.0",
         "badassninjas/shopkit-acl": "^0.4.0",
-        "badassninjas/badass-utils": "^1.0",
-        "badassninjas/badass-rfs-client": "^0.6.0"
+        "badassninjas/badass-utils": "^1.2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

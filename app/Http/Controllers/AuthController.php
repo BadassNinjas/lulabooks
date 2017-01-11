@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Base\Controller;
-use BadassNinjas\Utils\BadassResponse;
+use BadassNinjas\Helpers\Response;
 
 class AuthController extends Controller
 {
@@ -18,14 +17,14 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return BadassResponse::build('Invalid API Usage', 403);
+            return Response::build('Invalid API Usage', 403);
         }
 
         if (Auth::attempt(request()->only(['email', 'password']))) {
-            return BadassResponse::build(Auth::user());
+            return Response::build(Auth::user());
         }
 
-        return BadassResponse::build('The given username and/or password combination did not render any results.', 404);
+        return Response::build('The given username and/or password combination did not render any results.', 404);
     }
 
     public function doLogout()

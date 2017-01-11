@@ -166,8 +166,6 @@ return [
          * Package Service Providers...
          */
 
-        //
-
         /*
          * Application Service Providers...
          */
@@ -177,11 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        //
-        ShopKit\Core\ShopKitServiceProvider::class,
-        ShopKit\Product\ShopKitProductServiceProvider::class,
-        ShopKit\ACL\ShopKitACLServiceProvider::class,
-        BadassNinjas\RFS\BadassRFSServiceProvider::class,
+        BadassNinjas\Migrator\MigratorServiceProvider::class,
+        BadassNinjas\RFS\RFSServiceProvider::class,
+        BadassNinjas\Geo\GeoServiceProvider::class,
     ],
 
     /*

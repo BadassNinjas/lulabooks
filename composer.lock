@@ -4,74 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c2220c8159cd3bac436ebb4a0ceafed",
-    "content-hash": "b416438e8d8e0e3c69d86752905c3449",
+    "hash": "34aafa0a6ab23b28452b78177ec2f01b",
+    "content-hash": "d77c954a3af0a6de2d825da884ee23e7",
     "packages": [
         {
-            "name": "badassninjas/badass-rfs-client",
-            "version": "v0.6.0",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:BadassNinjas/badass-rfs-client.git",
-                "reference": "9bfba5261b35e3724d3a73e251bed88856460a97"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/badass-rfs-client/zipball/9bfba5261b35e3724d3a73e251bed88856460a97",
-                "reference": "9bfba5261b35e3724d3a73e251bed88856460a97",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.2",
-                "php": ">=7.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "BadassNinjas\\RFS\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stephen Lake",
-                    "email": "stephen-lake@live.com",
-                    "homepage": "https://github.com/stephenlake",
-                    "role": "Developer"
-                }
-            ],
-            "description": "BadassNinjas Laravel RFS Client",
-            "keywords": [
-                "badass",
-                "ninjas"
-            ],
-            "support": {
-                "source": "https://github.com/BadassNinjas/badass-rfs-client/tree/v0.6.0",
-                "issues": "https://github.com/BadassNinjas/badass-rfs-client/issues"
-            },
-            "time": "2017-01-10 00:21:44"
-        },
-        {
             "name": "badassninjas/badass-utils",
-            "version": "v1.0.1",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BadassNinjas/badass-utils.git",
-                "reference": "00da6dd3441d5df8ffcbfb7ea04d0db9221ec140"
+                "reference": "ca41366fce3c3a4ed906eb1016f8a81a98525287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/00da6dd3441d5df8ffcbfb7ea04d0db9221ec140",
-                "reference": "00da6dd3441d5df8ffcbfb7ea04d0db9221ec140",
+                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/ca41366fce3c3a4ed906eb1016f8a81a98525287",
+                "reference": "ca41366fce3c3a4ed906eb1016f8a81a98525287",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.5.5",
+                "league/csv": "^8.0",
                 "php": ">=7.0.0"
             },
             "require-dev": {
@@ -80,7 +32,10 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "BadassNinjas\\Utils\\": "src/"
+                    "BadassNinjas\\Migrator\\": "src/Migrator/",
+                    "BadassNinjas\\Geo\\": "src/Geo/",
+                    "BadassNinjas\\RFS\\": "src/RFS/",
+                    "BadassNinjas\\Helpers\\": "src/Helpers/"
                 }
             },
             "license": [
@@ -100,23 +55,23 @@
                 "ninjas"
             ],
             "support": {
-                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.0.1",
+                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.2.5",
                 "issues": "https://github.com/BadassNinjas/badass-utils/issues"
             },
-            "time": "2017-01-10 01:06:54"
+            "time": "2017-01-11 13:30:20"
         },
         {
             "name": "badassninjas/shopkit-acl",
-            "version": "v0.4.1",
+            "version": "v0.4.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BadassNinjas/shopkit-acl.git",
-                "reference": "a65ee47d60dc3778078cd71afd6ce647f8725dab"
+                "reference": "936b05694785f73824173b791c88680b50ba508c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/shopkit-acl/zipball/a65ee47d60dc3778078cd71afd6ce647f8725dab",
-                "reference": "a65ee47d60dc3778078cd71afd6ce647f8725dab",
+                "url": "https://api.github.com/repos/BadassNinjas/shopkit-acl/zipball/936b05694785f73824173b791c88680b50ba508c",
+                "reference": "936b05694785f73824173b791c88680b50ba508c",
                 "shasum": ""
             },
             "require": {
@@ -149,10 +104,10 @@
                 "shopkit"
             ],
             "support": {
-                "source": "https://github.com/BadassNinjas/shopkit-acl/tree/v0.4.1",
+                "source": "https://github.com/BadassNinjas/shopkit-acl/tree/v0.4.2",
                 "issues": "https://github.com/BadassNinjas/shopkit-acl/issues"
             },
-            "time": "2017-01-10 07:02:17"
+            "time": "2017-01-11 04:32:26"
         },
         {
             "name": "badassninjas/shopkit-core",
@@ -1248,6 +1203,63 @@
                 "laravel"
             ],
             "time": "2017-01-06 14:33:56"
+        },
+        {
+            "name": "league/csv",
+            "version": "8.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/csv.git",
+                "reference": "33447984f7a7038fefaa5a6177e8407b66bc85b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/33447984f7a7038fefaa5a6177e8407b66bc85b4",
+                "reference": "33447984f7a7038fefaa5a6177e8407b66bc85b4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.9",
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "8.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Csv\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://github.com/nyamsprod/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Csv data manipulation made easy in PHP",
+            "homepage": "http://csv.thephpleague.com",
+            "keywords": [
+                "csv",
+                "export",
+                "filter",
+                "import",
+                "read",
+                "write"
+            ],
+            "time": "2016-10-27 11:21:24"
         },
         {
             "name": "league/flysystem",
