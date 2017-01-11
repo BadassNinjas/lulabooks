@@ -5,3 +5,5 @@
 Homestead.json
 Homestead.yaml
 .env
+/resources/views/sites/admin/material/src/node_modules/
+/resources/views/sites/customer/exzo/src/node_modules/
