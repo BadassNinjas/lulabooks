@@ -57,7 +57,7 @@
                         <h4 style="font-weight: 300;">Click the green button to start adding your additional information or the other to exit.</h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-lg btn-success waves-effect" @click="process.step = 3;">Let's Do It!</button>
+                        <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(3)">Let's Do It!</button>
                         <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="process.step = 4">Next, upload images!</button>
+                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(4)">Next, upload images!</button>
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
@@ -87,10 +87,10 @@
                 <div class="modal-body" v-if="product.id">
                     <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
                         :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
-                        </dropzone>
+                    </dropzone>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
+                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(5)">Let's add some additional info!</button>
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     <h1 style="font-weight: 300;" class="text-center">Additional Information</h1>
                 </div>
                 <div class="modal-body" v-if="product.id">
-                  <div class="html-editor"></div>
+                    <div class="html-editor"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
@@ -117,7 +117,6 @@ import Dropzone from 'vue2-dropzone';
 export default {
     mounted() {
         var that = this;
-        this.initPlugins();
         this.fetchCategories();
         this.$root.$on('CategoryTreeItemClicked', function(item) {
             if (!that.categoryTreeControlsEnabled) {
@@ -167,7 +166,7 @@ export default {
                 url: ''
             };
         },
-        initPlugins: function() {
+        initSummernote: function() {
             $('.html-editor').summernote({
                 height: 250
             });
@@ -215,6 +214,12 @@ export default {
                     alert(response.data.payload.error.desc);
                 }
             });
+        },
+        setProcessStep: function(stepNumber) {
+            this.process.step = stepNumber;
+            if (stepNumber == 5) {
+                this.initSummernote();
+            }
         }
     },
     components: {
