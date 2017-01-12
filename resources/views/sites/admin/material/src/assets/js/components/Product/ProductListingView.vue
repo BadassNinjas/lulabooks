@@ -29,7 +29,11 @@ Vue.component('custom-actions', {
     methods: {
         itemAction: function(action, data) {
             if (action == 'edit-item') {
-                this.$parent.$parent.$parent.showProductProcess(data.id);
+                var VueTableComponent = this.$parent;
+                var ListingComponent = VueTableComponent.$parent;
+                var ProductView = ListingComponent.$parent;
+
+                ProductView.showProductProcess(data.id);
             }
         }
     }
