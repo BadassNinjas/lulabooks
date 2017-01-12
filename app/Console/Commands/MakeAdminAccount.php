@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use ShopKit\ACL\Models\ShopKitUser;
+use ShopKit\ACL\Models\User;
 
 class MakeAdminAccount extends Command
 {
@@ -23,8 +23,6 @@ class MakeAdminAccount extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -41,7 +39,7 @@ class MakeAdminAccount extends Command
         $username = $this->ask('Enter administrator username: ');
         $password = $this->secret('Enter administrator password: ');
 
-        $admin = new ShopKitUser();
+        $admin = new User();
         $admin->email = $username;
         $admin->password = bcrypt($password);
         $admin->firstname = 'Admin';
