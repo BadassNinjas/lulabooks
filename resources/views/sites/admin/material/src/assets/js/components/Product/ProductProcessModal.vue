@@ -1,6 +1,6 @@
 <template>
 <div product-modal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div v-if="process.step == 1">
                 <div class="modal-header">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-lg btn-success waves-effect">Save Categories</button>
+                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="process.step = 4">Next, upload images!</button>
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
@@ -85,8 +85,9 @@
                     <h1 style="font-weight: 300;" class="text-center">Images</h1>
                 </div>
                 <div class="modal-body" v-if="product.id">
-                  <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB" :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
-                  </dropzone>
+                    <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
+                        :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
+                        </dropzone>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
@@ -119,11 +120,11 @@ export default {
             product: {},
             process: {},
             dropzoneOptions: {
-              showRemoveLink: true,
-              acceptedFileTypes: 'image/*',
-              useFontAwesome: true,
-              maxFileSizeInMB: 2,
-              url: ''
+                showRemoveLink: true,
+                acceptedFileTypes: 'image/*',
+                useFontAwesome: true,
+                maxFileSizeInMB: 2,
+                url: ''
             },
             categoryTreeData: [],
             categoryTreeControlsEnabled: false,
@@ -198,7 +199,6 @@ export default {
                     this.product = response.data.payload;
                     this.dropzoneOptions.url = '/api/products/' + this.product.id + '/image';
                     this.process.category = response.data.payload.category;
-                    this.process.step = 4;
                 } else {
                     alert(response.data.payload.error.desc);
                 }
