@@ -15,7 +15,7 @@ Route::put('/api/products/{productId}', 'ProductController@createOrUpdateProduct
 Route::delete('/api/products/{productId}', 'ProductController@deleteProduct');
 Route::post('/api/products', 'ProductController@createOrUpdateProduct');
 
-Route::post('/api/products/{productId}/image/', 'ProductController@addProductImage');
+Route::post('/api/products/{productId}/image/', 'ProductController@attachImage');
 Route::delete('/api/products/{productId}/image/{imageId}', 'ProductController@addProductImage');
 
 Route::get('/api/basket', 'CartController@getShoppingCart');
@@ -29,7 +29,6 @@ Route::get('/api/categories/{categoryId?}', 'ProductCategoryController@getCatego
 Route::post('/api/categories', 'ProductCategoryController@createOrUpdateCategory');
 Route::post('/api/categories/{categoryId}', 'ProductCategoryController@createOrUpdateCategory');
 Route::delete('/api/categories/{categoryId?}', 'ProductCategoryController@deleteCategory');
-
 
  Route::group(['prefix' => '/admin'], function () {
      Route::get('/', 'Base\Controller@renderAdminPage');

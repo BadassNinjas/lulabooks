@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "badassninjas/badass-utils",
-            "version": "v1.2.9",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BadassNinjas/badass-utils.git",
-                "reference": "1eb484c9e21fcbe0b29b30bf7bc41e2c576a788c"
+                "reference": "569fb6d97fffa4ad2898c440463236f36605a13e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/1eb484c9e21fcbe0b29b30bf7bc41e2c576a788c",
-                "reference": "1eb484c9e21fcbe0b29b30bf7bc41e2c576a788c",
+                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/569fb6d97fffa4ad2898c440463236f36605a13e",
+                "reference": "569fb6d97fffa4ad2898c440463236f36605a13e",
                 "shasum": ""
             },
             "require": {
@@ -55,10 +55,10 @@
                 "ninjas"
             ],
             "support": {
-                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.2.9",
+                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.3.2",
                 "issues": "https://github.com/BadassNinjas/badass-utils/issues"
             },
-            "time": "2017-01-12 07:41:45"
+            "time": "2017-01-12 11:39:38"
         },
         {
             "name": "badassninjas/shopkit-acl",

@@ -8,6 +8,7 @@
                 <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
             </div>
     </div>
+    <product-process-modal ref="ProductProcessModal"></product-process-modal>
 </div>
 </template>
 <script>
@@ -28,7 +29,7 @@ Vue.component('custom-actions', {
     },
     methods: {
         itemAction: function(action, data) {
-
+          this.$refs.ProductProcessModal.instance(2);
         }
     }
 });

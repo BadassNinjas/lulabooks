@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use ShopKit\Product\Models\Product;
+use ShopKit\Product\Models\ProductImage;
+use BadassNinjas\RFS\Facades\RFS;
 
 class ProductController extends Controller
 {
@@ -27,5 +28,32 @@ class ProductController extends Controller
         }
 
         return Response::build($product);
+    }
+
+    public function attachImage($productId = null)
+    {
+        $product = Product::find($productId);
+
+        if (is_null($product)) {
+            return Response::build('Product invalid', 404);
+        }
+
+        $media = RFS::uploadMediaFromRequest('file');
+
+        if ($media) {
+            $media = (object) $media;
+
+            $image = new ProductImage();
+            $image->external_id = time();
+            $image->hostname = $media->payload->host;
+            $image->path = $media->payload->path;
+            $image->save();
+
+            $product->images()->attach($image->id);
+
+            return Response::build($media);
+        }
+
+        return Response::build('Failed to upload image', 500);
     }
 }

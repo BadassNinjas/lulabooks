@@ -76,7 +76,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-lg btn-success waves-effect">Let's Do It!</button>
+                    <button type="submit" class="btn btn-lg btn-success waves-effect">Save Categories</button>
+                    <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                </div>
+            </div>
+            <div v-if="process.step == 4">
+                <div class="modal-header" style="padding: 0 26px">
+                    <h1 style="font-weight: 300;" class="text-center">Images</h1>
+                </div>
+                <div class="modal-body" v-if="product.id">
+                  <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB" :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
+                  </dropzone>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
@@ -109,7 +122,13 @@ export default {
         return {
             product: {},
             process: {},
-            dropzoneOptions: {},
+            dropzoneOptions: {
+              showRemoveLink: true,
+              acceptedFileTypes: 'image/*',
+              useFontAwesome: true,
+              maxFileSizeInMB: 2,
+              url: ''
+            },
             categoryTreeData: [],
             categoryTreeControlsEnabled: false,
         }
@@ -136,7 +155,8 @@ export default {
                 showRemoveLink: true,
                 acceptedFileTypes: 'image/*',
                 useFontAwesome: true,
-                maxFileSizeInMB: 2
+                maxFileSizeInMB: 2,
+                url: ''
             };
         },
         initPlugins: function() {
@@ -152,6 +172,20 @@ export default {
                 if (response.data.success) {
                     this.product = response.data.payload;
                     this.process.step = 2;
+                } else {
+                    alert(response.data.payload.error.desc);
+                }
+
+            });
+        },
+        updateProduct: function() {
+            this.product.detail = $('.html-editor').code();
+
+            this.$http.post('/api/products' + this.product.id, this.product).then((response) => {
+
+                if (response.data.success) {
+                    this.product = response.data.payload;
+                    this.process.step = 100;
                 } else {
                     alert(response.data.payload.error.desc);
                 }
@@ -179,7 +213,9 @@ export default {
 
                 if (response.data.success) {
                     this.product = response.data.payload;
+                    this.dropzoneOptions.url = '/api/products/' + this.product.id + '/image';
                     this.process.category = response.data.payload.category;
+                    this.process.step = 4;
                 } else {
                     alert(response.data.payload.error.desc);
                 }
