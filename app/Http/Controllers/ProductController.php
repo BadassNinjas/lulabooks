@@ -56,4 +56,15 @@ class ProductController extends Controller
 
         return Response::build('Failed to upload image', 500);
     }
+
+    public function deleteProduct($productId)
+    {
+        $product = Product::find($productId);
+
+        if (!is_null($product)) {
+            $product->delete();
+        }
+
+        return Response::build();
+    }
 }
