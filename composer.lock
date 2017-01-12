@@ -156,6 +156,58 @@
             "time": "2017-01-12 05:41:37"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "badassninjas/shopkit-product",
+            "version": "v0.2.8",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:BadassNinjas/shopkit-product.git",
+                "reference": "cf3db5d3990cfa6e7cd4d99f36845c88db975069"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BadassNinjas/shopkit-product/zipball/cf3db5d3990cfa6e7cd4d99f36845c88db975069",
+                "reference": "cf3db5d3990cfa6e7cd4d99f36845c88db975069",
+                "shasum": ""
+            },
+            "require": {
+                "badassninjas/shopkit-core": "^0.7.5",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ShopKit\\Product\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Lake",
+                    "email": "stephen-lake@live.com",
+                    "homepage": "https://github.com/stephenlake",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Shopkit Product Extension",
+            "keywords": [
+                "product",
+                "shopkit"
+            ],
+            "support": {
+                "source": "https://github.com/BadassNinjas/shopkit-product/tree/v0.2.8",
+                "issues": "https://github.com/BadassNinjas/shopkit-product/issues"
+            },
+            "time": "2017-01-12 07:23:13"
+        },
+        {
+>>>>>>> b351dd12b98cfea4390bdcf4363a4ae7f9c38095
             "name": "classpreloader/classpreloader",
             "version": "3.1.0",
             "source": {
