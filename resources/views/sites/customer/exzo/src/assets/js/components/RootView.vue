@@ -5,13 +5,9 @@
 
         <page-header></page-header>
 
-        <div class="grey-background">
-            <div class="container">
-                <router-view></router-view>
-            </div>
+        <div class="container">
+            <router-view></router-view>
         </div>
-
-        <page-slider></page-slider>
 
         <page-featured-products></page-featured-products>
 
