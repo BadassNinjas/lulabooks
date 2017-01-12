@@ -51,7 +51,7 @@ class ProductController extends Controller
 
             $product->images()->attach($image->id);
 
-            return Response::build($media);
+            return Response::build($product);
         }
 
         return Response::build('Failed to upload image', 500);
