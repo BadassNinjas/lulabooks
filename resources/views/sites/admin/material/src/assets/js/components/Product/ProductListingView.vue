@@ -8,7 +8,6 @@
                 <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
             </div>
     </div>
-    <product-process-modal ref="ProductProcessModal"></product-process-modal>
 </div>
 </template>
 <script>
@@ -17,8 +16,8 @@ import Vue from 'vue';
 Vue.component('custom-actions', {
     template: [
         '<div class="pull-right">',
-        '<button class="btn btn-xs btn-default btn-link" @click="itemAction(\'view-item\', rowData)"><i class="fa fa-pencil"></i> Edit</button>',
-        '<button class="btn btn-xs btn-default btn-link" @click="itemAction(\'edit-item\', rowData)"><i class="fa fa-trash icon"></i> Delete</button>',
+        '<button class="btn btn-xs btn-default btn-link" @click="itemAction(\'edit-item\', rowData)"><i class="fa fa-pencil"></i> Edit</button>',
+        '<button class="btn btn-xs btn-default btn-link" @click="itemAction(\'delete-item\', rowData)"><i class="fa fa-trash icon"></i> Delete</button>',
         '</div>'
     ].join(''),
     props: {
@@ -29,7 +28,9 @@ Vue.component('custom-actions', {
     },
     methods: {
         itemAction: function(action, data) {
-          this.$refs.ProductProcessModal.instance(2);
+            if (action == 'edit-item') {
+                this.$parent.$parent.$parent.showProductProcess(data.id);
+            }
         }
     }
 });

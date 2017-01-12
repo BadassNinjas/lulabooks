@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9396fb1afee31fcb2fb94f8e0e4c83e9",
-    "content-hash": "1b4550051526094fefd6495267e409f0",
+    "hash": "f8108626caa3b6ad053ceaacc66aae22",
+    "content-hash": "70f6556dbf8844e7407f5b3d1a5c42be",
     "packages": [
         {
             "name": "badassninjas/badass-utils",
-            "version": "v1.3.2",
+            "version": "v1.3.3",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BadassNinjas/badass-utils.git",
-                "reference": "569fb6d97fffa4ad2898c440463236f36605a13e"
+                "reference": "e4418cd4d290a53305c18d9d7cfafb8094c8c7c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/569fb6d97fffa4ad2898c440463236f36605a13e",
-                "reference": "569fb6d97fffa4ad2898c440463236f36605a13e",
+                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/e4418cd4d290a53305c18d9d7cfafb8094c8c7c6",
+                "reference": "e4418cd4d290a53305c18d9d7cfafb8094c8c7c6",
                 "shasum": ""
             },
             "require": {
@@ -55,10 +55,10 @@
                 "ninjas"
             ],
             "support": {
-                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.3.2",
+                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.3.3",
                 "issues": "https://github.com/BadassNinjas/badass-utils/issues"
             },
-            "time": "2017-01-12 11:39:38"
+            "time": "2017-01-12 12:49:28"
         },
         {
             "name": "badassninjas/shopkit-acl",
@@ -156,8 +156,6 @@
             "time": "2017-01-12 05:41:37"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "badassninjas/shopkit-product",
             "version": "v0.2.8",
             "source": {
@@ -207,7 +205,6 @@
             "time": "2017-01-12 07:23:13"
         },
         {
->>>>>>> b351dd12b98cfea4390bdcf4363a4ae7f9c38095
             "name": "classpreloader/classpreloader",
             "version": "3.1.0",
             "source": {
