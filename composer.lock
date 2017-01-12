@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34aafa0a6ab23b28452b78177ec2f01b",
-    "content-hash": "d77c954a3af0a6de2d825da884ee23e7",
+    "hash": "f8108626caa3b6ad053ceaacc66aae22",
+    "content-hash": "70f6556dbf8844e7407f5b3d1a5c42be",
     "packages": [
         {
             "name": "badassninjas/badass-utils",
-            "version": "v1.2.7",
+            "version": "v1.2.9",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BadassNinjas/badass-utils.git",
-                "reference": "52794161cee0bf8443143934a3b57d1b58643998"
+                "reference": "1eb484c9e21fcbe0b29b30bf7bc41e2c576a788c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/52794161cee0bf8443143934a3b57d1b58643998",
-                "reference": "52794161cee0bf8443143934a3b57d1b58643998",
+                "url": "https://api.github.com/repos/BadassNinjas/badass-utils/zipball/1eb484c9e21fcbe0b29b30bf7bc41e2c576a788c",
+                "reference": "1eb484c9e21fcbe0b29b30bf7bc41e2c576a788c",
                 "shasum": ""
             },
             "require": {
@@ -55,10 +55,10 @@
                 "ninjas"
             ],
             "support": {
-                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.2.7",
+                "source": "https://github.com/BadassNinjas/badass-utils/tree/v1.2.9",
                 "issues": "https://github.com/BadassNinjas/badass-utils/issues"
             },
-            "time": "2017-01-12 05:53:07"
+            "time": "2017-01-12 07:41:45"
         },
         {
             "name": "badassninjas/shopkit-acl",
@@ -157,16 +157,16 @@
         },
         {
             "name": "badassninjas/shopkit-product",
-            "version": "v0.2.7",
+            "version": "v0.2.8",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BadassNinjas/shopkit-product.git",
-                "reference": "10a2b6691fea9d9dca4f14c96a7031901e36ae96"
+                "reference": "cf3db5d3990cfa6e7cd4d99f36845c88db975069"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/shopkit-product/zipball/10a2b6691fea9d9dca4f14c96a7031901e36ae96",
-                "reference": "10a2b6691fea9d9dca4f14c96a7031901e36ae96",
+                "url": "https://api.github.com/repos/BadassNinjas/shopkit-product/zipball/cf3db5d3990cfa6e7cd4d99f36845c88db975069",
+                "reference": "cf3db5d3990cfa6e7cd4d99f36845c88db975069",
                 "shasum": ""
             },
             "require": {
@@ -199,10 +199,10 @@
                 "shopkit"
             ],
             "support": {
-                "source": "https://github.com/BadassNinjas/shopkit-product/tree/v0.2.7",
+                "source": "https://github.com/BadassNinjas/shopkit-product/tree/v0.2.8",
                 "issues": "https://github.com/BadassNinjas/shopkit-product/issues"
             },
-            "time": "2017-01-12 06:12:25"
+            "time": "2017-01-12 07:23:13"
         },
         {
             "name": "classpreloader/classpreloader",
