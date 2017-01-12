@@ -1,6 +1,6 @@
 <template>
 <li class="dd-item" :data-id="data.id" :data-parent-id="data.parent_id">
-    <div class="dd-handle" @click="$root.$emit('CategoryTreeItemClicked', data)">
+    <div class="dd-handle waves-effect" @click="$root.$emit('CategoryTreeItemClicked', data)">
         <i class="fa fa-hand-paper-o"></i>
         <span> {{ data.name }} ({{ data.product_count }})</span>
         <a class="dd-nodrag btn btn-xs btn-default btn-link pull-right" v-if="controlsEnabled && !editMode" @click="editMode = !editMode;"><i class="fa fa-i-cursor"></i> Edit</a>

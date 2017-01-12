@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     public function getShoppingCart()
     {
-        return BadassResponse::build([
+        return Response::build([
           'items' => ShopKit::getShoppingCart()->getItems(),
           'total' => ShopKit::getShoppingCart()->getPriceTotal()
         ]);
@@ -25,7 +25,7 @@ class CartController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return BadassResponse::build('Invalid API Usage', 403);
+            return Response::build('Invalid API Usage', 403);
         }
 
         $product = Product::find(request('id'));

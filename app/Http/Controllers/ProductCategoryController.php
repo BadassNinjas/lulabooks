@@ -11,25 +11,20 @@ class ProductCategoryController extends Controller
 {
     public function getCategories()
     {
-        return BadassResponse::build(ProductCategory::where('parent_id', 0)->orderBy('sort_order', 'ASC')->get());
+        return Response::build(ProductCategory::where('parent_id', 0)->orderBy('sort_order', 'ASC')->get());
     }
 
     public function createOrUpdateCategory($categoryId = null)
     {
-        return BadassResponse::build(ProductCategory::updateOrCreate(['id' => $categoryId], request()->all()));
+        return Response::build(ProductCategory::updateOrCreate(['id' => $categoryId], request()->all()));
     }
 
     public function deleteCategory($categoryId)
     {
         $category = ProductCategory::find($categoryId);
-        $categoryChildren = $category->children->keyBy('id')->keys();
-
-        if (count($categoryChildren)) {
-            ProductCategory::whereIn('id', $categoryChildren)->update(['parent_id' => $category->parent_id]);
-        }
 
         $category->delete();
 
-        return BadassResponse::build();
+        return Response::build();
     }
 }

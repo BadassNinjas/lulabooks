@@ -70,6 +70,10 @@
                     <br/>
                     <h4 style="font-weight: 300;">Click a category to assign your product to it.</h4>
                     <category-tree class="dd-selectable" ref="CategoryTreeRoot" :treeData="categoryTreeData" :treeControlsEnabled="categoryTreeControlsEnabled"></category-tree>
+
+                    <div class="alert alert-success" v-if="process.category">
+                        <p>Set {{ product.name }}'s category to {{ product.category.name }}'</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect">Let's Do It!</button>
@@ -96,6 +100,8 @@ export default {
             if (!that.categoryTreeControlsEnabled) {
                 $('.dd-handle', '[data-id]').removeClass('selected');
                 $('.dd-handle', '[data-id="' + item.id + '"]').first().addClass('selected');
+
+                that.updateProductCategory(item.id);
             }
         });
     },
@@ -144,6 +150,7 @@ export default {
             this.$http.post('/api/products', this.product).then((response) => {
 
                 if (response.data.success) {
+                    this.product = response.data.payload;
                     this.process.step = 2;
                 } else {
                     alert(response.data.payload.error.desc);
@@ -162,6 +169,23 @@ export default {
             });
 
         },
+        updateProductCategory: function(categoryId) {
+            var that = this;
+            var payload = this.product;
+
+            payload.category_id = categoryId;
+
+            this.$http.put('/api/products/' + this.product.id, payload).then((response) => {
+
+                if (response.data.success) {
+                    this.product = response.data.payload;
+                    this.process.category = response.data.payload.category;
+                } else {
+                    alert(response.data.payload.error.desc);
+                }
+
+            });
+        }
     },
     components: {
         Dropzone,

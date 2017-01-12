@@ -11,11 +11,21 @@ class ProductController extends Controller
 {
     public function getProducts()
     {
-        return BadassResponse::build(Product::paginate(request('per_page', 15)));
+        return Response::build(Product::paginate(request('per_page', 15)));
     }
 
     public function createOrUpdateProduct($productId = null)
     {
-        return BadassResponse::build(Product::updateOrCreate(['id' => $productId], request()->all()));
+        $product = Product::updateOrCreate(['id' => $productId], request()->all());
+
+        if (request('category_id', false) && !is_null($product)) {
+            if (!is_null($product->category)) {
+                $product->category()->detach($product->category->id);
+            }
+
+            $product->categories()->attach(request('category_id'));
+        }
+
+        return Response::build($product);
     }
 }

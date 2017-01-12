@@ -100,7 +100,7 @@ export default {
                     that.treeItemCreate.name = '';
                     that.treeItemCreateMode = false;
 
-                    that.fetchCategories();
+                    that.$router.go(that.$route.path);
                 }
 
                 that.loading = false;

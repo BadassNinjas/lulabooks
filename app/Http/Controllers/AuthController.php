@@ -33,15 +33,15 @@ class AuthController extends Controller
             Auth::logout();
         }
 
-        return BadassResponse::build([]);
+        return Response::build([]);
     }
 
     public function checkLogin()
     {
         if (Auth::check()) {
-            return BadassResponse::build(Auth::user());
+            return Response::build(Auth::user());
         }
 
-        return BadassResponse::build('Unauthenticated', 403);
+        return Response::build('Unauthenticated', 403);
     }
 }

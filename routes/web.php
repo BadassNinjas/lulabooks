@@ -31,10 +31,10 @@ Route::post('/api/categories/{categoryId}', 'ProductCategoryController@createOrU
 Route::delete('/api/categories/{categoryId?}', 'ProductCategoryController@deleteCategory');
 
 
-// Route::group(['prefix' => '/'], function () {
-//     Route::get('/', 'Base\Controller@renderAdminPage');
-//     Route::get('{path}', 'Base\Controller@renderAdminPage')->where('path', '.+');
-// });
+ Route::group(['prefix' => '/admin'], function () {
+     Route::get('/', 'Base\Controller@renderAdminPage');
+     Route::get('{path}', 'Base\Controller@renderAdminPage')->where('path', '.+');
+ });
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', 'Base\Controller@renderCustomerPage');

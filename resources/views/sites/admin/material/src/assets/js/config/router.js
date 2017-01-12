@@ -8,11 +8,14 @@ import CategoryView from '../components/CategoryManager/CategoryView.vue';
 import ProductView from '../components/Product/ProductView.vue';
 import LoginView from '../components/Login/LoginView.vue';
 
+var base_path = '/admin/';
+
 export default new Router({
     mode: 'history',
     scrollBehavior: () => ({
         y: 0
     }),
+    base: '/admin/',
     routes: [{
             path: '/',
             component: DashboardView
