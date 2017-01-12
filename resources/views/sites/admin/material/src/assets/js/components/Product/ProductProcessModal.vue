@@ -1,6 +1,6 @@
 <template>
 <div product-modal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div v-if="process.step == 1">
                 <div class="modal-header">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-lg btn-success waves-effect">Save Categories</button>
+                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="process.step = 4">Next, upload images!</button>
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
@@ -85,8 +85,9 @@
                     <h1 style="font-weight: 300;" class="text-center">Images</h1>
                 </div>
                 <div class="modal-body" v-if="product.id">
-                  <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB" :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
-                  </dropzone>
+                    <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
+                        :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
+                        </dropzone>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
@@ -101,19 +102,15 @@
 <script>
 import CategoryTree from '../CategoryManager/CategoryTree.vue';
 import Dropzone from 'vue2-dropzone';
-
 export default {
     mounted() {
         var that = this;
-
         this.initPlugins();
         this.fetchCategories();
-
         this.$root.$on('CategoryTreeItemClicked', function(item) {
             if (!that.categoryTreeControlsEnabled) {
                 $('.dd-handle', '[data-id]').removeClass('selected');
                 $('.dd-handle', '[data-id="' + item.id + '"]').first().addClass('selected');
-
                 that.updateProductCategory(item.id);
             }
         });
@@ -123,11 +120,11 @@ export default {
             product: {},
             process: {},
             dropzoneOptions: {
-              showRemoveLink: true,
-              acceptedFileTypes: 'image/*',
-              useFontAwesome: true,
-              maxFileSizeInMB: 2,
-              url: ''
+                showRemoveLink: true,
+                acceptedFileTypes: 'image/*',
+                useFontAwesome: true,
+                maxFileSizeInMB: 2,
+                url: ''
             },
             categoryTreeData: [],
             categoryTreeControlsEnabled: false,
@@ -136,7 +133,6 @@ export default {
     methods: {
         instance: function(withId) {
             this.reset(withId);
-
             $('[product-modal]').modal('show');
         },
         reset: function(withId) {
@@ -166,60 +162,46 @@ export default {
         },
         createProduct: function() {
             this.product.detail = $('.html-editor').code();
-
             this.$http.post('/api/products', this.product).then((response) => {
-
                 if (response.data.success) {
                     this.product = response.data.payload;
                     this.process.step = 2;
                 } else {
                     alert(response.data.payload.error.desc);
                 }
-
             });
         },
         updateProduct: function() {
             this.product.detail = $('.html-editor').code();
-
             this.$http.post('/api/products' + this.product.id, this.product).then((response) => {
-
                 if (response.data.success) {
                     this.product = response.data.payload;
                     this.process.step = 100;
                 } else {
                     alert(response.data.payload.error.desc);
                 }
-
             });
         },
         fetchCategories: function() {
             var that = this;
-
             that.$http.get('/api/categories/').then((response) => {
-
                 if (response.data.success) {
                     that.categoryTreeData = response.data.payload;
                 }
             });
-
         },
         updateProductCategory: function(categoryId) {
             var that = this;
             var payload = this.product;
-
             payload.category_id = categoryId;
-
             this.$http.put('/api/products/' + this.product.id, payload).then((response) => {
-
                 if (response.data.success) {
                     this.product = response.data.payload;
                     this.dropzoneOptions.url = '/api/products/' + this.product.id + '/image';
                     this.process.category = response.data.payload.category;
-                    this.process.step = 4;
                 } else {
                     alert(response.data.payload.error.desc);
                 }
-
             });
         }
     },
