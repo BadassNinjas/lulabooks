@@ -28,12 +28,14 @@ Vue.component('custom-actions', {
     },
     methods: {
         itemAction: function(action, data) {
-            if (action == 'edit-item') {
-                var VueTableComponent = this.$parent;
-                var ListingComponent = VueTableComponent.$parent;
-                var ProductView = ListingComponent.$parent;
+            var VueTableComponent = this.$parent;
+            var ListingComponent = VueTableComponent.$parent;
+            var ProductView = ListingComponent.$parent;
 
+            if (action == 'edit-item') {
                 ProductView.showProductProcess(data.id);
+            } else if (action == 'delete-item') {
+                ListingComponent.showConfirmProductDelete(data.id);
             }
         }
     }
@@ -83,6 +85,24 @@ export default {
         },
         onChangePage: function(newPageNumber) {
             this.$refs.vuetable.changePage(newPageNumber);
+        },
+        showConfirmProductDelete: function(productId) {
+            var that = this;
+            swal({
+                title: "Are you sure you want to delete this product?",
+                text: "This action cannot be undone!",
+                type: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "I'm sure, delete it!",
+                closeOnConfirm: true
+            }, function() {
+                that.$http.delete('/api/products/' + productId).then((response) => {
+                    if (response.data.success) {
+                        that.$refs.vuetable.reload();
+                    }
+                });
+            });
         }
     }
 }
