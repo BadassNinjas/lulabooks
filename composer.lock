@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f8108626caa3b6ad053ceaacc66aae22",
-    "content-hash": "70f6556dbf8844e7407f5b3d1a5c42be",
+    "hash": "9396fb1afee31fcb2fb94f8e0e4c83e9",
+    "content-hash": "1b4550051526094fefd6495267e409f0",
     "packages": [
         {
             "name": "badassninjas/badass-utils",
@@ -156,6 +156,8 @@
             "time": "2017-01-12 05:41:37"
         },
         {
+<<<<<<< HEAD
+=======
             "name": "badassninjas/shopkit-product",
             "version": "v0.2.8",
             "source": {
@@ -205,6 +207,7 @@
             "time": "2017-01-12 07:23:13"
         },
         {
+>>>>>>> b351dd12b98cfea4390bdcf4363a4ae7f9c38095
             "name": "classpreloader/classpreloader",
             "version": "3.1.0",
             "source": {
