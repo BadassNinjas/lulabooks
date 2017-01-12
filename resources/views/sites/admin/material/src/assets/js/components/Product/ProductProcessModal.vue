@@ -94,6 +94,18 @@
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
+            <div v-if="process.step == 5">
+                <div class="modal-header" style="padding: 0 26px">
+                    <h1 style="font-weight: 300;" class="text-center">Additional Information</h1>
+                </div>
+                <div class="modal-body" v-if="product.id">
+                  <div class="html-editor"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
+                    <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                </div>
+            </div>
             <br/>
         </div>
     </div>
