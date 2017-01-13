@@ -6,7 +6,7 @@
                 <div class="modal-header">
                     <h1 style="font-weight: 300;" class="text-center">{{ process.creatingProduct ? 'Add a New Product' : 'Modify Product Properties' }}</h1>
                 </div>
-                <form v-on:submit.prevent="createProduct()">
+                <form v-on:submit.prevent="submitForm()">
                     <div class="modal-body">
                         <div class="form-group input-group fg-float">
                             <span class="input-group-addon"></span>
@@ -35,7 +35,7 @@
                         <br/>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-lg btn-success waves-effect">Create Product</button>
+                        <button type="submit" class="btn btn-lg btn-success waves-effect">{{ process.creatingProduct ? 'Create Product' : 'Modify Product' }}</button>
                         <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -55,6 +55,26 @@
                         </ul>
                         <br/>
                         <h4 style="font-weight: 300;">Click the green button to start adding your additional information or the other to exit.</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(3)">Let's Do It!</button>
+                        <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                    </div>
+                </div>
+                <div v-if="!process.creatingProduct">
+                    <div class="modal-header" style="padding: 0 26px">
+                        <h1 style="font-weight: 300;" class="text-center">Your basic product has been modified!</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="font-weight: 300;">If you want to modify things like : </h3>
+                        <br/>
+                        <ul>
+                            <li>Product's category</li>
+                            <li>Images or primary display image</li>
+                            <li>Media content like videos, descriptors, and marketing related information</li>
+                        </ul>
+                        <br/>
+                        <h4 style="font-weight: 300;">Click the green button to start modifying this information or the other to exit.</h4>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(3)">Let's Do It!</button>
@@ -87,7 +107,7 @@
                 <div class="modal-body" v-if="product.id">
                     <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
                         :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
-                        </dropzone>
+                    </dropzone>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(5)">Let's add some additional info!</button>
@@ -173,6 +193,7 @@ export default {
     methods: {
         instance: function(withId) {
             this.reset(withId);
+            this.fetchProduct(withId);
             $('[product-modal]').modal('show');
         },
         reset: function(withId) {
@@ -195,6 +216,9 @@ export default {
                 url: ''
             };
         },
+        submitForm: function() {
+            this.product.id ? this.updateProduct() : this.createProduct();
+        },
         createProduct: function() {
             this.$http.post('/api/products', this.product).then((response) => {
                 if (response.data.success) {
@@ -206,14 +230,24 @@ export default {
             });
         },
         updateProduct: function() {
-            this.product.detail = this.$refs.VueEditor.getContent();
-            console.log(this.detail);
+            if(typeof this.$refs.VueEditor != 'undefined')
+            {
+              this.product.detail = this.$refs.VueEditor.getContent();
+            }
             this.$http.put('/api/products/' + this.product.id, this.product).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
-                    this.process.step = 100;
+                    this.process.step = 2;
                 } else {
                     alert(response.data.payload.error.desc);
+                }
+            });
+        },
+        fetchProduct: function(id) {
+            var that = this;
+            that.$http.get('/api/products/' + id).then((response) => {
+                if (response.data.success) {
+                    that.product = response.data.payload;
                 }
             });
         },
