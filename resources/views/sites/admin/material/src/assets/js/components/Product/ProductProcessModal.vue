@@ -87,7 +87,7 @@
                 <div class="modal-body" v-if="product.id">
                     <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
                         :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
-                    </dropzone>
+                        </dropzone>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(5)">Let's add some additional info!</button>
@@ -99,7 +99,7 @@
                     <h1 style="font-weight: 300;" class="text-center">Additional Information</h1>
                 </div>
                 <div class="modal-body" v-if="product.id">
-                    <div class="html-editor"></div>
+                    <Vueditor ref="VueEditor" style="height: 400px;"></Vueditor>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
@@ -114,6 +114,35 @@
 <script>
 import CategoryTree from '../CategoryManager/CategoryTree.vue';
 import Dropzone from 'vue2-dropzone';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import Vueditor from 'vueditor';
+
+let config = {
+    toolbar: [
+        'removeFormat', 'undo', '|', 'elements', 'fontName', 'fontSize', 'foreColor', 'backColor', 'divider',
+        'bold', 'italic', 'underline', 'strikeThrough', 'links', 'divider', 'subscript', 'superscript',
+        'divider', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', '|', 'indent', 'outdent',
+        'insertOrderedList', 'insertUnorderedList', '|', 'emoji', 'picture', 'tables', '|', 'switchView'
+    ],
+    fontName: [{
+        val: "arial black"
+    }, {
+        val: "times new roman"
+    }, {
+        val: "Courier New"
+    }],
+    fontSize: ['12px', '14px', '16px', '18px', '0.8rem', '1.0rem', '1.2rem', '1.5rem', '2.0rem'],
+    emoji: ["1f600", "1f601", "1f602", "1f923", "1f603"],
+    lang: 'en',
+    mode: 'default',
+    iframePath: '',
+    fileuploadUrl: ''
+};
+
+Vue.use(Vuex);
+Vue.use(Vueditor, config);
+
 export default {
     mounted() {
         var that = this;
@@ -166,13 +195,7 @@ export default {
                 url: ''
             };
         },
-        initSummernote: function() {
-            $('.html-editor').summernote({
-                height: 250
-            });
-        },
         createProduct: function() {
-            this.product.detail = $('.html-editor').code();
             this.$http.post('/api/products', this.product).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
@@ -183,7 +206,7 @@ export default {
             });
         },
         updateProduct: function() {
-            this.product.detail = $('.html-editor').code();
+            this.detail = this.$refs.VueEditor.getContent();
             this.$http.post('/api/products' + this.product.id, this.product).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
@@ -217,9 +240,6 @@ export default {
         },
         setProcessStep: function(stepNumber) {
             this.process.step = stepNumber;
-            if (stepNumber == 5) {
-                this.initSummernote();
-            }
         }
     },
     components: {
@@ -234,3 +254,4 @@ export default {
     padding: 15px;
 }
 </style>
+>

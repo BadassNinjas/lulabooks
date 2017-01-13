@@ -14,7 +14,7 @@ elixir(mix => {
         './assets/css/app.min.1.css',
         './assets/css/app.min.2.css',
         './assets/css/sweet-alert.css',
-        './assets/css/summernote.css',
+        './assets/css/vueditor.min.css',
     ], '../../../../../../public/css/admin.min.css');
 
     mix.scripts([
@@ -30,7 +30,6 @@ elixir(mix => {
         './assets/js/plugins/demo.js',
         './assets/js/plugins/jquery.nestable.js',
         './assets/js/plugins/sweet-alert.min.js',
-        './assets/js/plugins/summernote-updated.min.js',
         './assets/js/compiled/app.js',
     ], '../../../../../../public/js/admin.min.js');
 });
