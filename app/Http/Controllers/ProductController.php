@@ -10,6 +10,20 @@ use BadassNinjas\RFS\Facades\RFS;
 
 class ProductController extends Controller
 {
+    public function getProduct($productId)
+    {
+        if (is_null($productId)) {
+            return Response::build('Invalid product ID', 404);
+        }
+        $product = Product::find($productId);
+
+        if (is_null($product)) {
+            return Response::build('Product invalid', 404);
+        }
+
+        return Response::build($product);
+    }
+
     public function getProducts()
     {
         return Response::build(Product::paginate(request('per_page', 15)));
