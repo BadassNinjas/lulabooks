@@ -102,7 +102,7 @@
                     <Vueditor ref="VueEditor" style="height: 400px;"></Vueditor>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-lg btn-success waves-effect">Upload Images</button>
+                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="updateProduct()" data-dismiss="modal">Finish!</button>
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
@@ -206,8 +206,9 @@ export default {
             });
         },
         updateProduct: function() {
-            this.detail = this.$refs.VueEditor.getContent();
-            this.$http.post('/api/products' + this.product.id, this.product).then((response) => {
+            this.product.detail = this.$refs.VueEditor.getContent();
+            console.log(this.detail);
+            this.$http.put('/api/products/' + this.product.id, this.product).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
                     this.process.step = 100;
