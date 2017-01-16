@@ -77,6 +77,7 @@ export default {
         registerTreeListener: function() {
             var that = this;
 
+            that.$root.$emit('CategoryTreeItemMounted', this.data);
             that.$root.$on('CategoryTreeItemUpdated', function() {
 
                 var thisElement = $('[data-id="' + that.data.id + '"]');

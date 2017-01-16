@@ -3,10 +3,12 @@
     <div id="loader-wrapper"></div>
     <div id="content-block">
 
-        <page-header></page-header>
+        <page-header :ShoppingCart="ShoppingCart"></page-header>
 
         <div class="container">
-            <router-view></router-view>
+            <div class="empty-space col-xs-b35 col-md-b70"></div>
+
+            <router-view :RenderCategories="Categories" :RenderProducts="ContainerProducts"></router-view>
         </div>
 
         <page-featured-products></page-featured-products>
@@ -39,10 +41,32 @@ import PageProductView from './Shared/PageProductView.vue';
 
 export default {
     mounted() {
-
+        this.getCategories();
+        this.getShoppingCart();
+        this.getDisplayProducts();
     },
     methods: {
-
+        getCategories: function() {
+            this.$http.get('/api/categories').then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('CategoryDataReceived', response.data.payload);
+                }
+            });
+        },
+        getShoppingCart: function() {
+            this.$http.get('/api/basket').then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('ShoppingCartDataReceived', response.data.payload);
+                }
+            });
+        },
+        getDisplayProducts: function() {
+            this.$http.get('/api/render/products').then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('ProductDisplayDataReceived', response.data.payload);
+                }
+            });
+        }
     },
     components: {
         PageHeader,
@@ -52,15 +76,6 @@ export default {
         PageLogin,
         PageRegister,
         PageProductView,
-
-    },
-    data: function() {
-        return {
-
-        }
-    },
-    watch: {
-
     }
 }
 </script>

@@ -1,101 +1,33 @@
 <template>
 <div>
-    <div class="popup-content" data-rel="3">
+    <div class="popup-content" data-rel="ProductView" v-if="Product != null">
         <div class="layer-close"></div>
         <div class="popup-container size-2">
             <div class="popup-align">
                 <div class="row">
                     <div class="col-sm-6 col-xs-b30 col-sm-b0">
-
-                        <div class="main-product-slider-wrapper swipers-couple-wrapper">
-                            <div class="swiper-container swiper-control-top">
-                                <div class="swiper-button-prev hidden"></div>
-                                <div class="swiper-button-next hidden"></div>
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="swiper-lazy-preloader"></div>
-                                        <div class="product-big-preview-entry swiper-lazy" data-background="img/customer/exzo/product-preview-4.jpg"></div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-lazy-preloader"></div>
-                                        <div class="product-big-preview-entry swiper-lazy" data-background="img/customer/exzo/product-preview-5.jpg"></div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-lazy-preloader"></div>
-                                        <div class="product-big-preview-entry swiper-lazy" data-background="img/customer/exzo/product-preview-6.jpg"></div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-lazy-preloader"></div>
-                                        <div class="product-big-preview-entry swiper-lazy" data-background="img/customer/exzo/product-preview-7.jpg"></div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-lazy-preloader"></div>
-                                        <div class="product-big-preview-entry swiper-lazy" data-background="img/customer/exzo/product-preview-8.jpg"></div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-lazy-preloader"></div>
-                                        <div class="product-big-preview-entry swiper-lazy" data-background="img/customer/exzo/product-preview-9.jpg"></div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-lazy-preloader"></div>
-                                        <div class="product-big-preview-entry swiper-lazy" data-background="img/customer/exzo/product-preview-10.jpg"></div>
-                                    </div>
+                        <div>
+                            <section class="regular slider">
+                                <hr/>
+                                <center>
+                                    <img style="border: 1px solid whitesmoke; cursor: pointer; padding: 7px;" :src="'https://' + image.hostname + image.path" width="64" height="64" v-for="image in Product.images" @click="ProductSelectedImage = 'https://' + image.hostname + image.path">
+                                </center>
+                                <hr/>
+                                <br/>
+                                <div>
+                                    <center>
+                                        <img class="img img-responsive" :src="ProductSelectedImage ? ProductSelectedImage : 'https://' + Product.images[0].hostname + Product.images[0].path" />
+                                    </center>
                                 </div>
-                            </div>
-
-                            <div class="empty-space col-xs-b30 col-sm-b60"></div>
-
-                            <div class="swiper-container swiper-control-bottom" data-breakpoints="1" data-xs-slides="3" data-sm-slides="3" data-md-slides="4" data-lt-slides="5" data-slides-per-view="5" data-center="1" data-click="1">
-                                <div class="swiper-button-prev hidden"></div>
-                                <div class="swiper-button-next hidden"></div>
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="product-small-preview-entry">
-                                            <img src="img/customer/exzo/product-preview-4_.jpg" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-small-preview-entry">
-                                            <img src="img/customer/exzo/product-preview-5_.jpg" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-small-preview-entry">
-                                            <img src="img/customer/exzo/product-preview-6_.jpg" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-small-preview-entry">
-                                            <img src="img/customer/exzo/product-preview-7_.jpg" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-small-preview-entry">
-                                            <img src="img/customer/exzo/product-preview-8_.jpg" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-small-preview-entry">
-                                            <img src="img/customer/exzo/product-preview-9_.jpg" alt="" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-small-preview-entry">
-                                            <img src="img/customer/exzo/product-preview-10_.jpg" alt="" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                            </section>
                         </div>
-
                     </div>
                     <div class="col-sm-6">
-                        <div class="simple-article size-3 grey col-xs-b5">SMART WATCHES</div>
-                        <div class="h3 col-xs-b25">watch 42mm smartwatch</div>
+                        <div class="simple-article size-3 grey col-xs-b5">{{ Product.category.name }}</div>
+                        <div class="h3 col-xs-b25">{{ Product.name }}</div>
                         <div class="row col-xs-b25">
                             <div class="col-sm-6">
-                                <div class="simple-article size-5 grey">PRICE: <span class="color">$225.00</span></div>
+                                <div class="simple-article size-5 grey">PRICE: <span class="color">R{{ Product.price }}</span></div>
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
                                 <div class="rate-wrapper align-inline">
@@ -103,95 +35,41 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
-                                <div class="simple-article size-2 align-inline">128 Reviews</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">127-#5238</span></div>
+                                <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">#{{ Product.id }}</span></div>
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
                                 <div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">YES</span></div>
                             </div>
                         </div>
-                        <div class="simple-article size-3 col-xs-b30">Vivamus in tempor eros. Phasellus rhoncus in nunc sit amet mattis. Integer in ipsum vestibulum, molestie arcu ac, efficitur tellus. Phasellus id vulputate erat.</div>
+                        <div class="simple-article size-3 col-xs-b30">{{ Product.caption }}</div>
                         <div class="row col-xs-b40">
-                            <div class="col-sm-3">
-                                <div class="h6 detail-data-title size-1">size:</div>
-                            </div>
-                            <div class="col-sm-9">
-                                <select class="SlectBox">
-                                  <option disabled="disabled" selected="selected">Choose size</option>
-                                  <option value="volvo">Volvo</option>
-                                  <option value="saab">Saab</option>
-                                  <option value="mercedes">Mercedes</option>
-                                  <option value="audi">Audi</option>
-                              </select>
-                            </div>
-                        </div>
-                        <div class="row col-xs-b40">
-                            <div class="col-sm-3">
-                                <div class="h6 detail-data-title">color:</div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="color-selection size-1">
-                                    <div class="entry active" style="color: #a7f050;"></div>
-                                    <div class="entry" style="color: #50e3f0;"></div>
-                                    <div class="entry" style="color: #eee;"></div>
-                                    <div class="entry" style="color: #4d900c;"></div>
-                                    <div class="entry" style="color: #edb82c;"></div>
-                                    <div class="entry" style="color: #7d3f99;"></div>
-                                    <div class="entry" style="color: #3481c7;"></div>
-                                    <div class="entry" style="color: #bf584b;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row col-xs-b40">
-                            <div class="col-sm-3">
+                            <div class="col-sm-12">
                                 <div class="h6 detail-data-title size-1">quantity:</div>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-6">
+
                                 <div class="quantity-select">
-                                    <span class="minus"></span>
-                                    <span class="number">1</span>
-                                    <span class="plus"></span>
+                                    <span class="minus" @click="OrderQuantityDecrease()"></span>
+                                    <span class="number">{{ OrderQuantity }}</span>
+                                    <span class="plus" @click="OrderQuantityIncrease()"></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row m5 col-xs-b40">
-                            <div class="col-sm-6 col-xs-b10 col-sm-b0">
-                                <a class="button size-2 style-2 block" href="#">
+                            <div class="col-sm-6">
+                                <a class="button size-2 style-3 block" href="#">
                                     <span class="button-wrapper">
-                                      <span class="icon"><img src="img/customer/exzo/icon-2.png" alt=""></span>
+                                      <span class="icon"><img src="/img/customer/exzo/icon-2.png" alt=""></span>
                                     <span class="text">add to cart</span>
                                     </span>
                                 </a>
                             </div>
-                            <div class="col-sm-6">
-                                <a class="button size-2 style-1 block noshadow" href="#">
-                                    <span class="button-wrapper">
-                                  <span class="icon"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-                                    <span class="text">add to favourites</span>
-                                    </span>
-                                </a>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="h6 detail-data-title size-2">share:</div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="follow light">
-                                    <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
-                                    <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
-                                    <a class="entry" href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a class="entry" href="#"><i class="fa fa-google-plus"></i></a>
-                                    <a class="entry" href="#"><i class="fa fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="simple-article size-3 col-xs-b30" v-html="Product.detail"></div>
                     </div>
                 </div>
             </div>
@@ -200,3 +78,34 @@
     </div>
 </div>
 </template>
+
+<script>
+export default {
+    mounted() {
+        var that = this;
+
+        this.$root.$on('ProductViewSelected', function(Product) {
+            that.Product = Product;
+            that.OrderQuantity = 1;
+            that.ProductSelectedImage = null;
+        });
+    },
+    data() {
+        return {
+            Product: null,
+            OrderQuantity: 1,
+            ProductSelectedImage: null,
+        }
+    },
+    methods: {
+        OrderQuantityDecrease: function() {
+            if (OrderQuantity > 1) {
+                this.OrderQuantity--;
+            }
+        },
+        OrderQuantityIncrease: function() {
+            this.OrderQuantity++;
+        }
+    }
+}
+</script>

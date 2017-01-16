@@ -31,6 +31,8 @@ Route::post('/api/categories', 'ProductCategoryController@createOrUpdateCategory
 Route::post('/api/categories/{categoryId}', 'ProductCategoryController@createOrUpdateCategory');
 Route::delete('/api/categories/{categoryId?}', 'ProductCategoryController@deleteCategory');
 
+Route::get('/api/render/products', 'RenderProductController@getRenderProducts');
+
  Route::group(['prefix' => '/admin'], function () {
      Route::get('/', 'Base\Controller@renderAdminPage');
      Route::get('{path}', 'Base\Controller@renderAdminPage')->where('path', '.+');

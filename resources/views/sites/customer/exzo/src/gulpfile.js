@@ -16,11 +16,8 @@ elixir(mix => {
 
     mix.scripts([
         './assets/js/plugins/jquery-2.2.4.min.js',
-        './assets/js/plugins/swiper.jquery.min.js',
         './assets/js/plugins/global.js',
         './assets/js/plugins/jquery.sumoselect.min.js',
-        //'./assets/js/plugins/jquery.classycountdown.js',
-        //'./assets/js/plugins/jquery.knob.js',
         './assets/js/compiled/app.js',
     ], '../../../../../../public/js/customer.min.js');
 });

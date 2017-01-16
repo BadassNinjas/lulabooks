@@ -1,43 +1,5 @@
 <template>
 <div>
-    <div class="row nopadding">
-        <div class="col-sm-6 col-lg-3">
-            <div class="icon-description-shortcode style-4">
-                <img class="icon-image" src="img/customer/exzo/icon-22.png" alt="">
-                <div class="cell-view">
-                    <div class="title h6">free delivery</div>
-                    <div class="description simple-article size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada etiam a venenatis </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="icon-description-shortcode style-4">
-                <img class="icon-image" src="img/customer/exzo/icon-23.png" alt="">
-                <div class="cell-view">
-                    <div class="title h6">customers support</div>
-                    <div class="description simple-article size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada etiam a venenatis </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="icon-description-shortcode style-4">
-                <img class="icon-image" src="img/customer/exzo/icon-24.png" alt="">
-                <div class="cell-view">
-                    <div class="title h6">payment security</div>
-                    <div class="description simple-article size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada etiam a venenatis </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="icon-description-shortcode style-4">
-                <img class="icon-image" src="img/customer/exzo/icon-25.png" alt="">
-                <div class="cell-view">
-                    <div class="title h6">world wide store</div>
-                    <div class="description simple-article size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada etiam a venenatis </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <footer>
         <div class="container">
             <div class="footer-top">

@@ -16,7 +16,7 @@
                                 <a href="index1.html">ZAR</a>
                             </div>
                         </div>
-                        <shopping-cart-widget></shopping-cart-widget>
+                        <shopping-cart-widget :ShoppingCart="ShoppingCart"></shopping-cart-widget>
                         <div class="hamburger-icon">
                             <span></span>
                             <span></span>
@@ -37,6 +37,9 @@ import ShoppingCartWidget from './ShoppingCart/CartWidget.vue';
 import NavBar from './Navigation/NavBar.vue';
 
 export default {
+    props: [
+        'ShoppingCart'
+    ],
     components: {
         ShoppingCartWidget,
         NavBar

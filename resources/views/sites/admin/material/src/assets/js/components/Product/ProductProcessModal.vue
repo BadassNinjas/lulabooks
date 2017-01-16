@@ -1,6 +1,6 @@
 <template>
 <div product-modal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog" :class="{ 'modal-lg': process.step > 2 }">
         <div class="modal-content">
             <div v-if="process.step == 1">
                 <div class="modal-header">
@@ -26,7 +26,7 @@
                         <br/>
                         <div class="form-group input-group fg-float">
                             <span class="input-group-addon">R</span>
-                            <div class="fg-line">
+                            <div class="fg-line" :class="{ 'fg-toggled': product.price.length }">
                                 <input type="text" class="input-lg form-control fg-input" v-model="product.price">
                                 <label class="fg-label">How much do you want to sell this item for?</label>
                             </div>
@@ -41,45 +41,23 @@
                 </form>
             </div>
             <div v-if="process.step == 2">
-                <div v-if="process.creatingProduct">
-                    <div class="modal-header" style="padding: 0 26px">
-                        <h1 style="font-weight: 300;" class="text-center">Your basic product has been created!</h1>
-                    </div>
-                    <div class="modal-body">
-                        <h3 style="font-weight: 300;">A few things you may want to do in order to make your product more appealing to your customer</h3>
-                        <br/>
-                        <ul>
-                            <li>Assign your product to an organised category</li>
-                            <li>Add some content like videos, descriptors, and marketing related information</li>
-                            <li>Upload some images and select a primary display image</li>
-                        </ul>
-                        <br/>
-                        <h4 style="font-weight: 300;">Click the green button to start adding your additional information or the other to exit.</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(3)">Let's Do It!</button>
-                        <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
-                    </div>
+                <div class="modal-header" style="padding: 0 26px">
+                    <h1 style="font-weight: 300;" class="text-center">Your basic product has been {{ process.creatingProduct ? 'created' : 'modified' }}!</h1>
                 </div>
-                <div v-if="!process.creatingProduct">
-                    <div class="modal-header" style="padding: 0 26px">
-                        <h1 style="font-weight: 300;" class="text-center">Your basic product has been modified!</h1>
-                    </div>
-                    <div class="modal-body">
-                        <h3 style="font-weight: 300;">If you want to modify things like : </h3>
-                        <br/>
-                        <ul>
-                            <li>Product's category</li>
-                            <li>Images or primary display image</li>
-                            <li>Media content like videos, descriptors, and marketing related information</li>
-                        </ul>
-                        <br/>
-                        <h4 style="font-weight: 300;">Click the green button to start modifying this information or the other to exit.</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(3)">Let's Do It!</button>
-                        <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
-                    </div>
+                <div class="modal-body">
+                    <h3 style="font-weight: 300;">A few things you may want to do in order to make your product more appealing to your customer</h3>
+                    <br/>
+                    <ul>
+                        <li>Assign your product to an organised category</li>
+                        <li>Add some content like videos, descriptors, and marketing related information</li>
+                        <li>Upload some images and select a primary display image</li>
+                    </ul>
+                    <br/>
+                    <h4 style="font-weight: 300;">Click the green button to {{ process.creatingProduct ? 'start adding your ' : 'modify existing ' }} information or the other to exit.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(3)">Let's Do It!</button>
+                    <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
                 </div>
             </div>
             <div v-if="process.step == 3">
@@ -90,10 +68,6 @@
                     <br/>
                     <h4 style="font-weight: 300;">Click a category to assign your product to it.</h4>
                     <category-tree class="dd-selectable" ref="CategoryTreeRoot" :treeData="categoryTreeData" :treeControlsEnabled="categoryTreeControlsEnabled"></category-tree>
-
-                    <div class="alert alert-success" v-if="process.category">
-                        <p>Set {{ product.name }}'s category to {{ product.category.name }}'</p>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(4)">Next, upload images!</button>
@@ -105,9 +79,31 @@
                     <h1 style="font-weight: 300;" class="text-center">Images</h1>
                 </div>
                 <div class="modal-body" v-if="product.id">
-                    <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
-                        :url="dropzoneOptions.url" v-on:vdropzone-success="dropzoneOptions.showSuccess">
-                    </dropzone>
+                    <div v-if="product.images.length">
+                        <h3 style="font-weight: 300;">Existing Images</h3>
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-3" v-for="image in product.images">
+                                <div class="media" style="padding: 9px;">
+                                    <div class="pull-left">
+                                        <a :href="'https://' + image.hostname + image.path" target="_blank">
+                                            <img :src="'https://' + image.hostname + image.path" width="72" height="72" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <button class="btn btn-default btn-link" type="button"><i class="fa fa-trash"></i> Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/><br/>
+                    </div>
+                    <div>
+                        <h3 style="font-weight: 300;">Upload Images</h3>
+                        <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
+                            :url="dropzoneOptions.url" v-on:vdropzone-success="onImageuploadSuccess">
+                            </dropzone>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(5)">Let's add some additional info!</button>
@@ -119,11 +115,22 @@
                     <h1 style="font-weight: 300;" class="text-center">Additional Information</h1>
                 </div>
                 <div class="modal-body" v-if="product.id">
-                    <Vueditor ref="VueEditor" style="height: 400px;"></Vueditor>
+                    <VueEditor ref="VueEditor" :content="product.detail"></VueEditor>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="updateProduct()" data-dismiss="modal">Finish!</button>
+                    <button type="submit" class="btn btn-lg btn-success waves-effect" @click="updateProductDetail()">Finish!</button>
                     <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                </div>
+            </div>
+            <div v-if="process.step == 6">
+                <div class="modal-header" style="padding: 0 26px">
+                    <h1 style="font-weight: 300;" class="text-center">All done! Woo hoo!</h1>
+                </div>
+                <div class="modal-body">
+                    <h3 style="font-weight: 300;">If you completed all sections provided, your product is ready and will show up on your store page immediately! You can edit your product at any time by navigating to your product listing page and clicking the 'edit' button on the product you wish to modify.</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-success waves-effect" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <br/>
@@ -134,43 +141,25 @@
 <script>
 import CategoryTree from '../CategoryManager/CategoryTree.vue';
 import Dropzone from 'vue2-dropzone';
-import Vue from 'vue';
-import Vuex from 'vuex';
-import Vueditor from 'vueditor';
-
-let config = {
-    toolbar: [
-        'removeFormat', 'undo', '|', 'elements', 'fontName', 'fontSize', 'foreColor', 'backColor', 'divider',
-        'bold', 'italic', 'underline', 'strikeThrough', 'links', 'divider', 'subscript', 'superscript',
-        'divider', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', '|', 'indent', 'outdent',
-        'insertOrderedList', 'insertUnorderedList', '|', 'emoji', 'picture', 'tables', '|', 'switchView'
-    ],
-    fontName: [{
-        val: "arial black"
-    }, {
-        val: "times new roman"
-    }, {
-        val: "Courier New"
-    }],
-    fontSize: ['12px', '14px', '16px', '18px', '0.8rem', '1.0rem', '1.2rem', '1.5rem', '2.0rem'],
-    emoji: ["1f600", "1f601", "1f602", "1f923", "1f603"],
-    lang: 'en',
-    mode: 'default',
-    iframePath: '',
-    fileuploadUrl: ''
-};
-
-Vue.use(Vuex);
-Vue.use(Vueditor, config);
+import VueEditor from './ProductDetailEditor.vue';
 
 export default {
     mounted() {
         var that = this;
-        this.fetchCategories();
+
+        this.$root.$on('CategoryTreeItemMounted', function(item) {
+            if (!that.categoryTreeControlsEnabled) {
+                if (that.product.category != null && item.id == that.product.category.id) {
+                    $('.dd-handle', '[data-id="' + item.id + '"]').first().addClass('selected');
+                }
+            }
+        });
+
         this.$root.$on('CategoryTreeItemClicked', function(item) {
             if (!that.categoryTreeControlsEnabled) {
                 $('.dd-handle', '[data-id]').removeClass('selected');
                 $('.dd-handle', '[data-id="' + item.id + '"]').first().addClass('selected');
+
                 that.updateProductCategory(item.id);
             }
         });
@@ -179,13 +168,7 @@ export default {
         return {
             product: {},
             process: {},
-            dropzoneOptions: {
-                showRemoveLink: true,
-                acceptedFileTypes: 'image/*',
-                useFontAwesome: true,
-                maxFileSizeInMB: 2,
-                url: ''
-            },
+            dropzoneOptions: {},
             categoryTreeData: [],
             categoryTreeControlsEnabled: false,
         }
@@ -193,7 +176,10 @@ export default {
     methods: {
         instance: function(withId) {
             this.reset(withId);
+
             this.fetchProduct(withId);
+            this.fetchCategories();
+
             $('[product-modal]').modal('show');
         },
         reset: function(withId) {
@@ -212,17 +198,21 @@ export default {
                 showRemoveLink: true,
                 acceptedFileTypes: 'image/*',
                 useFontAwesome: true,
-                maxFileSizeInMB: 2,
+                maxFileSizeInMB: 4,
                 url: ''
             };
         },
         submitForm: function() {
             this.product.id ? this.updateProduct() : this.createProduct();
         },
+        onImageuploadSuccess: function(file) {
+
+        },
         createProduct: function() {
             this.$http.post('/api/products', this.product).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
+                    this.dropzoneOptions.url = '/api/products/' + this.product.id + '/image';
                     this.process.step = 2;
                 } else {
                     alert(response.data.payload.error.desc);
@@ -230,43 +220,58 @@ export default {
             });
         },
         updateProduct: function() {
-            if(typeof this.$refs.VueEditor != 'undefined')
-            {
-              this.product.detail = this.$refs.VueEditor.getContent();
-            }
             this.$http.put('/api/products/' + this.product.id, this.product).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
+                    this.dropzoneOptions.url = '/api/products/' + this.product.id + '/image';
                     this.process.step = 2;
                 } else {
                     alert(response.data.payload.error.desc);
                 }
             });
         },
-        fetchProduct: function(id) {
-            var that = this;
-            that.$http.get('/api/products/' + id).then((response) => {
+        updateProductDetail: function() {
+            this.product.detail = this.$refs.VueEditor.getContent();
+            this.$http.put('/api/products/' + this.product.id, this.product).then((response) => {
                 if (response.data.success) {
-                    that.product = response.data.payload;
+                    this.product = response.data.payload;
+                    this.process.step = 6;
+
+                    if (this.$refs.VueEditor !== undefined) {
+                        this.$refs.VueEditor.setContent(this.product.detail);
+                    }
+                } else {
+                    alert(response.data.payload.error.desc);
+                }
+            });
+        },
+        fetchProduct: function(id) {
+
+            this.$http.get('/api/products/' + id).then((response) => {
+                if (response.data.success) {
+                    this.product = response.data.payload;
+
+                    if (this.$refs.VueEditor !== undefined) {
+                        this.$refs.VueEditor.setContent(this.product.detail);
+                    }
                 }
             });
         },
         fetchCategories: function() {
-            var that = this;
-            that.$http.get('/api/categories/').then((response) => {
+            this.$http.get('/api/categories').then((response) => {
                 if (response.data.success) {
-                    that.categoryTreeData = response.data.payload;
+                    this.categoryTreeData = response.data.payload;
                 }
             });
         },
         updateProductCategory: function(categoryId) {
-            var that = this;
             var payload = this.product;
+
             payload.category_id = categoryId;
+
             this.$http.put('/api/products/' + this.product.id, payload).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
-                    this.dropzoneOptions.url = '/api/products/' + this.product.id + '/image';
                     this.process.category = response.data.payload.category;
                 } else {
                     alert(response.data.payload.error.desc);
@@ -279,14 +284,8 @@ export default {
     },
     components: {
         Dropzone,
-        CategoryTree
+        CategoryTree,
+        VueEditor
     },
 }
 </script>
-
-<style>
-.modal-footer a {
-    padding: 15px;
-}
-</style>
->

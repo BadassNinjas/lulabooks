@@ -8,6 +8,9 @@
         <title>LulaBooks</title>
         <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway:700,900" rel="stylesheet">
         <link rel="stylesheet" href="/css/customer.min.css">
+
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+
     </head>
     <body>
           <div id="app"></div>
@@ -18,5 +21,6 @@
             }
           </script>
           <script src="/js/customer.min.js"></script>
+            <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     </body>
 </html>
