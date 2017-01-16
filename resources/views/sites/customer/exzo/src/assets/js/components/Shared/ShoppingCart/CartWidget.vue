@@ -10,24 +10,24 @@
     </a>
     <div class="cart-toggle hidden-xs hidden-sm">
         <div class="cart-overflow">
-            <div class="cart-entry clearfix" v-for="item in ShoppingCart.items">
-                <a class="cart-entry-thumbnail" href="#"><img src="img/customer/exzo/product-1.png" alt="" /></a>
+            <div class="cart-entry clearfix" v-for="item in ShoppingCart.items" v-if="ShoppingCart.items.length">
+                <a class="cart-entry-thumbnail" href="#"><img :src="item.misc.image" alt="" style="width:60px;height:60px;"/></a>
                 <div class="cart-entry-description">
                     <table>
                         <tr>
                             <td>
-                                <div class="h6"><a href="#">modern beat ht</a></div>
-                                <div class="simple-article size-1">QUANTITY: 2</div>
+                                <div class="h6"><a href="#">{{ item.name }}</a></div>
+                                <div class="simple-article size-1">QUANTITY: {{ item.quantity }}</div>
                             </td>
                             <td>
-                                <div class="simple-article size-3 grey">$155.00</div>
-                                <div class="simple-article size-1">TOTAL: $310.00</div>
+                                <div class="simple-article size-3 grey">R {{ item.price }}</div>
+                                <div class="simple-article size-1">R {{ (item.price * item.quantity).toFixed(2) }}</div>
                             </td>
                             <td>
                                 <div class="cart-color" style="background: #eee;"></div>
                             </td>
                             <td>
-                                <div class="button-close"></div>
+                                <div class="button-close" @click="RemoveFromBasket(item.id)"></div>
                             </td>
                         </tr>
                     </table>
@@ -62,6 +62,7 @@ export default {
         this.$root.$on('ShoppingCartDataReceived', function(ShoppingCart) {
             that.ShoppingCart = ShoppingCart;
         });
+        //alert(that.ShoppingCart.items[1]);
     },
     data() {
         return {
@@ -69,6 +70,12 @@ export default {
                 items: [],
                 total: '0.00',
             },
+        }
+    },
+    methods: {
+        RemoveFromBasket: function(productId) {
+            var that = this;
+            that.$parent.$parent.removeFromBasket(productId);
         }
     }
 }
