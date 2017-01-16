@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-xs-b30 col-sm-b0">
                         <div>
-                            <section class="regular slider">
+                            <section class="regular slider" v-if="Product.images.length">
                                 <hr/>
                                 <center>
                                     <img style="border: 1px solid whitesmoke; cursor: pointer; padding: 7px;" :src="'https://' + image.hostname + image.path" width="64" height="64" v-for="image in Product.images" @click="ProductSelectedImage = 'https://' + image.hostname + image.path">
