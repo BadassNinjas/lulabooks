@@ -14,7 +14,7 @@
                     <div class="row" v-if="ViewState == 'dash'">
                         <div class="col-lg-12">
                             <div class="col-lg-4">
-                                <div class="manager-option btn btn-primary waves-effect" @click="showProductProcess()">
+                                <div class="manager-option btn btn-primary waves-effect" @click="addProduct()">
                                     <h3>Add a New Product</h3>
                                     <i class="zmdi zmdi-layers zmdi-hc-5x"></i>
                                 </div>
@@ -33,13 +33,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" v-if="ViewState == 'product'">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:;" class="btn btn-primary pull-left manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
+                            </div>
+                        </div>
+                        <product-process :withId="withId"></product-process>
+                    </div>
                     <div class="row" v-if="ViewState == 'list'">
                         <div class="row">
                             <div class="col-lg-6">
                                 <a href="javascript:;" class="btn btn-default btn-link pull-left manager-btn" @click="refreshProductList()"><i class="fa fa-refresh"></i> Refresh</a>
                             </div>
                             <div class="col-lg-6">
-                                <a href="javascript:;" class="btn btn-success pull-right manager-btn" @click="showProductProcess()">Add a New Product</a>
+                                <a href="javascript:;" class="btn btn-success pull-right manager-btn" @click="ViewState = 'product'">Add a New Product</a>
                                 <a href="javascript:;" class="btn btn-primary pull-right manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
                             </div>
                         </div>
@@ -49,7 +57,6 @@
             </div>
         </div>
     </section>
-    <product-process-modal ref="ProductProcessModal"></product-process-modal>
 </div>
 </template>
 
@@ -84,21 +91,23 @@
 
 <script>
 import ProductListingView from './ProductListingView.vue';
-import ProductProcessModal from './ProductProcessModal.vue';
+import ProductProcess from './ProductProcess.vue';
 export default {
     data: function() {
         return {
             ViewState: 'dash',
+            withId:null,
         }
     },
     methods: {
-        showProductProcess: function(withId) {
-            this.$refs.ProductProcessModal.instance(withId);
-        }
+      addProduct: function() {
+        this.withId = null;
+        this.ViewState = 'product';
+      }
     },
     components: {
         ProductListingView,
-        ProductProcessModal
+        ProductProcess
     }
 }
 </script>

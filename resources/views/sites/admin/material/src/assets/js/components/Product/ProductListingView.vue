@@ -32,7 +32,8 @@ Vue.component('custom-actions', {
             var ProductView = ListingComponent.$parent;
 
             if (action == 'edit-item') {
-                ProductView.showProductProcess(data.id);
+                ProductView.withId = data.id;
+                ProductView.ViewState = "product";
             } else if (action == 'delete-item') {
                 ListingComponent.showConfirmProductDelete(data.id);
             }
