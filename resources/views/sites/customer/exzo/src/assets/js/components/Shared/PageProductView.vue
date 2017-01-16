@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="simple-article size-3 grey col-xs-b5">{{ Product.category.name }}</div>
+                        <div class="simple-article size-3 grey col-xs-b5" v-if="Product.category != null">{{ Product.category.name }}</div>
                         <div class="h3 col-xs-b25">{{ Product.name }}</div>
                         <div class="row col-xs-b25">
                             <div class="col-sm-6">
@@ -92,7 +92,7 @@ export default {
     },
     data() {
         return {
-            Product: null,
+            Product: {},
             OrderQuantity: 1,
             ProductSelectedImage: null,
         }
