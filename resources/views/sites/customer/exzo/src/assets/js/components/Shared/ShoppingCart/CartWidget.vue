@@ -42,12 +42,12 @@
                 </div>
             </div>
             <div class="col-xs-6 text-right">
-                <a class="button size-2 style-3" href="checkout1.html">
+                <router-link tag="a" class="button size-2 style-3" to="/checkout">
                     <span class="button-wrapper">
                            <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
                     <span class="text">proceed to checkout</span>
                     </span>
-                </a>
+                </router-link>
             </div>
         </div>
     </div>

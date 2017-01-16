@@ -11,8 +11,6 @@
             <router-view :RenderCategories="Categories" :RenderProducts="ContainerProducts"></router-view>
         </div>
 
-        <page-featured-products></page-featured-products>
-
     </div>
 
     <page-footer></page-footer>
@@ -33,7 +31,6 @@
 <script>
 import PageHeader from './Shared/PageHeader.vue';
 import PageSlider from './Shared/PageSlider.vue';
-import PageFeaturedProducts from './Shared/PageFeaturedProducts.vue';
 import PageFooter from './Shared/PageFooter.vue';
 import PageLogin from './Shared/PageLogin.vue';
 import PageRegister from './Shared/PageRegister.vue';
@@ -71,7 +68,6 @@ export default {
     components: {
         PageHeader,
         PageSlider,
-        PageFeaturedProducts,
         PageFooter,
         PageLogin,
         PageRegister,
