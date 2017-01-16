@@ -21,6 +21,7 @@ Route::delete('/api/products/{productId}/image/{imageId}', 'ProductController@ad
 
 Route::get('/api/basket', 'CartController@getShoppingCart');
 Route::post('/api/basket', 'CartController@addToShoppingCart');
+Route::delete('/api/basket', 'CartController@removeShoppingCartItem');
 
 Route::get('/api/auth', 'AuthController@checkLogin');
 Route::post('/api/auth', 'AuthController@doLogin');

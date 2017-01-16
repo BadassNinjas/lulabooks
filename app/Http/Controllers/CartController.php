@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use ShopKit\Core\Facades\ShopKit;
+use ShopKit\Product\Models\Product;
 
 class CartController extends Controller
 {
@@ -40,10 +41,25 @@ class CartController extends Controller
                                            ->setOriginalItem($product)
                                            ->setMisc([
                                              'description' => $product->description,
-                                             'image' => 'http://wallpaper-gallery.net/images/nice-picture/nice-picture-13.jpg'
+                                             'image' => $product->images ? 'https://' . $product->images->first()->hostname . $product->images->first()->path : '/img/customer/box.jpg'
                                            ]));
 
 
-        return $this->getBasket();
+        return $this->getShoppingCart();
+    }
+
+    public function removeShoppingCartItem()
+    {
+        $validator = Validator::make(request()->all(), [
+          'id' => 'exists:product,id'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::build('Invalid API Usage', 403);
+        }
+
+        ShopKit::getShoppingCart()->removeItem(ShopKit::getShoppingCart()->createItem()->setId(request('id')));
+
+        return $this->getShoppingCart();
     }
 }

@@ -20,6 +20,14 @@
                                     </center>
                                 </div>
                             </section>
+                            <section class="regular slider" v-if="!Product.images.length">
+                                <br/>
+                                <div>
+                                    <center>
+                                        <img class="img img-responsive" src="/img/customer/box.jpg" />
+                                    </center>
+                                </div>
+                            </section>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -61,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <a class="button size-2 style-3 block" href="#">
+                                <a class="button size-2 style-3 block" @click="AddToBasket()">
                                     <span class="button-wrapper">
                                       <span class="icon"><img src="/img/customer/exzo/icon-2.png" alt=""></span>
                                     <span class="text">add to cart</span>
@@ -101,12 +109,17 @@ export default {
     },
     methods: {
         OrderQuantityDecrease: function() {
-            if (OrderQuantity > 1) {
-                this.OrderQuantity--;
+            var that = this;
+            if (that.OrderQuantity > 1) {
+                that.OrderQuantity--;
             }
         },
         OrderQuantityIncrease: function() {
             this.OrderQuantity++;
+        },
+        AddToBasket: function() {
+            var that = this;
+            that.$parent.addToBasket(that.Product.id, that.OrderQuantity);
         }
     }
 }
