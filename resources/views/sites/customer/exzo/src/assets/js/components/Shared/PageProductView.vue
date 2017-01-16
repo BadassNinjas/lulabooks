@@ -92,7 +92,9 @@ export default {
     },
     data() {
         return {
-            Product: {},
+            Product: {
+                images: [],
+            },
             OrderQuantity: 1,
             ProductSelectedImage: null,
         }
