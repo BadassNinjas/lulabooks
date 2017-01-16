@@ -74,17 +74,15 @@ export default {
                 id: productId
             }).then((response)=>{
                 if(response.data.success) {
-                    that.getShoppingCart();
+                    that.ShoppingCart = response.data.payload;
                 }
             });
         },
         removeFromBasket: function(productId) {
             var that = this;
-            that.$http.delete('/api/basket', {
-                id: productId
-            }).then((response)=>{
+            that.$http.delete('/api/basket/' + productId).then((response)=>{
                 if(response.data.success) {
-                    that.getShoppingCart();
+                    that.ShoppingCart = response.data.payload;
                 }
             })
         }

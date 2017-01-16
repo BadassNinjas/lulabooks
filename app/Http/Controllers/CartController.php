@@ -41,16 +41,16 @@ class CartController extends Controller
                                            ->setOriginalItem($product)
                                            ->setMisc([
                                              'description' => $product->description,
-                                             'image' => $product->images ? 'https://' . $product->images->first()->hostname . $product->images->first()->path : '/img/customer/box.jpg'
+                                             'image' => count($product->images) ? 'https://' . $product->images->first()->hostname . $product->images->first()->path : '/img/customer/box.jpg'
                                            ]));
 
 
         return $this->getShoppingCart();
     }
 
-    public function removeShoppingCartItem()
+    public function removeShoppingCartItem($productId)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = Validator::make(['id' => $productId], [
           'id' => 'exists:product,id'
         ]);
 
@@ -58,7 +58,7 @@ class CartController extends Controller
             return Response::build('Invalid API Usage', 403);
         }
 
-        ShopKit::getShoppingCart()->removeItem(ShopKit::getShoppingCart()->createItem()->setId(request('id')));
+        ShopKit::getShoppingCart()->removeItem(ShopKit::getShoppingCart()->createItem()->setId($productId));
 
         return $this->getShoppingCart();
     }

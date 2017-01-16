@@ -10,7 +10,7 @@
     </a>
     <div class="cart-toggle hidden-xs hidden-sm">
         <div class="cart-overflow">
-            <div class="cart-entry clearfix" v-for="item in ShoppingCart.items">
+            <div class="cart-entry clearfix" v-for="item in ShoppingCart.items" v-if="ShoppingCart.items.length">
                 <a class="cart-entry-thumbnail" href="#"><img :src="item.misc.image" alt="" style="width:60px;height:60px;"/></a>
                 <div class="cart-entry-description">
                     <table>
@@ -62,6 +62,7 @@ export default {
         this.$root.$on('ShoppingCartDataReceived', function(ShoppingCart) {
             that.ShoppingCart = ShoppingCart;
         });
+        //alert(that.ShoppingCart.items[1]);
     },
     data() {
         return {

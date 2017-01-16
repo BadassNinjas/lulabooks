@@ -111,16 +111,16 @@
         },
         {
             "name": "badassninjas/shopkit-core",
-            "version": "v0.7.8",
+            "version": "v0.7.11",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BadassNinjas/shopkit-core.git",
-                "reference": "9eb690bef6f1a72160e936a5fd50086eaa99098c"
+                "reference": "98725195c6df0a93d84f1bec8f7be3ac745f8d2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/shopkit-core/zipball/9eb690bef6f1a72160e936a5fd50086eaa99098c",
-                "reference": "9eb690bef6f1a72160e936a5fd50086eaa99098c",
+                "url": "https://api.github.com/repos/BadassNinjas/shopkit-core/zipball/98725195c6df0a93d84f1bec8f7be3ac745f8d2b",
+                "reference": "98725195c6df0a93d84f1bec8f7be3ac745f8d2b",
                 "shasum": ""
             },
             "require": {
@@ -150,10 +150,10 @@
                 "shopkit"
             ],
             "support": {
-                "source": "https://github.com/BadassNinjas/shopkit-core/tree/v0.7.8",
+                "source": "https://github.com/BadassNinjas/shopkit-core/tree/v0.8.2",
                 "issues": "https://github.com/BadassNinjas/shopkit-core/issues"
             },
-            "time": "2017-01-16 10:52:58"
+            "time": "2017-01-16 13:42:20"
         },
         {
             "name": "badassninjas/shopkit-product",
@@ -1468,16 +1468,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.22.0",
+            "version": "1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "3b114ab800c6432ad42387ccf6bc8d4388a2885a"
+                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/3b114ab800c6432ad42387ccf6bc8d4388a2885a",
-                "reference": "3b114ab800c6432ad42387ccf6bc8d4388a2885a",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc",
+                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc",
                 "shasum": ""
             },
             "require": {
@@ -1517,7 +1517,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-01-15 14:47:48"
+            "time": "2017-01-16 07:55:07"
         },
         {
             "name": "nikic/php-parser",
