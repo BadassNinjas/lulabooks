@@ -4,7 +4,7 @@
         <div class="content-margins">
             <div class="row">
                 <div class="col-xs-5 col-sm-5">
-                    <a id="logo" href="index1.html"><img src="img/lulalogo.png" alt="" /></a>
+                    <router-link tag="a" to="/" id="logo"><img src="img/lulalogo.png" alt="" /></router-link>
                 </div>
                 <div class="col-xs-7 col-sm-7 text-right">
                     <div class="nav-wrapper">

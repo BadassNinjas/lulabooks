@@ -43,6 +43,18 @@ export default {
         this.$root.$on('ShoppingCartDataRequested', function() {
             that.getShoppingCart();
         });
+
+        this.$root.$on('CountryDataRequested', function() {
+            that.getCountries();
+        });
+
+        this.$root.$on('RegionDataRequested', function(countryId) {
+            that.getRegions(countryId);
+        });
+
+        this.$root.$on('CityDataRequested', function(regionId) {
+            that.getCities(regionId);
+        });
     },
     mounted() {
         this.getCategories();
@@ -68,6 +80,27 @@ export default {
             this.$http.get('/api/render/products').then((response) => {
                 if (response.data.success) {
                     this.$root.$emit('ProductDisplayDataReceived', response.data.payload);
+                }
+            });
+        },
+        getCountries: function() {
+            this.$http.get('/api/render/countries').then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('CountriesDataReceived', response.data.payload);
+                }
+            });
+        },
+        getRegions: function(countryId) {
+            this.$http.get('/api/render/regions/' + countryId).then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('RegionsDataReceived', response.data.payload);
+                }
+            });
+        },
+        getCities: function(regionId) {
+            this.$http.get('/api/render/regions/' + regionId).then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('CityDataReceived', response.data.payload);
                 }
             });
         }
