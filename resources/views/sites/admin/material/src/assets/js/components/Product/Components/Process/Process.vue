@@ -5,7 +5,7 @@
             <basic v-if="process.step == 1" :process="process" :product="product"></basic>
             <basic-success v-if="process.step == 2" :process="process"></basic-success>
             <category v-if="process.step == 3" :process="process" :categoryTreeData="categoryTreeData" :categoryTreeControlsEnabled="categoryTreeControlsEnabled"></category>
-            <images v-if="process.step == 4" :process="process" :product="product"></images>
+            <images v-if="process.step == 4" :process="process" :product="product" :dropzoneOptions="dropzoneOptions"></images>
 
             <div v-if="process.step == 5">
                 <div style="padding: 0 26px">
