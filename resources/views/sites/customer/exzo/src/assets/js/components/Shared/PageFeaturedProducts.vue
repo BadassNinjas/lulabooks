@@ -8,8 +8,8 @@
             </div>
             <div class="col-md-4" v-for="Product in Products">
                 <div class="banner-shortcode style-4">
-                    <img v-if="Product.images.length" :src="'https://' + Product.images[0].hostname + Product.images[0].path" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
-                    <img v-else="!Product.images.length" src="/img/customer/book.png" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
+                    <img v-if="Product.images.length" :src="'https://' + Product.images[0].url" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
+                    <img v-else="!Product.images.length" src="/img/customer/box.jpg" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                     <div class="content">
                         <div class="cell-view">
                             <h4 class="title h4 col-xs-b5"><span class="color">{{ Product.name }}</span></h4>

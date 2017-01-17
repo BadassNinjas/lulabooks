@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         return Response::build([
           'items' => ShopKit::getShoppingCart()->getItems(),
-          'total' => ShopKit::getShoppingCart()->getPriceTotal()
+          'total' => ShopKit::getShoppingCart()->getPriceTotal(),
         ]);
     }
 
@@ -22,7 +22,7 @@ class CartController extends Controller
     {
         $validator = Validator::make(request()->all(), [
           'id' => 'exists:product,id',
-          'qty' => 'min:1'
+          'qty' => 'min:1',
         ]);
 
         if ($validator->fails()) {
@@ -41,9 +41,8 @@ class CartController extends Controller
                                            ->setOriginalItem($product)
                                            ->setMisc([
                                              'description' => $product->description,
-                                             'image' => count($product->images) ? 'https://' . $product->images->first()->hostname . $product->images->first()->path : '/img/customer/box.jpg'
+                                             'image' => $product->images->count() ? 'https://'.$product->images->first()->url : '/img/customer/box.jpg',
                                            ]));
-
 
         return $this->getShoppingCart();
     }
@@ -51,7 +50,7 @@ class CartController extends Controller
     public function removeShoppingCartItem($productId)
     {
         $validator = Validator::make(['id' => $productId], [
-          'id' => 'exists:product,id'
+          'id' => 'exists:product,id',
         ]);
 
         if ($validator->fails()) {
