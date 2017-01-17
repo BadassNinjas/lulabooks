@@ -46,15 +46,25 @@ export default {
       'process',
       'product'
     ],
-    mounted() {
 
+    mounted() {
+      var that = this;
+      this.$root.$on('CreateProductReceived', function(data) {
+        that.process.step = 2;
+      });
+      this.$root.$on('UpdateProductReveived', function(data) {
+        that.process.step = 2;
+      });
     },
     methods: {
-
-
+      submitForm: function() {
+        if(this.process.creatingProduct) {
+          this.$root.$emit('CreateProductRequested', this.product);
+        } else {
+          this.$root.$emit('UpdateProductRequested', this.product);
+        }
+      }
     },
-    components: {
 
-    },
 }
 </script>
