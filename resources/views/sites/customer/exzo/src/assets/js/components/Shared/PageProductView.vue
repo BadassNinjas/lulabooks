@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <a class="button size-2 style-3 block" @click="AddToBasket()">
+                                <a class="button size-2 style-3 block" @click="ProductAdd()">
                                     <span class="button-wrapper">
                                       <span class="icon"><img src="/img/customer/exzo/icon-2.png" alt=""></span>
                                     <span class="text">add to cart</span>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="button-close"></div>
+            <div class="button-close" @click="DismissView()"></div>
         </div>
     </div>
 </div>
@@ -108,6 +108,14 @@ export default {
         }
     },
     methods: {
+        DismissView: function() {
+            if ($('.video-popup').hasClass('active')) {
+                $('.video-popup .popup-iframe').html('');
+            }
+
+            $('.popup-wrapper, .popup-content').removeClass('active');
+            $('html').removeClass('overflow-hidden');
+        },
         OrderQuantityDecrease: function() {
             var that = this;
             if (that.OrderQuantity > 1) {
@@ -117,9 +125,18 @@ export default {
         OrderQuantityIncrease: function() {
             this.OrderQuantity++;
         },
-        AddToBasket: function() {
-            var that = this;
-            that.$parent.addToBasket(that.Product.id, that.OrderQuantity);
+        ProductAdd: function() {
+            var payload = {
+                id: this.Product.id,
+                qty: this.OrderQuantity,
+            };
+
+            this.$http.post('/api/basket', payload).then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('ShoppingCartDataReceived', response.data.payload);
+                    this.DismissView();
+                }
+            });
         }
     }
 }

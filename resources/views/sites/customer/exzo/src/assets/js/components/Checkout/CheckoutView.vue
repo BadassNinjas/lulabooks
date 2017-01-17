@@ -75,7 +75,7 @@
                 <div class="empty-space col-xs-b50"></div>
 
                 <label class="checkbox-entry checkbox-toggle-title">
-                     <input type="checkbox"><span>ship to different address?</span>
+                     <input type="checkbox"><span>Deliver to a different address?</span>
                  </label>
                 <div class="checkbox-toggle-wrapper">
                     <div class="empty-space col-xs-b25"></div>
@@ -126,26 +126,27 @@
             <div class="col-md-6">
                 <h4 class="h4 col-xs-b25">your order</h4>
                 <div class="cart-entry clearfix" v-for="item in ShoppingCart.items">
-                    <a class="cart-entry-thumbnail" href="#"><img src="img/product-1.png" alt=""></a>
+                    <a class="cart-entry-thumbnail" href="#">
+                        <img :src="item.misc.image" alt="" v-if="!item.originalItem.images" width="64" height="64">
+                        <img :src="item.originalItem.images[0].url" alt="" v-else="item.originalItem.images.length" width="64" height="64">
+                    </a>
                     <div class="cart-entry-description">
                         <table>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <div class="h6"><a href="#">modern beat ht</a></div>
-                                        <div class="simple-article size-1">QUANTITY: 2</div>
+                                        <div class="h6"><a href="#">{{ item.name }}</a></div>
+                                        <div class="simple-article size-1">QUANTITY: {{ item.quantity }}</div>
                                     </td>
                                     <td>
-                                        <div class="simple-article size-3 grey">$155.00</div>
-                                        <div class="simple-article size-1">TOTAL: $310.00</div>
-                                    </td>
-                                    <td>
-                                        <div class="cart-color" style="background: #eee;"></div>
+                                        <div class="simple-article size-3 grey">R {{ (item.price) }} X{{ item.quantity }}</div>
+                                        <div class="simple-article size-1">TOTAL: R {{ (item.price*item.quantity) }}</div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <hr/>
                 </div>
                 <div class="order-details-entry simple-article size-3 grey uppercase">
                     <div class="row">
@@ -153,7 +154,7 @@
                             cart subtotal
                         </div>
                         <div class="col-xs-6 col-xs-text-right">
-                            <div class="color">$1195.00</div>
+                            <div class="color">R {{ ShoppingCart.total }}</div>
                         </div>
                     </div>
                 </div>
@@ -173,7 +174,7 @@
                             order total
                         </div>
                         <div class="col-xs-6 col-xs-text-right">
-                            <div class="color">$1195.00</div>
+                            <div class="color">R {{ ShoppingCart.total }}</div>
                         </div>
                     </div>
                 </div>
@@ -208,10 +209,11 @@ export default {
     mounted() {
         var that = this;
 
-
         this.$root.$on('ShoppingCartDataReceived', function(ShoppingCart) {
             that.ShoppingCart = ShoppingCart;
         });
+
+        this.$root.$emit('ShoppingCartDataRequested');
 
         this.$root.$on('WorldCountriesdataReceived', function(Countries) {
             that.BillingCountries = Countries;

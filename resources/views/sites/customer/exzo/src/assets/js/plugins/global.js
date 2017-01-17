@@ -114,14 +114,6 @@ $(function() {
         return false;
     });
 
-    $(document).on('click', '.popup-wrapper .button-close, .popup-wrapper .layer-close', function(e) {
-        e.preventDefault();
-        if ($('.video-popup').hasClass('active')) $('.video-popup .popup-iframe').html('');
-        $('.popup-wrapper, .popup-content').removeClass('active');
-        $('html').removeClass('overflow-hidden');
-        return false;
-    });
-
     //open ajax product popup
     //preload
     function showprogress() {
