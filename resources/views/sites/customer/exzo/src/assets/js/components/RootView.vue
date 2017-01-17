@@ -11,8 +11,6 @@
             <router-view :RenderCategories="Categories" :RenderProducts="ContainerProducts"></router-view>
         </div>
 
-        <page-featured-products></page-featured-products>
-
     </div>
 
     <page-footer></page-footer>
@@ -33,17 +31,23 @@
 <script>
 import PageHeader from './Shared/PageHeader.vue';
 import PageSlider from './Shared/PageSlider.vue';
-import PageFeaturedProducts from './Shared/PageFeaturedProducts.vue';
 import PageFooter from './Shared/PageFooter.vue';
 import PageLogin from './Shared/PageLogin.vue';
 import PageRegister from './Shared/PageRegister.vue';
 import PageProductView from './Shared/PageProductView.vue';
 
 export default {
+    created() {
+        var that = this;
+
+        this.$root.$on('ShoppingCartDataRequested', function() {
+            that.getShoppingCart();
+        });
+    },
     mounted() {
         this.getCategories();
-        this.getShoppingCart();
         this.getDisplayProducts();
+        this.getShoppingCart();
     },
     methods: {
         getCategories: function() {
@@ -66,31 +70,11 @@ export default {
                     this.$root.$emit('ProductDisplayDataReceived', response.data.payload);
                 }
             });
-        },
-        addToBasket: function(productId,basketQuantity) {
-            var that = this;
-            that.$http.post('/api/basket', {
-                qty: basketQuantity,
-                id: productId
-            }).then((response)=>{
-                if(response.data.success) {
-                    that.ShoppingCart = response.data.payload;
-                }
-            });
-        },
-        removeFromBasket: function(productId) {
-            var that = this;
-            that.$http.delete('/api/basket/' + productId).then((response)=>{
-                if(response.data.success) {
-                    that.ShoppingCart = response.data.payload;
-                }
-            })
         }
     },
     components: {
         PageHeader,
         PageSlider,
-        PageFeaturedProducts,
         PageFooter,
         PageLogin,
         PageRegister,

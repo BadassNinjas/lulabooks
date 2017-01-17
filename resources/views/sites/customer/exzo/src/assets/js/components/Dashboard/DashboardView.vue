@@ -11,7 +11,7 @@
                         <div class="subtitle simple-article size-5 grey uppercase col-xs-b20">Don't miss! <span class="color">up to 70%</span></div>
                         <a class="button size-2 style-3" href="#">
                             <span class="button-wrapper">
-                            <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
+                              <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
                             <span class="text">BUY BOOKS</span>
                             </span>
                         </a>
@@ -38,5 +38,17 @@
             </div>
         </div>
     </div>
+
+    <page-featured-products></page-featured-products>
 </div>
 </template>
+
+<script>
+import PageFeaturedProducts from '../Shared/PageFeaturedProducts.vue';
+
+export default {
+    components: {
+        PageFeaturedProducts,
+    }
+}
+</script>

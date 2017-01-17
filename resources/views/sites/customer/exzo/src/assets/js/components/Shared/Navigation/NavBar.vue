@@ -3,10 +3,10 @@
     <div class="header-bottom">
         <div class="content-margins">
             <div class="row">
-                <div class="col-xs-3 col-sm-1">
+                <div class="col-xs-5 col-sm-5">
                     <a id="logo" href="index1.html"><img src="img/customer/exzo/logo-2.png" alt="" /></a>
                 </div>
-                <div class="col-xs-9 col-sm-11 text-right">
+                <div class="col-xs-7 col-sm-7 text-right">
                     <div class="nav-wrapper">
                         <div class="nav-close-layer"></div>
                         <nav>
