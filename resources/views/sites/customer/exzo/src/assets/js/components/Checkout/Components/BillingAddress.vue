@@ -65,19 +65,41 @@ export default {
         return {
             countries: [],
             regions: [],
-            cities: []
+            cities: [],
+            state: {
+                countriesSet: false
+            }
         }
     },
     methods: {
         initCountryComponent: function() {
-            $('[billing-country-list]').SumoSelect({
-                csvDispCount: 3,
-                search: true,
-                searchText: 'Search',
-                noMatch: 'No matches for "{0}"',
-                floatWidth: 0
-            });
+            var that = this;
+
+            if (!this.state.countriesSet) {
+                this.state.countriesSet = true;
+
+                $('[billing-country-list]').SumoSelect({
+                    search: true,
+                    searchText: 'Search',
+                    noMatch: 'No matches for "{0}"',
+                    floatWidth: 0
+                }).change(function(e) {
+                    that.countryChanged(e);
+                });
+            }
+        },
+        countryChanged: function(e) {
+            alert('changed to ' + e.target.value);
         }
+    },
+
+    stuff() {
+        this.$root.$emit('SomethingHappened', {
+            somedata: moredata
+        });
+        this.$root.$on('SomethingHappened', function(data) {
+            alert(data);
+        });
     }
 }
 </script>

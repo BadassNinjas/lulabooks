@@ -103,7 +103,7 @@ export default {
                     this.$root.$emit('CityDataReceived', response.data.payload);
                 }
             });
-        },
+        }
     },
     components: {
         PageHeader,

@@ -23,6 +23,7 @@
                 <shipping-address></shipping-address>
 
                 <div class="empty-space col-xs-b30 col-sm-b60"></div>
+
                 <textarea class="simple-input" placeholder="Note about your order"></textarea>
             </div>
             <div class="col-md-6">
@@ -111,101 +112,12 @@ import BillingAddress from './Components/BillingAddress.vue';
 import ShippingAddress from './Components/ShippingAddress.vue';
 
 export default {
-    mounted() {
-        var that = this;
-
-        this.$root.$on('ShoppingCartDataReceived', function(ShoppingCart) {
-            that.ShoppingCart = ShoppingCart;
-        });
-
-        this.$root.$emit('ShoppingCartDataRequested');
-
-        this.$root.$on('WorldCountriesdataReceived', function(Countries) {
-            that.BillingCountries = Countries;
-            that.ShippingCountries = Countries;
-        });
-
-        this.getWorldCountries();
-    },
     data() {
         return {
             ShoppingCart: {
                 items: [],
                 total: '0.00',
-            },
-            BillingCountries: [],
-            BillingRegions: [],
-            BillingCities: [],
-            ShippingCountries: [],
-            ShippingRegions: [],
-            ShippingCities: [],
-        }
-    },
-    methods: {
-        getWorldCountries: function() {
-            this.$http.get('/api/render/countries').then((response) => {
-                if (response.data.success) {
-                    this.$root.$emit('WorldCountriesdataReceived', response.data.payload);
-                }
-            });
-        },
-        onBillingCountrySelected: function(event) {
-            var that = this;
-            var countryId = event.target.value;
-
-            this.$http.get('/api/render/regions/' + countryId).then((response) => {
-                if (response.data.success) {
-                    that.BillingRegions = response.data.payload;
-
-                    setTimeout(function() {
-                        $('[billing-region-list]').SumoSelect({
-                            csvDispCount: 3,
-                            search: true,
-                            searchText: 'Search',
-                            noMatch: 'No matches for "{0}"',
-                            floatWidth: 0
-                        });
-
-                        $('[billing-region-list]')[0].sumo.reload();
-
-                        $('[billing-region-list]').change(function(e) {
-                            that.onBillingRegionSelected(e);
-                        });
-
-                    }, 100);
-                }
-            });
-        },
-        onBillingRegionSelected: function(event) {
-            var that = this;
-            var regionId = event.target.value;
-
-            this.$http.get('/api/render/cities/' + regionId).then((response) => {
-                if (response.data.success) {
-                    that.BillingCities = response.data.payload;
-
-                    setTimeout(function() {
-                        $('[billing-city-list]').SumoSelect({
-                            csvDispCount: 3,
-                            search: true,
-                            searchText: 'Search',
-                            noMatch: 'No matches for "{0}"',
-                            floatWidth: 0
-                        });
-
-                        $('[billing-city-list]')[0].sumo.reload();
-
-                        $('[billing-city-list]').change(function(e) {
-                            that.onBillingCitySelected(e);
-                        });
-
-                    }, 100);
-                }
-            });
-        },
-        onBillingCitySelected: function(event) {
-            var that = this;
-            var cityId = event.target.value;
+            }
         }
     },
     components: {
