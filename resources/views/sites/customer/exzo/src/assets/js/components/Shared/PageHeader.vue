@@ -5,8 +5,8 @@
             <div class="content-margins">
                 <div class="row">
                     <div class="col-md-5 hidden-xs hidden-sm">
-                        <div class="entry"><b>contact us:</b> <a href="tel:+35235551238745">+3  (523) 555 123 8745</a></div>
-                        <div class="entry"><b>email:</b> <a href="mailto:office@exzo.com">office@exzo.com</a></div>
+                        <div class="entry"><b>contact us:</b> <a href="tel:+27799479680">+27 79 947 9680</a></div>
+                        <div class="entry"><b>email:</b> <a href="mailto:lucky@lulabooks.mobi">lucky@lulabooks.mobi</a></div>
                     </div>
                     <div class="col-md-7 col-md-text-right">
                         <div class="entry"><a class="open-popup" data-rel="1"><b>login</b></a>&nbsp; or &nbsp;<a class="open-popup" data-rel="2"><b>register</b></a></div>

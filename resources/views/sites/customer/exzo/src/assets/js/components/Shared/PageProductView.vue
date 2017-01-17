@@ -131,12 +131,8 @@ export default {
                 qty: this.OrderQuantity,
             };
 
-            this.$http.post('/api/basket', payload).then((response) => {
-                if (response.data.success) {
-                    this.$root.$emit('ShoppingCartDataReceived', response.data.payload);
-                    this.DismissView();
-                }
-            });
+            this.$root.$emit('AddProduct', payload);
+            this.DismissView();
         }
     }
 }

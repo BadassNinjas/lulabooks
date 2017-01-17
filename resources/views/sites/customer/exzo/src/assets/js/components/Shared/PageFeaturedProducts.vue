@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-4" v-for="Product in Products">
                 <div class="banner-shortcode style-4">
-                    <img v-if="Product.images.length" :src="'https://' + Product.images[0].url" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
+                    <img v-if="Product.images.length" :src="Product.images[0].url" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                     <img v-else="!Product.images.length" src="/img/customer/box.jpg" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                     <div class="content">
                         <div class="cell-view">

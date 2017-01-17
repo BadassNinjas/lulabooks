@@ -19,91 +19,25 @@
                                     <div class="menu-toggle"></div>
                                     <div class="megamenu">
                                         <div class="links">
-                                            <a class="active" href="products1.html">Products Landing 1</a>
-                                            <a href="products2.html">Products Landing 2</a>
-                                            <a href="products3.html">Products Landing 3</a>
-                                            <a href="product.html">Product Detail</a>
+                                            <router-link tag="a" :to="'/' + Category.name" v-for="Category in Categories">{{ Category.name }}</router-link>
                                         </div>
                                         <div class="content">
                                             <div class="row nopadding">
-                                                <div class="col-xs-6">
+                                                <div class="col-xs-6" v-for="Product in NavProducts">
                                                     <div class="product-shortcode style-5">
                                                         <div class="product-label green">best price</div>
                                                         <div class="icons">
-                                                            <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                            <a class="entry open-popup" data-rel="ProductView"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                            <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                                                        </div>
-                                                        <div class="preview">
-                                                            <div class="swiper-container" data-loop="1">
-                                                                <div class="swiper-button-prev style-1"></div>
-                                                                <div class="swiper-button-next style-1"></div>
-                                                                <div class="swiper-wrapper">
-                                                                    <div class="swiper-slide">
-                                                                        <img src="img/customer/exzo/product-59.jpg" alt="" />
-                                                                    </div>
-                                                                    <div class="swiper-slide">
-                                                                        <img src="img/customer/exzo/product-61.jpg" alt="" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="content-animate">
-                                                            <div class="title">
-                                                                <div class="shortcode-rate-wrapper">
-                                                                    <div class="rate-wrapper align-inline">
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="h6 animate-to-green"><a href="product.html">modern beat nine</a></div>
-                                                            </div>
-                                                            <div class="description">
-                                                                <div class="simple-article text size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada</div>
-                                                            </div>
-                                                            <div class="price">
-                                                                <div class="simple-article size-4 dark">$630.00</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="preview-buttons">
-                                                            <div class="buttons-wrapper">
-                                                                <a class="button size-2 style-2" href="product.html">
-                                                                    <span class="button-wrapper">
-                                                                         <span class="icon"><img src="img/customer/exzo/icon-1.png" alt=""></span>
-                                                                    <span class="text">Learn More</span>
-                                                                    </span>
-                                                                </a>
-                                                                <a class="button size-2 style-3" href="#">
-                                                                    <span class="button-wrapper">
-                                                                         <span class="icon"><img src="img/customer/exzo/icon-3.png" alt=""></span>
-                                                                    <span class="text">Add To Cart</span>
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="product-shortcode style-5">
-                                                        <div class="product-label green">best price</div>
-                                                        <div class="icons">
-                                                            <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <!-- <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
                                                             <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                            <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                                            <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a> -->
                                                         </div>
                                                         <div class="preview">
                                                             <div class="swiper-container" data-loop="1">
                                                                 <div class="swiper-button-prev style-1"></div>
                                                                 <div class="swiper-button-next style-1"></div>
                                                                 <div class="swiper-wrapper">
-                                                                    <div class="swiper-slide">
-                                                                        <img src="img/customer/exzo/product-60.jpg" alt="" />
-                                                                    </div>
-                                                                    <div class="swiper-slide">
-                                                                        <img src="img/customer/exzo/product-61.jpg" alt="" />
+                                                                    <div class="swiper-slide" v-for="Img in Product.images">
+                                                                        <img :src="Img.url" alt="" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -116,27 +50,27 @@
                                                                         <i class="fa fa-star" aria-hidden="true"></i>
                                                                         <i class="fa fa-star" aria-hidden="true"></i>
                                                                         <i class="fa fa-star" aria-hidden="true"></i>
-                                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                                        <i class="fa fa-star" aria-hidden="true"></i>
                                                                     </div>
                                                                 </div>
-                                                                <div class="h6 animate-to-green"><a href="product.html">modern beat nine</a></div>
+                                                                <div class="h6 animate-to-green"><a href="product.html">{{ Product.name }}</a></div>
                                                             </div>
                                                             <div class="description">
-                                                                <div class="simple-article text size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada</div>
+                                                                <div class="simple-article text size-2">{{ Product.caption }}</div>
                                                             </div>
                                                             <div class="price">
-                                                                <div class="simple-article size-4 dark">$630.00</div>
+                                                                <div class="simple-article size-4 dark">R{{ Product.price }}</div>
                                                             </div>
                                                         </div>
                                                         <div class="preview-buttons">
                                                             <div class="buttons-wrapper">
-                                                                <a class="button size-2 style-2" href="product.html">
+                                                                <a class="button size-2 style-2 open-popup" data-rel="ProductView" @click="setProductview(Product)">
                                                                     <span class="button-wrapper">
                                                                          <span class="icon"><img src="img/customer/exzo/icon-1.png" alt=""></span>
                                                                     <span class="text">Learn More</span>
                                                                     </span>
                                                                 </a>
-                                                                <a class="button size-2 style-3" href="#">
+                                                                <a class="button size-2 style-3" @click="addProduct(Product.id)">
                                                                     <span class="button-wrapper">
                                                                          <span class="icon"><img src="img/customer/exzo/icon-3.png" alt=""></span>
                                                                     <span class="text">Add To Cart</span>
@@ -201,10 +135,30 @@ export default {
         this.$root.$on('CategoryDataReceived', function(Categories) {
             that.Categories = Categories;
         });
+
+        this.$root.$on('ProductDisplayDataReceived', function(Products) {
+            that.Products = Products;
+            that.NavProducts = Products.slice(0,2);
+        });
     },
     data() {
         return {
             Categories: [],
+            Products: [],
+            NavProducts: []
+        }
+    },
+    methods: {
+        setProductview: function(Product) {
+            this.$root.$emit('ProductViewSelected', Product);
+        },
+        addProduct: function(Id) {
+            var payload = {
+                id: Id,
+                qty: 1,
+            };
+
+            this.$root.$emit('AddProduct', payload);
         }
     }
 }

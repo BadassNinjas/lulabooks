@@ -55,6 +55,10 @@ export default {
         this.$root.$on('CityDataRequested', function(regionId) {
             that.getCities(regionId);
         });
+
+        this.$root.$on('AddProduct', function(data) {
+            that.addProduct(data);
+        });
     },
     mounted() {
         this.getCategories();
@@ -101,6 +105,13 @@ export default {
             this.$http.get('/api/render/regions/' + regionId).then((response) => {
                 if (response.data.success) {
                     this.$root.$emit('CityDataReceived', response.data.payload);
+                }
+            });
+        },
+        addProduct: function(data) {
+            this.$http.post('/api/basket', data).then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('ShoppingCartDataReceived', response.data.payload);
                 }
             });
         }
