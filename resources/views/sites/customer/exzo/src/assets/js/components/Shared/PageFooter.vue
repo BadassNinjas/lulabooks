@@ -7,7 +7,7 @@
                     <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
                         <img src="img/lulalogowhite.png" alt="" style="height:60px;width:150px;"/>
                         <div class="empty-space col-xs-b20"></div>
-                        <div class="simple-article size-2 light fulltransparent">Integer posuere orci sit amet feugiat pellent que. Suspendisse vel tempor justo, sit amet posuere orci dapibus auctor</div>
+                        <div class="simple-article size-2 light fulltransparent">We are all about buying and selling University text books. We have a full range of new, second hand and e-books and are focussed on providing convenience and cutting costs for students.</div>
                         <div class="empty-space col-xs-b20"></div>
                         <div class="footer-contact"><i class="fa fa-mobile" aria-hidden="true"></i> contact us: <a href="tel:+27799479680">+27 79 947 9680</a></div>
                         <div class="footer-contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> email: <a href="mailto:lucky@lulabooks.mobi">lucky@lulabooks.mobi</a></div>

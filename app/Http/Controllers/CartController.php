@@ -41,7 +41,7 @@ class CartController extends Controller
                                            ->setOriginalItem($product)
                                            ->setMisc([
                                              'description' => $product->description,
-                                             'image' => $product->images->count() ? 'https://'.$product->images->first()->url : '/img/customer/box.jpg',
+                                             'image' => $product->images->count() ? $product->images->first()->url : '/img/customer/box.jpg',
                                            ]));
 
         return $this->getShoppingCart();
