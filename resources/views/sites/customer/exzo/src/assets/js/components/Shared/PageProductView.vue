@@ -71,7 +71,7 @@
                             <div class="col-sm-6">
                                 <a class="button size-2 style-3 block" @click="ProductAdd()">
                                     <span class="button-wrapper">
-                                      <span class="icon"><img src="/img/customer/exzo/icon-2.png" alt=""></span>
+                                      <span class="icon"><img src="/img/customer/exzo/icon-3.png" alt=""></span>
                                     <span class="text">add to cart</span>
                                     </span>
                                 </a>

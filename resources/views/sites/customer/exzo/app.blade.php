@@ -11,6 +11,15 @@
 
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 
+        <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+        <!--[if IE]><link rel="shortcut icon" href="/img/lulafavicon32.png"><![endif]-->
+
+        <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+        <link rel="apple-touch-icon-precomposed" href="/img/lulafavicon180.png">
+
+        <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+        <link rel="icon" href="/img/lulafavicon196.png">
+
     </head>
     <body>
           <div id="app"></div>
