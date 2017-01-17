@@ -137,6 +137,12 @@ export default {
                     y: 30
                 }
             });
+        },
+        postProduct: function(product) {
+
+        },
+        putProduct: function(product) {
+
         }
     },
     components: {

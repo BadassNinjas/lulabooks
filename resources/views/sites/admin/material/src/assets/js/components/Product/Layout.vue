@@ -35,11 +35,12 @@
                     </div>
                     <div class="row" v-if="ViewState == 'product'">
                         <div class="row">
+                          <div class="col-lg-6"></div>
                             <div class="col-lg-6">
-                                <a href="javascript:;" class="btn btn-primary pull-left manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
+                                <a href="javascript:;" class="btn btn-primary pull-right manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
                             </div>
                         </div>
-                        <product-process :withId="withId"></product-process>
+                        <process :withId="withId"></process>
                     </div>
                     <div class="row" v-if="ViewState == 'list'">
                         <div class="row">
@@ -51,7 +52,16 @@
                                 <a href="javascript:;" class="btn btn-primary pull-right manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
                             </div>
                         </div>
-                        <product-listing-view></product-listing-view>
+                        <list></list>
+                    </div>
+                    <div class="row" v-if="ViewState == 'featured'">
+                        <div class="row">
+                            <div class="col-lg-6">
+                            </div>
+                            <div class="col-lg-6">
+                                <a href="javascript:;" class="btn btn-primary pull-right manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,8 +100,8 @@
 </style>
 
 <script>
-import ProductListingView from './ProductListingView.vue';
-import ProductProcess from './ProductProcess.vue';
+import List from './Components/List/List.vue';
+import Process from './Components/Process/Process.vue';
 export default {
     data: function() {
         return {
@@ -106,8 +116,8 @@ export default {
       }
     },
     components: {
-        ProductListingView,
-        ProductProcess
+        List,
+        Process
     }
 }
 </script>

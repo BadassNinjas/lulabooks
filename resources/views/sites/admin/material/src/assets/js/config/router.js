@@ -5,7 +5,7 @@ Vue.use(Router)
 
 import DashboardView from '../components/Dashboard/DashboardView.vue';
 import CategoryView from '../components/CategoryManager/CategoryView.vue';
-import ProductView from '../components/Product/ProductView.vue';
+import ProductView from '../components/Product/Layout.vue';
 import LoginView from '../components/Login/LoginView.vue';
 
 var base_path = '/admin/';

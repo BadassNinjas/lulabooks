@@ -2,44 +2,7 @@
 <div class="" tabindex="-1" role="dialog" aria-hidden="true">
     <div>
         <div>
-            <div v-if="process.step == 1">
-                <div>
-                    <h1 style="font-weight: 300;" class="text-center">{{ process.creatingProduct ? 'Add a New Product' : 'Modify Product Properties' }}</h1>
-                </div>
-                <form v-on:submit.prevent="submitForm()">
-                    <div>
-                        <div class="form-group input-group fg-float">
-                            <span class="input-group-addon"></span>
-                            <div class="fg-line" :class="{ 'fg-toggled': product.name.length }">
-                                <input type="text" class="input-lg form-control fg-input" v-model="product.name">
-                                <label class="fg-label">What is the name of your product?</label>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="form-group input-group fg-float">
-                            <span class="input-group-addon"></span>
-                            <div class="fg-line" :class="{ 'fg-toggled': product.caption.length }">
-                                <input type="text" class="input-lg form-control fg-input" v-model="product.caption">
-                                <label class="fg-label">Think of a great caption to market this product!</label>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="form-group input-group fg-float">
-                            <span class="input-group-addon">R</span>
-                            <div class="fg-line" :class="{ 'fg-toggled': product.price.length }">
-                                <input type="text" class="input-lg form-control fg-input" v-model="product.price">
-                                <label class="fg-label">How much do you want to sell this item for?</label>
-                            </div>
-                            <span class="input-group-addon last">ZAR</span>
-                        </div>
-                        <br/>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-lg btn-success waves-effect">{{ process.creatingProduct ? 'Create Product' : 'Modify Product' }}</button>
-                        <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
-            </div>
+            <basic v-if="process.step==1" :process="process" :product="product"></basic> 
             <div v-if="process.step == 2">
                 <div style="padding: 0 26px">
                     <h1 style="font-weight: 300;" class="text-center">Your basic product has been {{ process.creatingProduct ? 'created' : 'modified' }}!</h1>
@@ -57,28 +20,28 @@
                 </div>
                 <div>
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(3)">Let's Do It!</button>
-                    <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                    <button type="button" class="btn btn-lg btn-default waves-effect" @click="setProcessStep(2)">Back</button>
                 </div>
             </div>
             <div v-if="process.step == 3">
-                <div class="modal-header" style="padding: 0 26px">
+                <div style="padding: 0 26px">
                     <h1 style="font-weight: 300;" class="text-center">Product Categorization</h1>
                 </div>
-                <div class="modal-body">
+                <div>
                     <br/>
                     <h4 style="font-weight: 300;">Click a category to assign your product to it.</h4>
                     <category-tree class="dd-selectable" ref="CategoryTreeRoot" :treeData="categoryTreeData" :treeControlsEnabled="categoryTreeControlsEnabled"></category-tree>
                 </div>
-                <div class="modal-footer">
+                <div>
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(4)">Next, upload images!</button>
-                    <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                    <button type="button" class="btn btn-lg btn-default waves-effect" @click="setProcessStep(3)">Back</button>
                 </div>
             </div>
             <div v-if="process.step == 4">
-                <div class="modal-header" style="padding: 0 26px">
+                <div style="padding: 0 26px">
                     <h1 style="font-weight: 300;" class="text-center">Images</h1>
                 </div>
-                <div class="modal-body" v-if="product.id">
+                <div v-if="product.id">
                     <div v-if="product.images.length">
                         <h3 style="font-weight: 300;">Existing Images</h3>
                         <br/>
@@ -105,9 +68,9 @@
                             </dropzone>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div>
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(5)">Let's add some additional info!</button>
-                    <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                    <button type="button" class="btn btn-lg btn-default waves-effect" @click="setProcessStep(4)">Back</button>
                 </div>
             </div>
             <div v-if="process.step == 5">
@@ -115,22 +78,22 @@
                     <h1 style="font-weight: 300;" class="text-center">Additional Information</h1>
                 </div>
                 <div>
-                    <VueEditor ref="VueEditor" :content="product.detail"></VueEditor>
+                  <summer-note ref='SummerNote'></summer-note>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(6)">Finish!</button>
-                    <button type="button" class="btn btn-lg btn-default waves-effect" data-dismiss="modal">Nah, Close</button>
+                    <button type="button" class="btn btn-lg btn-default waves-effect" @click="setProcessStep(5)">Back</button>
                 </div>
             </div>
             <div v-if="process.step == 6">
-                <div class="modal-header" style="padding: 0 26px">
+                <div style="padding: 0 26px">
                     <h1 style="font-weight: 300;" class="text-center">All done! Woo hoo!</h1>
                 </div>
-                <div class="modal-body">
+                <div>
                     <h3 style="font-weight: 300;">If you completed all sections provided, your product is ready and will show up on your store page immediately! You can edit your product at any time by navigating to your product listing page and clicking the 'edit' button on the product you wish to modify.</h3>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-success waves-effect" data-dismiss="modal">Close</button>
+                <div>
+                    <button type="button" class="btn btn-lg btn-success waves-effect">Close</button>
                 </div>
             </div>
             <br/>
@@ -139,9 +102,10 @@
 </div>
 </template>
 <script>
-import CategoryTree from '../CategoryManager/CategoryTree.vue';
+import CategoryTree from '../../../CategoryManager/CategoryTree.vue';
 import Dropzone from 'vue2-dropzone';
-import VueEditor from './ProductDetailEditor.vue';
+import SummerNote from '../DetailEditor.vue';
+import Basic from './Steps/Basic.vue';
 
 export default {
     props: [
@@ -149,7 +113,6 @@ export default {
     ],
     mounted() {
         var that = this;
-
         this.$root.$on('CategoryTreeItemMounted', function(item) {
             if (!that.categoryTreeControlsEnabled) {
                 if (that.product.category != null && item.id == that.product.category.id) {
@@ -180,7 +143,6 @@ export default {
     methods: {
         instance: function(withId) {
             this.reset(withId);
-
             this.fetchProduct(withId);
             this.fetchCategories();
         },
@@ -233,15 +195,11 @@ export default {
             });
         },
         updateProductDetail: function() {
-            this.product.detail = this.$refs.VueEditor.getContent();
+            this.product.detail = this.$refs.SummerNote.getContent();
             this.$http.put('/api/products/' + this.product.id, this.product).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
                     this.process.step = 6;
-
-                    if (this.$refs.VueEditor !== undefined) {
-                        this.$refs.VueEditor.setContent(this.product.detail);
-                    }
                 } else {
                     alert(response.data.payload.error.desc);
                 }
@@ -252,10 +210,6 @@ export default {
             this.$http.get('/api/products/' + id).then((response) => {
                 if (response.data.success) {
                     this.product = response.data.payload;
-
-                    if (this.$refs.VueEditor !== undefined) {
-                        this.$refs.VueEditor.setContent(this.product.detail);
-                    }
                 }
             });
         },
@@ -282,6 +236,9 @@ export default {
         },
         setProcessStep: function(stepNumber) {
             this.process.step = stepNumber;
+            if(stepNumber == 5)
+            {
+            }
             if(stepNumber == 6)
             {
               this.updateProductDetail();
@@ -292,7 +249,8 @@ export default {
     components: {
         Dropzone,
         CategoryTree,
-        VueEditor
+        SummerNote,
+        Basic
     },
 }
 </script>
