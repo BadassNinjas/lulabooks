@@ -9,12 +9,12 @@
                         <h4 class="title h4 col-xs-b5"><span class="color">BUY BOOKS</span> <br> FOR ALL YOUR SUBJECTS</h4>
                         <div class="description simple-article size-2 col-xs-b10">Quisque rhoncus orci vitae nisl rutrum rutrum lesuada laoreet urna sed</div>
                         <div class="subtitle simple-article size-5 grey uppercase col-xs-b20">Don't miss! <span class="color">up to 70%</span></div>
-                        <a class="button size-2 style-3" href="#">
+                        <router-link class="button size-2 style-3" tag="a" to="/products">
                             <span class="button-wrapper">
                               <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
                             <span class="text">BUY BOOKS</span>
                             </span>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
             </div>

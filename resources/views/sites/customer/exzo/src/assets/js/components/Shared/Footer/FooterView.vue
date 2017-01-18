@@ -45,7 +45,7 @@
             <div class="footer-bottom">
                 <div class="row">
                     <div class="col-lg-8 col-xs-text-center col-lg-text-left col-xs-b20 col-lg-b0">
-                        <div class="copyright">&copy; {{ getCurrentYear }} All rights reserved. Development by <a href="https://rollout.co.za/" target="_blank">Rollout</a></div>
+                        <div class="copyright">Copyright &copy; {{ getCurrentYear }} <a href="#">Only elevated Mind (Pty) Ltd</a>. All rights reserved.</div>
                     </div>
                     <div class="col-lg-4 col-xs-text-center col-lg-text-right">
                         <div class="footer-payment-icons">

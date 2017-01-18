@@ -30,7 +30,7 @@ export default new Router({
         },
         {
             path: '/products',
-            name: 'products',
+            name: 'Products',
             component: ProductsView
         },
         {
