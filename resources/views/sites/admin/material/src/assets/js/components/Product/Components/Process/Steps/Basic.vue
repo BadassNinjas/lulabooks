@@ -49,12 +49,6 @@ export default {
 
     mounted() {
       var that = this;
-      this.$root.$on('CreateProductReceived', function(data) {
-        that.process.step = 2;
-      });
-      this.$root.$on('UpdateProductReveived', function(data) {
-        that.process.step = 2;
-      });
     },
     methods: {
       submitForm: function() {

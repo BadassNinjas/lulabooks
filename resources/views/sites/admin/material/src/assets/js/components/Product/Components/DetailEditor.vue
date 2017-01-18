@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="summernote">Hello</div>
+    <div class="summernote"></div>
 </div>
 </template>
 
@@ -21,10 +21,10 @@ export default {
     ],
     methods: {
         getContent: function() {
-            return $('#summernote').summernote('code');
+            return $('.summernote').summernote('code');
         },
         setContent: function(content) {
-            $('#summernote').summernote('code', this.content);
+            $('.summernote').summernote('code', this.content);
         }
     }
 }

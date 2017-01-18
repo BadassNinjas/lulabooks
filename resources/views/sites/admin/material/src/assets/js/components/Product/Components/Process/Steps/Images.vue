@@ -4,7 +4,7 @@
       <h1 style="font-weight: 300;" class="text-center">Images</h1>
   </div>
   <div v-if="product.id">
-      <!-- <div v-if="product.images.length">
+      <div v-if="product.images.length">
           <h3 style="font-weight: 300;">Existing Images</h3>
           <br/>
           <div class="row">
@@ -22,7 +22,7 @@
               </div>
           </div>
           <br/><br/>
-      </div> -->
+      </div>
       <div>
           <h3 style="font-weight: 300;">Upload Images</h3>
           <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
