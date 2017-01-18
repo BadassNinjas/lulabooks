@@ -59,6 +59,11 @@ export default {
             this.products.current = response.data.payload;
         });
     },
+    created() {
+      this.$root.$on('CreateProductRequested', this.postProduct);
+      this.$root.$on('UpdateProductRequested', this.putProduct);
+      this.$root.$on('UpdateProductCategoryRequested', this.updateProductCategory);
+    },
     methods: {
         doLogin: function() {
             this.$http.post('/api/auth', this.user.credentials).then((response) => {
@@ -137,7 +142,39 @@ export default {
                     y: 30
                 }
             });
-        }
+        },
+        postProduct: function(product) {
+          this.$http.post('/api/products', product).then((response) => {
+              if (response.data.success) {
+                  this.$root.$emit('CreateProductReceived', response.data.payload);
+              } else {
+                  alert(response.data.payload.error.desc);
+              }
+          });
+        },
+        putProduct: function(product) {
+          this.$http.put('/api/products/' + product.id, product).then((response) => {
+              if (response.data.success) {
+                  this.$root.$emit('UpdateProductReceived', response.data.payload);
+              } else {
+                  alert(response.data.payload.error.desc);
+              }
+          });
+        },
+        updateProductCategory: function(categoryId) {
+            var payload = this.product;
+
+            payload.category_id = categoryId;
+
+            this.$http.put('/api/products/' + this.product.id, payload).then((response) => {
+                if (response.data.success) {
+                    this.product = response.data.payload;
+                    this.process.category = response.data.payload.category;
+                } else {
+                    alert(response.data.payload.error.desc);
+                }
+            });
+        },
     },
     components: {
         NavigationBar,
