@@ -15,6 +15,8 @@ export default {
             maxHeight: null,
             focus: true
         });
+
+        this.setContent(this.content);
     },
     props: [
         'content'

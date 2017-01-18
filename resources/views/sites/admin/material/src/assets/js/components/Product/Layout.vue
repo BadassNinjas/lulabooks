@@ -6,10 +6,6 @@
                 <h2>Product Management</h2>
             </div>
             <div class="card">
-                <div class="card-header text-center">
-                    <h2>Product Management <small>What would you like to do with your products?</small></h2>
-                </div>
-
                 <div class="card-body card-padding">
                     <div class="row" v-if="ViewState == 'dash'">
                         <div class="col-lg-12">
@@ -25,27 +21,22 @@
                                     <i class="zmdi zmdi-format-list-bulleted zmdi-hc-5x"></i>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="manager-option btn btn-primary waves-effect" @click="ViewState = 'featured'">
-                                    <h3>Set Featured Products</h3>
-                                    <i class="zmdi zmdi-star-circle zmdi-hc-5x"></i>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="row" v-if="ViewState == 'product'">
-                        <div class="row">
-                            <div class="col-lg-6"></div>
-                            <div class="col-lg-6">
-                                <a href="javascript:;" class="btn btn-primary pull-right manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
-                            </div>
-                        </div>
                         <process :withId="withId" :ViewState="ViewState"></process>
                     </div>
                     <div class="row" v-if="ViewState == 'list'">
                         <div class="row">
+                            <div class="col-lg-12">
+                                <center>
+                                    <h3 style="font-weight: 300;">Product List</h3>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-6">
-                                <a href="javascript:;" class="btn btn-default btn-link pull-left manager-btn" @click="refreshProductList()"><i class="fa fa-refresh"></i> Refresh</a>
+
                             </div>
                             <div class="col-lg-6">
                                 <a href="javascript:;" class="btn btn-success pull-right manager-btn" @click="ViewState = 'product'">Add a New Product</a>

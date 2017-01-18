@@ -35,7 +35,7 @@ class ProductController extends Controller
 
         if (request('category_id', false) && !is_null($product)) {
             if (!is_null($product->category)) {
-                $product->category()->detach($product->id);
+                $product->category()->detach($product->category->id);
             }
 
             $product->categories()->attach(request('category_id'));
