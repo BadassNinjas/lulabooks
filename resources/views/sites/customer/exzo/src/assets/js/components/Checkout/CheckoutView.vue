@@ -2,8 +2,7 @@
 <div>
     <div class="container">
         <div class="text-center">
-            <div class="simple-article size-3 grey uppercase col-xs-b5">checkout</div>
-            <div class="h2">check your info</div>
+            <div class="h2">CHECKOUT</div>
             <div class="title-underline center"><span></span></div>
         </div>
     </div>
@@ -11,20 +10,13 @@
         <div class="row">
 
             <div class="col-md-6 col-xs-b50 col-md-b0">
-
-                <billing-address></billing-address>
-
-                <div class="empty-space col-xs-b50"></div>
-
-                <shipping-address></shipping-address>
-
-                <div class="empty-space col-xs-b30 col-sm-b60"></div>
-
-                <textarea class="simple-input" placeholder="Note about your order"></textarea>
+                <billing-address :state="state" v-show="state.phase == 'billing-address'"></billing-address>
+                <shipping-address :state="state" v-show="state.phase == 'shipping-address'"></shipping-address>
+                <payment-methods :state="state" v-show="state.phase == 'payment-methods'"></payment-methods>
             </div>
             <div class="col-md-6">
                 <order-items></order-items>
-                <payment-methods></payment-methods>
+
             </div>
         </div>
     </div>
@@ -39,11 +31,23 @@ import OrderItems from './Components/OrderItems.vue';
 import PaymentMethods from './Components/PaymentMethods.vue';
 
 export default {
+    mounted() {
+        this.$watch('state.phase', function() {
+            window.scrollTo(0, 0);
+        });
+    },
     components: {
         BillingAddress,
         ShippingAddress,
         OrderItems,
         PaymentMethods,
+    },
+    data: function() {
+        return {
+            state: {
+                phase: 'billing-address'
+            }
+        }
     }
 }
 </script>

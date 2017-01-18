@@ -1,70 +1,76 @@
 <template>
 <div>
-    <label class="checkbox-entry checkbox-toggle-title" v-if="!deliveryDetailDiffers">
-       <input type="checkbox" @click="deliveryDetailDiffers = true"><span>Deliver to a different address?</span>
+    <h4 class="h4 col-xs-b25">delivery details</h4>
+    <label class="checkbox-entry checkbox-toggle-title">
+       <input type="checkbox" @click="deliveryDetailDiffers = !deliveryDetailDiffers"><span>Same as Billing Detail?</span>
    </label>
-    <div v-if="deliveryDetailDiffers">
-        <h4 class="h4 col-xs-b25">delivery details</h4>
+    <div class="empty-space col-xs-b20"></div>
+    <div v-show="deliveryDetailDiffers">
         <div class="row m10">
             <div class="col-sm-6">
-                <input class="simple-input" type="text" value="" placeholder="First name" />
+                <input class="simple-input" type="text" value="" placeholder="First name" v-model="payload.firstname" />
                 <div class="empty-space col-xs-b20"></div>
             </div>
             <div class="col-sm-6">
-                <input class="simple-input" type="text" value="" placeholder="Last name" />
+                <input class="simple-input" type="text" value="" placeholder="Last name" v-model="payload.lastname" />
                 <div class="empty-space col-xs-b20"></div>
             </div>
         </div>
-        <input class="simple-input" type="text" value="" placeholder="Company name" />
+        <input class="simple-input" type="text" value="" placeholder="Company name" v-model="payload.company" />
         <div class="empty-space col-xs-b20"></div>
         <select shipping-country-list>
-           <option disabled="disabled" selected="selected">Choose country</option>
-           <option :value="country.id" v-for="country in countries">{{ country.name }}</option>
-       </select>
+       <option disabled="disabled" selected="selected">Choose country</option>
+       <option :value="country.id" v-for="country in countries">{{ country.name }}</option>
+   </select>
         <div class="empty-space col-xs-b20"></div>
         <select shipping-region-list v-if="regions.length">
-           <option disabled="disabled" selected="selected">Choose region</option>
-           <option :value="region.id" v-for="region in regions">{{ region.name }}</option>
-       </select>
+       <option disabled="disabled" selected="selected">Choose region</option>
+       <option :value="region.id" v-for="region in regions">{{ region.name }}</option>
+   </select>
         <div class="empty-space col-xs-b20"></div>
         <select shipping-city-list v-if="cities.length">
-           <option disabled="disabled" selected="selected">Choose Town/City</option>
-           <option :value="city.id" v-for="city in cities">{{ city.name }}</option>
-       </select>
+       <option disabled="disabled" selected="selected">Choose Town/City</option>
+       <option :value="city.id" v-for="city in cities">{{ city.name }}</option>
+   </select>
         <div class="empty-space col-xs-b20"></div>
-        <input class="simple-input" type="text" value="" placeholder="Postcode/ZIP" />
+        <input class="simple-input" type="text" value="" placeholder="Postcode/ZIP" v-model="payload.postal_code" />
         <div class="empty-space col-xs-b20"></div>
-        <input class="simple-input" type="text" value="" placeholder="Appartment/Block Number/Other" />
+        <input class="simple-input" type="text" value="" placeholder="Appartment/Block Number/Other" v-model="payload.block_number" />
         <div class="empty-space col-xs-b20"></div>
-        <input class="simple-input" type="text" value="" placeholder="Street address" />
+        <input class="simple-input" type="text" value="" placeholder="Street address" v-model="payload.address" />
         <div class="empty-space col-xs-b20"></div>
         <div class="row m10">
             <div class="col-sm-6">
-                <input class="simple-input" type="text" value="" placeholder="Email" />
+                <input class="simple-input" type="text" value="" placeholder="Email" v-model="payload.email" />
                 <div class="empty-space col-xs-b20"></div>
             </div>
             <div class="col-sm-6">
-                <input class="simple-input" type="text" value="" placeholder="Phone" />
+                <input class="simple-input" type="text" value="" placeholder="Phone" v-model="payload.phone" />
                 <div class="empty-space col-xs-b20"></div>
             </div>
         </div>
     </div>
+    <div class="row m10">
+        <div class="col-sm-12">
+            <div class="button block size-2 style-3" @click="state.phase = 'payment-methods'">
+                <span class="button-wrapper">
+                   <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                <span class="text">Next</span>
+                </span>
+                <input type="submit" />
+            </div>
+        </div>
+    </div>
+
 </div>
 </template>
 <script>
 export default {
+    props: [
+        'state',
+    ],
     mounted() {
         var that = this;
-
-        this.$root.$on('CountriesDataReceived', function(countries) {
-            that.countries = countries;
-        });
-        this.$root.$on('RegionsDataReceived', function(regions) {
-            that.regions = regions;
-        });
-        this.$root.$on('CitiesDataReceived', function(cities) {
-            that.cities = cities;
-        });
 
         this.$watch('countries', function() {
             that.initCountryComponent();
@@ -76,21 +82,29 @@ export default {
             that.initCityComponent();
         });
 
-        this.$watch('deliveryDetailDiffers', function(newValue, oldValue) {
-            if (newValue == true) {
-                this.$root.$emit('CountryDataRequested');
-            }
+        this.$root.$on('CountriesDataReceived', function(countries) {
+            that.countries = countries;
         });
+        this.$root.$on('RegionsDataReceived', function(regions) {
+            that.regions = regions;
+        });
+        this.$root.$on('CitiesDataReceived', function(cities) {
+            that.cities = cities;
+        });
+
+        this.$root.$emit('CountryDataRequested');
     },
     data() {
         return {
-            deliveryDetailDiffers: false,
+            deliveryDetailDiffers: true,
             countries: [],
             regions: [],
             cities: [],
             regionChangeRequested: false,
             cityChangeRequested: false,
             payload: {
+                firstname: '',
+                lastname: '',
                 country_id: null,
                 region_id: null,
                 city_id: null,

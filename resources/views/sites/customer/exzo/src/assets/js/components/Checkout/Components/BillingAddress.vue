@@ -3,15 +3,15 @@
     <h4 class="h4 col-xs-b25">billing details</h4>
     <div class="row m10">
         <div class="col-sm-6">
-            <input class="simple-input" type="text" value="" placeholder="First name" />
+            <input class="simple-input" type="text" value="" placeholder="First name" v-model="payload.firstname" />
             <div class="empty-space col-xs-b20"></div>
         </div>
         <div class="col-sm-6">
-            <input class="simple-input" type="text" value="" placeholder="Last name" />
+            <input class="simple-input" type="text" value="" placeholder="Last name" v-model="payload.lastname" />
             <div class="empty-space col-xs-b20"></div>
         </div>
     </div>
-    <input class="simple-input" type="text" value="" placeholder="Company name" />
+    <input class="simple-input" type="text" value="" placeholder="Company name" v-model="payload.company" />
     <div class="empty-space col-xs-b20"></div>
     <select billing-country-list>
        <option disabled="disabled" selected="selected">Choose country</option>
@@ -28,26 +28,40 @@
        <option :value="city.id" v-for="city in cities">{{ city.name }}</option>
    </select>
     <div class="empty-space col-xs-b20"></div>
-    <input class="simple-input" type="text" value="" placeholder="Postcode/ZIP" />
+    <input class="simple-input" type="text" value="" placeholder="Postcode/ZIP" v-model="payload.postal_code" />
     <div class="empty-space col-xs-b20"></div>
-    <input class="simple-input" type="text" value="" placeholder="Appartment/Block Number/Other" />
+    <input class="simple-input" type="text" value="" placeholder="Appartment/Block Number/Other" v-model="payload.block_number" />
     <div class="empty-space col-xs-b20"></div>
-    <input class="simple-input" type="text" value="" placeholder="Street address" />
+    <input class="simple-input" type="text" value="" placeholder="Street address" v-model="payload.address" />
     <div class="empty-space col-xs-b20"></div>
     <div class="row m10">
         <div class="col-sm-6">
-            <input class="simple-input" type="text" value="" placeholder="Email" />
+            <input class="simple-input" type="text" value="" placeholder="Email" v-model="payload.email" />
             <div class="empty-space col-xs-b20"></div>
         </div>
         <div class="col-sm-6">
-            <input class="simple-input" type="text" value="" placeholder="Phone" />
+            <input class="simple-input" type="text" value="" placeholder="Phone" v-model="payload.phone" />
             <div class="empty-space col-xs-b20"></div>
+        </div>
+    </div>
+    <div class="row m10">
+        <div class="col-sm-12">
+            <div class="button block size-2 style-3" @click="state.phase = 'shipping-address'">
+                <span class="button-wrapper">
+                   <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                <span class="text">Next</span>
+                </span>
+                <input type="submit" />
+            </div>
         </div>
     </div>
 </div>
 </template>
 <script>
 export default {
+    props: [
+        'state',
+    ],
     mounted() {
         var that = this;
 
@@ -81,6 +95,8 @@ export default {
             regionChangeRequested: false,
             cityChangeRequested: false,
             payload: {
+                firstname: '',
+                lastname: '',
                 country_id: null,
                 region_id: null,
                 city_id: null,
