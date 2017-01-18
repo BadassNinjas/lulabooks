@@ -31,7 +31,7 @@
                 <h3 style="font-weight: 300;">Upload Images</h3>
                 <dropzone ref="productImages" id="productImages" :acceptedFileTypes="dropzoneOptions.acceptedFileTypes" :showRemoveLink="dropzoneOptions.showRemoveLink" :useFontAwesome="dropzoneOptions.useFontAwesome" :maxFileSizeInMB="dropzoneOptions.maxFileSizeInMB"
                     :url="dropzoneOptions.url" v-on:vdropzone-success="onImageuploadSuccess">
-                </dropzone>
+                    </dropzone>
             </div>
         </div>
         <div>
@@ -48,7 +48,7 @@
             <summer-note ref='SummerNote'></summer-note>
         </div>
         <div>
-            <button typ <br/>e="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(6)">Finish!</button>
+            <button type="submit" class="btn btn-lg btn-success waves-effect" @click="setProcessStep(6)">Finish!</button>
             <button type="button" class="btn btn-lg btn-default waves-effect" @click="setProcessStep(5)">Back</button>
         </div>
     </div>
