@@ -46,7 +46,7 @@
             <div class="col-xs-6 text-right">
                 <router-link tag="a" class="button size-2 style-3" to="/checkout">
                     <span class="button-wrapper">
-                           <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
+                           <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
                     <span class="text">proceed to checkout</span>
                     </span>
                 </router-link>

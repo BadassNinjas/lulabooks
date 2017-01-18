@@ -33,6 +33,7 @@ Route::post('/api/categories/{categoryId}', 'ProductCategoryController@createOrU
 Route::delete('/api/categories/{categoryId?}', 'ProductCategoryController@deleteCategory');
 
 Route::get('/api/render/products', 'RenderController@getRenderProducts');
+Route::get('/api/render/products/{category_id}', 'RenderController@getRenderProductsOnCategory');
 Route::get('/api/render/countries', 'RenderController@getWorldCountries');
 Route::get('/api/render/regions/{country_id}', 'RenderController@getRegionsOnCountry');
 Route::get('/api/render/cities/{region_id}', 'RenderController@getCitiesOnRegion');

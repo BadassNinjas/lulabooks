@@ -55,9 +55,16 @@ export default {
         this.$root.$on('AddBasketProduct', function(product) {
             that.addBasketProduct(product);
         });
+
+        this.$root.$on('CategoryDataRequested', function(product) {
+            that.getCategories();
+        });
+
+        this.$root.$on('ProductsOnCategoryDataRequested', function(categoryId) {
+            that.getProductsOnCategory(categoryId);
+        });
     },
     mounted() {
-        this.getCategories();
         this.getShoppingCart();
     },
     methods: {
@@ -79,6 +86,13 @@ export default {
             this.$http.get('/api/render/products').then((response) => {
                 if (response.data.success) {
                     this.$root.$emit('ProductListDataReceived', response.data.payload);
+                }
+            });
+        },
+        getProductsOnCategory: function(categoryId) {
+            this.$http.get('/api/render/products/' + categoryId).then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('ProductsOnCategoryDataReceived', response.data.payload);
                 }
             });
         },

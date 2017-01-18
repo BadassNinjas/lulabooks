@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="popup-content" data-rel="ProductView" v-if="Product != null">
+    <div class="popup-content" data-rel="ProductView">
         <div class="layer-close"></div>
         <div class="popup-container size-2">
             <div class="popup-align">
@@ -89,7 +89,7 @@
 
 <script>
 export default {
-    created() {
+    mounted() {
         var that = this;
 
         this.$root.$on('ProductViewSelected', function(Product) {

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
-use ShopKit\Product\Models\Product;
-use ShopKit\Product\Models\ProductImage;
 use BadassNinjas\RFS\Facades\RFS;
 use BadassNinjas\Geo\Models\Country;
 use BadassNinjas\Geo\Models\Region;
+use ShopKit\Product\Models\Product;
+use ShopKit\Product\Models\ProductCategory;
+use ShopKit\Product\Models\ProductImage;
 use Illuminate\Support\Facades\Cache;
 
 class RenderController extends Controller
@@ -16,6 +17,11 @@ class RenderController extends Controller
     public function getRenderProducts()
     {
         return Response::build(Product::get());
+    }
+
+    public function getRenderProductsOnCategory($category_id)
+    {
+        return Response::build(ProductCategory::find($category_id)->products);
     }
 
     public function getWorldCountries()
