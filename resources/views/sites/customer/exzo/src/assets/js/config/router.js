@@ -6,6 +6,7 @@ Vue.use(Router)
 import DashboardView from '../components/Dashboard/DashboardView.vue';
 import CheckoutView from '../components/Checkout/CheckoutView.vue';
 import ContactView from '../components/Contact/ContactView.vue';
+import ProductsView from '../components/Products/ProductsView.vue';
 
 export default new Router({
     mode: 'history',
@@ -26,6 +27,11 @@ export default new Router({
             path: '/contact',
             name: 'Contact',
             component: ContactView
+        },
+        {
+            path: '/products',
+            name: 'products',
+            component: ProductsView
         },
         {
             path: '*',

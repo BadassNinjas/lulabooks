@@ -14,11 +14,14 @@
                                 <li :class="{ 'active': $route.name == 'Home'}">
                                     <router-link tag="a" to="/">Home</router-link>
                                 </li>
-                                <li :class="{ 'active': $route.name == 'Contact'}">
-                                    <router-link tag="a" to="/contact">Contact</router-link>
+                                <li :class="{ 'active': $route.name == 'Products'}">
+                                    <router-link tag="a" to="/products">Products</router-link>
                                 </li>
                                 <li :class="{ 'active': $route.name == 'Checkout'}" v-if="ShoppingCart.items.length">
                                     <router-link tag="a" to="/checkout">Checkout ({{ ShoppingCart.items.length }} Items @ R{{ ShoppingCart.total }})</router-link>
+                                </li>
+                                <li :class="{ 'active': $route.name == 'Contact'}">
+                                    <router-link tag="a" to="/contact">Contact</router-link>
                                 </li>
                             </ul>
                             <div class="navigation-title">
