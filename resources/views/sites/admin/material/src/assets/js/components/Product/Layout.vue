@@ -35,12 +35,12 @@
                     </div>
                     <div class="row" v-if="ViewState == 'product'">
                         <div class="row">
-                          <div class="col-lg-6"></div>
+                            <div class="col-lg-6"></div>
                             <div class="col-lg-6">
                                 <a href="javascript:;" class="btn btn-primary pull-right manager-btn" @click="ViewState = 'dash'">Previous Menu</a>
                             </div>
                         </div>
-                        <process :withId="withId"></process>
+                        <process :withId="withId" :ViewState="ViewState"></process>
                     </div>
                     <div class="row" v-if="ViewState == 'list'">
                         <div class="row">
@@ -106,14 +106,14 @@ export default {
     data: function() {
         return {
             ViewState: 'dash',
-            withId:null,
+            withId: null,
         }
     },
     methods: {
-      addProduct: function() {
-        this.withId = null;
-        this.ViewState = 'product';
-      }
+        addProduct: function() {
+            this.withId = null;
+            this.ViewState = 'product';
+        }
     },
     components: {
         List,
