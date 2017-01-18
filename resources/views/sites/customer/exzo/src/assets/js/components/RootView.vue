@@ -3,12 +3,11 @@
     <div id="loader-wrapper"></div>
     <div id="content-block">
 
-        <page-header :ShoppingCart="ShoppingCart"></page-header>
+        <page-header></page-header>
 
         <div class="container">
             <div class="empty-space col-xs-b35 col-md-b70"></div>
-
-            <router-view :RenderCategories="Categories" :RenderProducts="ContainerProducts"></router-view>
+            <router-view></router-view>
         </div>
 
     </div>
@@ -18,10 +17,6 @@
     <div class="popup-wrapper">
         <div class="bg-layer"></div>
 
-        <page-login></page-login>
-
-        <page-register></page-register>
-
         <page-product-view></page-product-view>
 
     </div>
@@ -30,10 +25,7 @@
 
 <script>
 import PageHeader from './Shared/PageHeader.vue';
-import PageSlider from './Shared/PageSlider.vue';
 import PageFooter from './Shared/PageFooter.vue';
-import PageLogin from './Shared/PageLogin.vue';
-import PageRegister from './Shared/PageRegister.vue';
 import PageProductView from './Shared/PageProductView.vue';
 
 export default {
@@ -56,13 +48,16 @@ export default {
             that.getCities(regionId);
         });
 
-        this.$root.$on('AddProduct', function(data) {
-            that.addProduct(data);
+        this.$root.$on('ProductListDataRequested', function() {
+            that.getProductList();
+        });
+
+        this.$root.$on('AddBasketProduct', function(product) {
+            that.addBasketProduct(product);
         });
     },
     mounted() {
         this.getCategories();
-        this.getDisplayProducts();
         this.getShoppingCart();
     },
     methods: {
@@ -80,10 +75,10 @@ export default {
                 }
             });
         },
-        getDisplayProducts: function() {
+        getProductList: function() {
             this.$http.get('/api/render/products').then((response) => {
                 if (response.data.success) {
-                    this.$root.$emit('ProductDisplayDataReceived', response.data.payload);
+                    this.$root.$emit('ProductListDataReceived', response.data.payload);
                 }
             });
         },
@@ -102,14 +97,14 @@ export default {
             });
         },
         getCities: function(regionId) {
-            this.$http.get('/api/render/regions/' + regionId).then((response) => {
+            this.$http.get('/api/render/cities/' + regionId).then((response) => {
                 if (response.data.success) {
-                    this.$root.$emit('CityDataReceived', response.data.payload);
+                    this.$root.$emit('CitiesDataReceived', response.data.payload);
                 }
             });
         },
-        addProduct: function(data) {
-            this.$http.post('/api/basket', data).then((response) => {
+        addBasketProduct: function(product) {
+            this.$http.post('/api/basket', product).then((response) => {
                 if (response.data.success) {
                     this.$root.$emit('ShoppingCartDataReceived', response.data.payload);
                 }
@@ -118,10 +113,7 @@ export default {
     },
     components: {
         PageHeader,
-        PageSlider,
         PageFooter,
-        PageLogin,
-        PageRegister,
         PageProductView,
     }
 }

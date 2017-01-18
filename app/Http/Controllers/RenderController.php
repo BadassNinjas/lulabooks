@@ -9,6 +9,7 @@ use ShopKit\Product\Models\ProductImage;
 use BadassNinjas\RFS\Facades\RFS;
 use BadassNinjas\Geo\Models\Country;
 use BadassNinjas\Geo\Models\Region;
+use Illuminate\Support\Facades\Cache;
 
 class RenderController extends Controller
 {
@@ -19,7 +20,11 @@ class RenderController extends Controller
 
     public function getWorldCountries()
     {
-        return Response::build(Country::orderBy('name', 'ASC')->get());
+        $countries = Cache::get('geo.countries', Country::orderBy('name', 'ASC')->get());
+
+        Cache::put('geo.countries', $countries, 3600);
+
+        return Response::build($countries);
     }
 
     public function getRegionsOnCountry($country_id)

@@ -9,7 +9,6 @@
                         <div class="entry"><b>email:</b> <a href="mailto:lucky@lulabooks.mobi">lucky@lulabooks.mobi</a></div>
                     </div>
                     <div class="col-md-7 col-md-text-right">
-                        <div class="entry"><a class="open-popup" data-rel="1"><b>login</b></a>&nbsp; or &nbsp;<a class="open-popup" data-rel="2"><b>register</b></a></div>
                         <div class="entry language">
                             <div class="title"><b>ZAR</b></div>
                             <div class="language-toggle header-toggle-animation">
@@ -26,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <nav-bar></nav-bar>
+        <navigation-bar></navigation-bar>
     </header>
     <div class="header-empty-space"></div>
 </div>
@@ -34,7 +33,7 @@
 
 <script>
 import ShoppingCartWidget from './ShoppingCart/CartWidget.vue';
-import NavBar from './Navigation/NavBar.vue';
+import NavigationBar from './NavigationBar.vue';
 
 export default {
     props: [
@@ -42,7 +41,7 @@ export default {
     ],
     components: {
         ShoppingCartWidget,
-        NavBar
+        NavigationBar
     }
 }
 </script>

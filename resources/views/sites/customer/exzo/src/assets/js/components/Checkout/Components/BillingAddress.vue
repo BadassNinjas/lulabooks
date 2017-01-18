@@ -54,9 +54,21 @@ export default {
         this.$watch('countries', function() {
             that.initCountryComponent();
         });
+        this.$watch('regions', function() {
+            that.initRegionComponent();
+        });
+        this.$watch('cities', function() {
+            that.initCityComponent();
+        });
 
         this.$root.$on('CountriesDataReceived', function(countries) {
             that.countries = countries;
+        });
+        this.$root.$on('RegionsDataReceived', function(regions) {
+            that.regions = regions;
+        });
+        this.$root.$on('CitiesDataReceived', function(cities) {
+            that.cities = cities;
         });
 
         this.$root.$emit('CountryDataRequested');
@@ -66,8 +78,12 @@ export default {
             countries: [],
             regions: [],
             cities: [],
-            state: {
-                countriesSet: false
+            regionChangeRequested: false,
+            cityChangeRequested: false,
+            payload: {
+                country_id: null,
+                region_id: null,
+                city_id: null,
             }
         }
     },
@@ -75,31 +91,72 @@ export default {
         initCountryComponent: function() {
             var that = this;
 
-            if (!this.state.countriesSet) {
-                this.state.countriesSet = true;
+            if (this.payload.country_id == null) {
 
                 $('[billing-country-list]').SumoSelect({
                     search: true,
                     searchText: 'Search',
                     noMatch: 'No matches for "{0}"',
                     floatWidth: 0
-                }).change(function(e) {
-                    that.countryChanged(e);
+                });
+
+                $('[billing-country-list]').change(function(e) {
+                    that.regionChangeRequested = true;
+                    that.payload.country_id = e.target.value;
+                    that.$root.$emit('RegionDataRequested', that.payload.country_id);
                 });
             }
-        },
-        countryChanged: function(e) {
-            alert('changed to ' + e.target.value);
-        }
-    },
 
-    stuff() {
-        this.$root.$emit('SomethingHappened', {
-            somedata: moredata
-        });
-        this.$root.$on('SomethingHappened', function(data) {
-            alert(data);
-        });
+        },
+        initRegionComponent: function() {
+            var that = this;
+
+            if (this.payload.region_id == null) {
+
+                $('[billing-region-list]').SumoSelect({
+                    search: true,
+                    searchText: 'Search',
+                    noMatch: 'No matches for "{0}"',
+                    floatWidth: 0
+                });
+
+                $('[billing-region-list]').change(function(e) {
+                    that.cityChangeRequested = true;
+                    that.payload.region_id = e.target.value;
+                    that.$root.$emit('CityDataRequested', that.payload.region_id);
+                });
+            } else {
+                if (that.regionChangeRequested) {
+                    that.regionChangeRequested = false;
+                    that.region_id = -1;
+                    $('[billing-region-list]')[0].sumo.reload();
+                }
+            }
+
+        },
+        initCityComponent: function() {
+            var that = this;
+
+            if (this.payload.city_id == null) {
+                $('[billing-city-list]').SumoSelect({
+                    search: true,
+                    searchText: 'Search',
+                    noMatch: 'No matches for "{0}"',
+                    floatWidth: 0
+                });
+
+                $('[billing-city-list]').change(function(e) {
+                    that.payload.city_id = e.target.value;
+                });
+            } else {
+                if (that.cityChangeRequested) {
+                    that.cityChangeRequested = false;
+                    that.city_id = -1;
+                    $('[billing-city-list]')[0].sumo.reload();
+                }
+            }
+
+        }
     }
 }
 </script>

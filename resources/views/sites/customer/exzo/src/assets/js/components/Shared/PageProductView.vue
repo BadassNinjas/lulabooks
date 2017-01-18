@@ -89,7 +89,7 @@
 
 <script>
 export default {
-    mounted() {
+    created() {
         var that = this;
 
         this.$root.$on('ProductViewSelected', function(Product) {
@@ -131,7 +131,7 @@ export default {
                 qty: this.OrderQuantity,
             };
 
-            this.$root.$emit('AddProduct', payload);
+            this.$root.$emit('AddBasketProduct', payload);
             this.DismissView();
         }
     }

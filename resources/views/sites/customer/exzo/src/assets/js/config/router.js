@@ -5,6 +5,7 @@ Vue.use(Router)
 
 import DashboardView from '../components/Dashboard/DashboardView.vue';
 import CheckoutView from '../components/Checkout/CheckoutView.vue';
+import ContactView from '../components/Contact/ContactView.vue';
 
 export default new Router({
     mode: 'history',
@@ -13,15 +14,21 @@ export default new Router({
     }),
     routes: [{
             path: '/',
+            name: 'Home',
             component: DashboardView
         },
         {
             path: '/checkout',
+            name: 'Checkout',
             component: CheckoutView
         },
         {
+            path: '/contact',
+            name: 'Contact',
+            component: ContactView
+        },
+        {
             path: '*',
-            //redirect: '/'
             component: DashboardView
         }
     ]

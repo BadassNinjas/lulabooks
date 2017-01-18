@@ -37,6 +37,9 @@
                 </div>
             </div>
         </div>
+        <div class="col-xs-12">
+            <hr/>
+        </div>
     </div>
 
     <page-featured-products></page-featured-products>
