@@ -35,8 +35,9 @@
                 <hr/>
             </div>
         </div>
-        <div class="empty-space col-xs-b40"></div>
-        <div class="row">
+
+        <div class="row" v-if="ShoppingCart.items.length">
+            <div class="empty-space col-xs-b40"></div>
             <div class="col-xs-6">
                 <div class="cell-view empty-space col-xs-b50">
                     <div class="simple-article size-5 grey">TOTAL <span class="color"><b>R{{ ShoppingCart.total }}</b></span></div>
@@ -49,6 +50,13 @@
                     <span class="text">proceed to checkout</span>
                     </span>
                 </router-link>
+            </div>
+        </div>
+        <div class="row" v-else-if="!ShoppingCart.items.length">
+            <div class="col-xs-12">
+                <div class="cell-view empty-space col-xs-b50">
+                    <div class="simple-article size-5 grey">There are no products in your shopping cart.</div>
+                </div>
             </div>
         </div>
     </div>
@@ -68,32 +76,17 @@
 
 <script>
 export default {
-    mounted() {
-        var that = this;
-
-        this.$root.$on('ShoppingCartDataReceived', function(ShoppingCart) {
-            that.ShoppingCart = ShoppingCart;
-        });
-
-        this.$root.$emit('ShoppingCartDataRequested');
-    },
-    data() {
-        return {
-            ShoppingCart: {
-                items: [],
-                total: 0,
-            },
-        }
-    },
+    props: [
+        'ShoppingCart',
+    ],
     methods: {
         ProductRemove: function(id) {
             this.$http.delete('/api/basket/' + id).then((response) => {
                 if (response.data.success) {
-                    this.ShoppingCart = response.data.payload;
+                    this.$root.$emit('ShoppingCartDataReceived', response.data.payload);
                 }
             });
         },
-
     }
 }
 </script>

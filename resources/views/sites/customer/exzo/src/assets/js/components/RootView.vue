@@ -17,16 +17,16 @@
     <div class="popup-wrapper">
         <div class="bg-layer"></div>
 
-        <page-product-view></page-product-view>
+        <product-view></product-view>
 
     </div>
 </div>
 </template>
 
 <script>
-import PageHeader from './Shared/PageHeader.vue';
-import PageFooter from './Shared/PageFooter.vue';
-import PageProductView from './Shared/PageProductView.vue';
+import PageHeader from './Shared/Header/HeaderView.vue';
+import PageFooter from './Shared/Footer/FooterView.vue';
+import ProductView from './Dashboard/Components/ProductView.vue';
 
 export default {
     created() {
@@ -114,7 +114,7 @@ export default {
     components: {
         PageHeader,
         PageFooter,
-        PageProductView,
+        ProductView,
     }
 }
 </script>

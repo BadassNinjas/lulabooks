@@ -17,8 +17,8 @@
                                 <li :class="{ 'active': $route.name == 'Contact'}">
                                     <router-link tag="a" to="/contact">Contact</router-link>
                                 </li>
-                                <li :class="{ 'active': $route.name == 'Checkout'}">
-                                    <router-link tag="a" to="/checkout">Checkout</router-link>
+                                <li :class="{ 'active': $route.name == 'Checkout'}" v-if="ShoppingCart.items.length">
+                                    <router-link tag="a" to="/checkout">Checkout ({{ ShoppingCart.items.length }} Items @ R{{ ShoppingCart.total }})</router-link>
                                 </li>
                             </ul>
                             <div class="navigation-title">
@@ -31,12 +31,10 @@
                             </div>
                         </nav>
                     </div>
-                    <div class="header-bottom-icon toggle-search"><i class="fa fa-search" aria-hidden="true"></i></div>
-                    <div class="header-bottom-icon visible-rd"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
-                    <div class="header-bottom-icon visible-rd">
+                    <router-link tag="div" to="/checkout" class="header-bottom-icon visible-rd">
                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                        <span class="cart-label">5</span>
-                    </div>
+                        <span class="cart-label" v-if="ShoppingCart">{{ ShoppingCart.items.length }}</span>
+                    </router-link>
                 </div>
             </div>
             <div class="header-search-wrapper">
@@ -61,3 +59,10 @@
     </div>
 </div>
 </template>
+<script>
+export default {
+    props: [
+        'ShoppingCart',
+    ]
+}
+</script>

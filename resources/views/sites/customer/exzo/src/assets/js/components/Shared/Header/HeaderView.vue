@@ -12,10 +12,10 @@
                         <div class="entry language">
                             <div class="title"><b>ZAR</b></div>
                             <div class="language-toggle header-toggle-animation">
-                                <a href="index1.html">ZAR</a>
+                                <a href="/">ZAR</a>
                             </div>
                         </div>
-                        <shopping-cart-widget :ShoppingCart="ShoppingCart"></shopping-cart-widget>
+                        <shopping-cart :ShoppingCart="ShoppingCart"></shopping-cart>
                         <div class="hamburger-icon">
                             <span></span>
                             <span></span>
@@ -25,22 +25,36 @@
                 </div>
             </div>
         </div>
-        <navigation-bar></navigation-bar>
+        <navigation-bar :ShoppingCart="ShoppingCart"></navigation-bar>
     </header>
     <div class="header-empty-space"></div>
 </div>
 </template>
 
 <script>
-import ShoppingCartWidget from './ShoppingCart/CartWidget.vue';
-import NavigationBar from './NavigationBar.vue';
+import ShoppingCart from './Components/ShoppingCart.vue';
+import NavigationBar from './Components/NavigationBar.vue';
 
 export default {
-    props: [
-        'ShoppingCart'
-    ],
+    mounted() {
+        var that = this;
+
+        this.$root.$on('ShoppingCartDataReceived', function(ShoppingCart) {
+            that.ShoppingCart = ShoppingCart;
+        });
+
+        this.$root.$emit('ShoppingCartDataRequested');
+    },
+    data() {
+        return {
+            ShoppingCart: {
+                items: [],
+                total: 0,
+            },
+        }
+    },
     components: {
-        ShoppingCartWidget,
+        ShoppingCart,
         NavigationBar
     }
 }

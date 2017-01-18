@@ -42,16 +42,16 @@
         </div>
     </div>
 
-    <page-featured-products></page-featured-products>
+    <product-grid></product-grid>
 </div>
 </template>
 
 <script>
-import PageFeaturedProducts from '../Shared/PageFeaturedProducts.vue';
+import ProductGrid from './Components/ProductGrid.vue';
 
 export default {
     components: {
-        PageFeaturedProducts,
+        ProductGrid,
     }
 }
 </script>
