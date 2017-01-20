@@ -19,18 +19,18 @@
         <div class="empty-space col-xs-b20"></div>
         <input class="simple-input" type="text" value="" placeholder="Company VAT Number - OPTIONAL" v-model="payload.company_vat" />
         <div class="empty-space col-xs-b20"></div>
-        <select billing-country-list>
-       <option disabled="disabled" selected="selected">{{ countriesPlaceHolder}}</option>
-       <option :value="country.id" v-for="country in countries">{{ country.name }}</option>
-   </select>
+        <select v-on:change="countryChanged" class="form-control simple-input">
+            <option selected="" disabled="" value="">Select Country</option>
+           <option :value="country.id" v-for="country in countries" >{{ country.name }}</option>
+       </select>
         <div class="empty-space col-xs-b20"></div>
-        <select billing-region-list v-if="regions.length">
-       <option disabled="disabled" selected="selected">{{ regionsPlaceHolder }}</option>
+        <select v-on:change="regionChanged" v-if="regions.length" class="form-control simple-input">
+            <option selected="" disabled="" value="">Select Region/State</option>
        <option :value="region.id" v-for="region in regions">{{ region.name }}</option>
    </select>
         <div class="empty-space col-xs-b20"></div>
-        <select billing-city-list v-if="cities.length">
-       <option disabled="disabled" selected="selected">{{ citiesPlaceHolder }}</option>
+        <select v-on:change="cityChanged" t v-if="cities.length" class="form-control simple-input">
+          <option selected="" disabled="" value="">Select City/Town</option>
        <option :value="city.id" v-for="city in cities">{{ city.name }}</option>
    </select>
         <div class="empty-space col-xs-b20"></div>
@@ -72,14 +72,11 @@ export default {
     mounted() {
         var that = this;
 
-        this.$watch('countries', function() {
-            that.initCountryComponent();
+        this.$watch('payload.country_id', function() {
+            that.$root.$emit('RegionDataRequested', that.payload.country_id);
         });
-        this.$watch('regions', function() {
-            that.initRegionComponent();
-        });
-        this.$watch('cities', function() {
-            that.initCityComponent();
+        this.$watch('payload.region_id', function() {
+            that.$root.$emit('CityDataRequested', that.payload.region_id);
         });
 
         this.$root.$on('CountriesDataReceived', function(countries) {
@@ -112,18 +109,11 @@ export default {
                     that.payload.postcode = user.billing_detail.postcode;
                     that.payload.building = user.billing_detail.building;
                     that.payload.street = user.billing_detail.street;
-
-                    that.countriesPlaceHolder = user.billing_detail.country;
-                    that.regionsPlaceHolder = user.billing_detail.region;
-                    that.citiesPlaceHolder = user.billing_detail.city;
-
-                    that.initCountryComponent();
-                    that.initRegionComponent();
-                    that.initCityComponent();
                 }
             }
         });
 
+        this.$root.$emit('CountryDataRequested');
         this.$root.$emit('UserAuthDataRequested');
     },
     destroyed() {
@@ -137,11 +127,6 @@ export default {
             countries: [],
             regions: [],
             cities: [],
-            countriesPlaceHolder: 'Select Country',
-            regionsPlaceHolder: 'Select Region',
-            citiesPlaceHolder: 'Select City',
-            regionChangeRequested: false,
-            cityChangeRequested: false,
             payload: {
                 firstname: '',
                 lastname: '',
@@ -152,9 +137,9 @@ export default {
                 postcode: '',
                 building: '',
                 street: '',
-                country_id: null,
-                region_id: null,
-                city_id: null,
+                country_id: '',
+                region_id: '',
+                city_id: '',
             },
             error: false,
         }
@@ -167,78 +152,15 @@ export default {
             window.scrollTo(0, 0);
             this.error = message;
         },
-        initCountryComponent: function() {
-            var that = this;
-
-            if (this.payload.country_id == null) {
-
-                $('[billing-country-list]').SumoSelect({
-                    search: true,
-                    placeholder: that.countriesPlaceHolder,
-                    searchText: 'Search',
-                    noMatch: 'No matches for "{0}"',
-                    floatWidth: 0
-                });
-
-                $('[billing-country-list]').change(function(e) {
-                    that.regionChangeRequested = true;
-                    that.payload.country_id = e.target.value;
-                    that.$root.$emit('RegionDataRequested', that.payload.country_id);
-                });
-            }
-
+        countryChanged: function(e) {
+            this.payload.country_id = e.target.value;
         },
-        initRegionComponent: function() {
-            var that = this;
-
-            if (this.payload.region_id == null) {
-
-                $('[billing-region-list]').SumoSelect({
-                    search: true,
-                    placeholder: that.regionsPlaceHolder,
-                    searchText: 'Search',
-                    noMatch: 'No matches for "{0}"',
-                    floatWidth: 0
-                });
-
-                $('[billing-region-list]').change(function(e) {
-                    that.cityChangeRequested = true;
-                    that.payload.region_id = e.target.value;
-                    that.$root.$emit('CityDataRequested', that.payload.region_id);
-                });
-            } else {
-                if (that.regionChangeRequested) {
-                    that.regionChangeRequested = false;
-                    that.region_id = -1;
-                    $('[billing-region-list]')[0].sumo.reload();
-                }
-            }
-
+        regionChanged: function(e) {
+            this.payload.region_id = e.target.value;
         },
-        initCityComponent: function() {
-            var that = this;
-
-            if (this.payload.city_id == null) {
-                $('[billing-city-list]').SumoSelect({
-                    search: true,
-                    placeholder: that.citiesPlaceHolder,
-                    searchText: 'Search',
-                    noMatch: 'No matches for "{0}"',
-                    floatWidth: 0
-                });
-
-                $('[billing-city-list]').change(function(e) {
-                    that.payload.city_id = e.target.value;
-                });
-            } else {
-                if (that.cityChangeRequested) {
-                    that.cityChangeRequested = false;
-                    that.city_id = -1;
-                    $('[billing-city-list]')[0].sumo.reload();
-                }
-            }
-
-        }
+        cityChanged: function(e) {
+            this.payload.city_id = e.target.value;
+        },
     }
 }
 </script>

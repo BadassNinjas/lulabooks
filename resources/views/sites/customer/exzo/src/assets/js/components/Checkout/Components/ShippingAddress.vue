@@ -1,4 +1,4 @@
-<template>
+4oon<template>
 <div>
     <form v-on:submit.prevent="submitShippingDetails()">
         <h4 class="h4 col-xs-b25">delivery details</h4>
@@ -74,7 +74,7 @@ export default {
     props: [
         'state',
     ],
-    mounted() {
+    created() {
         var that = this;
 
         this.$watch('countries', function() {

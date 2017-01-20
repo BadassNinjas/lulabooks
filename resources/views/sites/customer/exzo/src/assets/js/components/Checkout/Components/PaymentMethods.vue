@@ -2,9 +2,9 @@
 <div>
 
     <h4 class="h4 col-xs-b25">payment method</h4>
-    <select payment-methods>
-         <option selected="selected">Credit/Debit Card</option>
-         <option value="volvo">Bank Transfer (EFT)</option>
+    <select payment-methods class="form-control simple-input">
+         <option selected="selected" disabled="disabled">Select Payment Method</option>
+         <option :value="method.internal_type" v-for="method in availablePaymentMethods">{{ method.display_name }}</option>
      </select>
     <div class="empty-space col-xs-b10"></div>
     <div class="simple-article size-2">* For credit/debit card payments, you will be redirected to the addPay payment platform to perform continue payment. Once payment has been made, a confirmation email will be sent to you and you will be returned to LulaBooks.</div>
@@ -24,11 +24,20 @@
 
 <script>
 export default {
-    mounted() {
-        $('[payment-methods]').SumoSelect({
-            search: false,
-            floatWidth: 0
-        });
+    created() {
+        this.getPaymentMethods();
+    },
+    data: function() {
+        return {
+            availablePaymentMethods: [],
+        }
+    },
+    methods: {
+        getPaymentMethods: function() {
+            this.$http.get('/api/payment/methods').then((response) => {
+                this.availablePaymentMethods = response.data.payload;
+            });
+        }
     }
 }
 </script>

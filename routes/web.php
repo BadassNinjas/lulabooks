@@ -48,6 +48,9 @@ Route::post('/api/contact', 'ContactController@submitContactMessage');
 Route::post('/api/checkout/billing', 'CheckoutController@updateBillingDetail');
 Route::post('/api/checkout/shipping', 'CheckoutController@updateShippingDetail');
 
+Route::get('/api/payment/methods', 'PaymentController@getPaymentMethods');
+Route::get('/api/payment/prepare', 'PaymentController@getPreparedPayment');
+
  Route::group(['prefix' => '/admin'], function () {
      Route::get('/', 'Base\Controller@renderAdminPage');
      Route::get('{path}', 'Base\Controller@renderAdminPage')->where('path', '.+');
