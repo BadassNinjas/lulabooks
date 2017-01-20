@@ -5,54 +5,55 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use BadassNinjas\Migrator\Traits\MigratorTrait;
 
-class Transaction extends Model
+class ContactMessage extends Model
 {
     use MigratorTrait;
 
-    public $table = 'transaction';
+    public $table = 'contact_message';
 
     protected $schema = [
-      'user_id' => [
+      'firstname' => [
         'type' => 'string',
-        'length' => 128,
+        'length' => 32,
         'modifiers' => [
           'nullable'
         ]
       ],
-      'status' => [
+      'lastname' => [
         'type' => 'string',
-        'length' => 128,
+        'length' => 32,
         'modifiers' => [
           'nullable'
         ]
       ],
-      'payment_method' => [
+      'email' => [
         'type' => 'string',
-        'length' => 128,
+        'length' => 32,
         'modifiers' => [
           'nullable'
         ]
       ],
-      'payment_status' => [
+      'phone' => [
         'type' => 'string',
-        'length' => 128,
+        'length' => 32,
         'modifiers' => [
           'nullable'
         ]
       ],
-      'items' => [
+      'message' => [
         'type' => 'string',
-        'length' => 64000,
+        'length' => 32,
         'modifiers' => [
           'nullable'
         ]
-      ],
-      'item_total' => [
-        'type' => 'decimal',
-        'length' => 12,
-        'modifiers' => [
-          'nullable'
-        ]
-      ],
+      ]
+    ];
+
+    protected $fillable = [
+      'firstname',
+      'lastname',
+      'message',
+      'email',
+      'phone',
     ];
 }

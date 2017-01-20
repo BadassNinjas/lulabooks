@@ -2,28 +2,26 @@
 <div>
     <div id="loader-wrapper"></div>
     <div id="content-block">
-
         <page-header></page-header>
-
         <div class="container">
             <div class="empty-space col-xs-b35 col-md-b70"></div>
             <router-view></router-view>
         </div>
-
     </div>
-
     <page-footer></page-footer>
-
     <div class="popup-wrapper">
         <div class="bg-layer"></div>
-
         <product-view></product-view>
-
     </div>
+    <auth ref="auth"></auth>
+    <store ref="store"></store>
 </div>
 </template>
 
 <script>
+import Store from './Shared/Storage.vue';
+import Auth from './Shared/Auth.vue';
+
 import PageHeader from './Shared/Header/HeaderView.vue';
 import PageFooter from './Shared/Footer/FooterView.vue';
 import ProductView from './Dashboard/Components/ProductView.vue';
@@ -62,6 +60,18 @@ export default {
 
         this.$root.$on('ProductsOnCategoryDataRequested', function(categoryId) {
             that.getProductsOnCategory(categoryId);
+        });
+
+        this.$root.$on('BillingDetailDataUpdateRequested', function(payload) {
+            that.updateBillingData(payload);
+        });
+
+        this.$root.$on('UserAuthDataReceived', function(user) {
+            that.setUserAuthData(user);
+        });
+
+        this.$root.$on('UserAuthDataRequested', function(user) {
+            this.$root.$emit('UserAuthDataReceived', that.user);
         });
     },
     mounted() {
@@ -123,12 +133,31 @@ export default {
                     this.$root.$emit('ShoppingCartDataReceived', response.data.payload);
                 }
             });
+        },
+        updateBillingData: function(payload) {
+            this.$http.post('/api/checkout/billing', payload).then((response) => {
+                if (response.data.success) {
+                    this.$root.$emit('BillingDetailDataUpdateReceived', response.data.payload);
+                } else {
+                    this.$root.$emit('BillingDetailDataUpdateFailed', response.data.error);
+                }
+            });
+        },
+        setUserAuthData: function(user) {
+            this.user = user;
         }
     },
     components: {
         PageHeader,
         PageFooter,
         ProductView,
+        Store,
+        Auth
+    },
+    data: function() {
+        return {
+            user: null,
+        }
     }
 }
 </script>

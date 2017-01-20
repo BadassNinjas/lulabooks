@@ -8,5 +8,7 @@ return [
     \ShopKit\ACL\Models\User::class,
     \ShopKit\ACL\Models\UserBillingDetail::class,
     \ShopKit\ACL\Models\UserShippingDetail::class,
+    \App\Models\SalesRequest::class,
+    \App\Models\ContactMessage::class,
   ]
 ];

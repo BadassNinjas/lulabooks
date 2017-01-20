@@ -7,6 +7,7 @@ import DashboardView from '../components/Dashboard/DashboardView.vue';
 import CheckoutView from '../components/Checkout/CheckoutView.vue';
 import ContactView from '../components/Contact/ContactView.vue';
 import ProductsView from '../components/Products/ProductsView.vue';
+import SalesRequestView from '../components/SalesRequest/SalesRequest.vue';
 
 export default new Router({
     mode: 'history',
@@ -27,6 +28,11 @@ export default new Router({
             path: '/contact',
             name: 'Contact',
             component: ContactView
+        },
+        {
+            path: '/sell',
+            name: 'Sale',
+            component: SalesRequestView
         },
         {
             path: '/products',

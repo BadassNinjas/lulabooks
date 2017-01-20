@@ -6,14 +6,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
+use ShopKit\ACL\Models\User;
 
 class AuthController extends Controller
 {
     public function doLogin()
     {
         $validator = Validator::make(request()->all(), [
-          'username' => 'min:1',
-          'password' => 'min:1',
+          'email' => 'required|min:1',
+          'password' => 'required|min:1',
         ]);
 
         if ($validator->fails()) {
@@ -21,10 +22,41 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt(request()->only(['email', 'password']))) {
-            return Response::build(Auth::user());
+            $user = Auth::user();
+            $user->billing_detail;
+            $user->shipping_detail;
+
+            return Response::build($user);
         }
 
         return Response::build('The given username and/or password combination did not render any results.', 404);
+    }
+
+    public function doRegister()
+    {
+        $validator = Validator::make(request()->all(), [
+          'email' => 'required|unique:user|min:1',
+          'password' => 'required|min:4|confirmed',
+          'password_confirmation' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return Response::build($validator->errors()->first(), 403);
+        }
+
+        $user = new User();
+        $user->firstname = '';
+        $user->lastname = '';
+        $user->email = request('email');
+        $user->password = bcrypt(request('password'));
+        $user->save();
+
+        $user->billing_detail;
+        $user->shipping_detail;
+
+        Auth::login($user);
+
+        return Response::build($user);
     }
 
     public function doLogout()
@@ -39,7 +71,11 @@ class AuthController extends Controller
     public function checkLogin()
     {
         if (Auth::check()) {
-            return Response::build(Auth::user());
+            $user = Auth::user();
+            $user->billing_detail;
+            $user->shipping_detail;
+
+            return Response::build($user);
         }
 
         return Response::build('Unauthenticated', 403);

@@ -1,6 +1,17 @@
 <template>
 <div>
     <div class="row">
+        <div class="col-lg-12">
+            <center>
+                <img src="/img/lulalogo.png" alt="" width="255" />
+                <br/><br/><br/><br/>
+                <h4 class="h5">
+                We are all about buying and selling University text books. We have a full range of new, second hand and e-books and are focussed on providing convenience and cutting costs for students.
+            </h4>
+            </center>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6 col-xs-b30 col-md-b0">
             <div class="banner-shortcode style-6">
                 <img class="image" src="/img/customer/buy_books.jpg" alt="">
@@ -27,12 +38,12 @@
                         <h4 class="title h4 col-xs-b5"><span class="color">SELL BOOKS</span> <br> YOU NO LONGER NEED</h4>
                         <div class="description simple-article size-2 col-xs-b10">Quisque rhoncus orci vitae nisl rutrum rutrum lesuada laoreet urna sed</div>
                         <div class="subtitle simple-article size-5 grey uppercase col-xs-b20">over <span class="color">150</span> models</div>
-                        <a class="button size-2 style-3" href="#">
+                        <router-link class="button size-2 style-3" tag="a" to="/sell">
                             <span class="button-wrapper">
-                                      <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                              <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
                             <span class="text">SELL BOOKS</span>
                             </span>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
             </div>

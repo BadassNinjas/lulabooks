@@ -1,6 +1,6 @@
 <template>
 <div class="entry hidden-xs hidden-sm cart">
-    <a href="cart.html">
+    <a href="javascript:;">
         <b class="hidden-xs">Shopping Cart</b>
         <span class="cart-icon">
                <i class="fa fa-shopping-bag" aria-hidden="true"></i>

@@ -25,6 +25,8 @@ Route::delete('/api/basket/{productId}', 'CartController@removeShoppingCartItem'
 
 Route::get('/api/auth', 'AuthController@checkLogin');
 Route::post('/api/auth', 'AuthController@doLogin');
+Route::post('/api/auth/login', 'AuthController@doLogin');
+Route::post('/api/auth/register', 'AuthController@doRegister');
 Route::delete('/api/auth', 'AuthController@doLogout');
 
 Route::get('/api/categories/{categoryId?}', 'ProductCategoryController@getCategories');
@@ -37,6 +39,14 @@ Route::get('/api/render/products/{category_id}', 'RenderController@getRenderProd
 Route::get('/api/render/countries', 'RenderController@getWorldCountries');
 Route::get('/api/render/regions/{country_id}', 'RenderController@getRegionsOnCountry');
 Route::get('/api/render/cities/{region_id}', 'RenderController@getCitiesOnRegion');
+
+Route::get('/api/sales/request', 'SalesRequestController@getSalesRequests');
+Route::post('/api/sales/request', 'SalesRequestController@submitSalesRequest');
+
+Route::post('/api/contact', 'ContactController@submitContactMessage');
+
+Route::post('/api/checkout/billing', 'CheckoutController@updateBillingDetail');
+Route::post('/api/checkout/shipping', 'CheckoutController@updateShippingDetail');
 
  Route::group(['prefix' => '/admin'], function () {
      Route::get('/', 'Base\Controller@renderAdminPage');

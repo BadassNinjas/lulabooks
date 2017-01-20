@@ -17,6 +17,9 @@
                                 <li :class="{ 'active': $route.name == 'Products'}">
                                     <router-link tag="a" to="/products">Products</router-link>
                                 </li>
+                                <li :class="{ 'active': $route.name == 'Sale'}">
+                                    <router-link tag="a" to="/sell">Sell Books</router-link>
+                                </li>
                                 <li :class="{ 'active': $route.name == 'Checkout'}" v-if="ShoppingCart.items.length">
                                     <router-link tag="a" to="/checkout">Checkout ({{ ShoppingCart.items.length }} Items @ R{{ ShoppingCart.total }})</router-link>
                                 </li>
