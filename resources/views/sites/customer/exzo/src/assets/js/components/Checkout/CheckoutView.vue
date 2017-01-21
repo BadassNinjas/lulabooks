@@ -12,7 +12,7 @@
             <div class="col-md-6 col-xs-b50 col-md-b0">
                 <pre-auth :state="state" v-show="state.phase == 'pre-auth'"></pre-auth>
                 <billing-address :state="state" v-show="state.phase == 'billing-address'"></billing-address>
-                <!-- <shipping-address :state="state" v-show="state.phase == 'shipping-address'"></shipping-address> -->
+                <shipping-address :state="state" v-show="state.phase == 'shipping-address'"></shipping-address>
                 <payment-methods :state="state" v-show="state.phase == 'payment-methods'"></payment-methods>
             </div>
             <div class="col-md-6">

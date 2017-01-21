@@ -20,17 +20,14 @@
         <input class="simple-input" type="text" value="" placeholder="Company VAT Number - OPTIONAL" v-model="payload.company_vat" />
         <div class="empty-space col-xs-b20"></div>
         <select v-on:change="countryChanged" class="form-control simple-input">
-            <option selected="" disabled="" value="">Select Country</option>
            <option :value="country.id" v-for="country in countries" >{{ country.name }}</option>
        </select>
         <div class="empty-space col-xs-b20"></div>
         <select v-on:change="regionChanged" v-if="regions.length" class="form-control simple-input">
-            <option selected="" disabled="" value="">Select Region/State</option>
        <option :value="region.id" v-for="region in regions">{{ region.name }}</option>
    </select>
         <div class="empty-space col-xs-b20"></div>
         <select v-on:change="cityChanged" t v-if="cities.length" class="form-control simple-input">
-          <option selected="" disabled="" value="">Select City/Town</option>
        <option :value="city.id" v-for="city in cities">{{ city.name }}</option>
    </select>
         <div class="empty-space col-xs-b20"></div>
@@ -72,21 +69,14 @@ export default {
     mounted() {
         var that = this;
 
-        this.$watch('payload.country_id', function() {
-            that.$root.$emit('RegionDataRequested', that.payload.country_id);
-        });
-        this.$watch('payload.region_id', function() {
-            that.$root.$emit('CityDataRequested', that.payload.region_id);
+        this.$watch('payload.country_id', function(nVal, oVal) {
+            if (nVal != oVal) {
+                that.getRegions(that.payload.country_id);
+            }
         });
 
-        this.$root.$on('CountriesDataReceived', function(countries) {
-            that.countries = countries;
-        });
-        this.$root.$on('RegionsDataReceived', function(regions) {
-            that.regions = regions;
-        });
-        this.$root.$on('CitiesDataReceived', function(cities) {
-            that.cities = cities;
+        this.$watch('payload.region_id', function() {
+            that.getCities(that.payload.region_id);
         });
 
         this.$root.$on('BillingDetailDataUpdateReceived', function(payload) {
@@ -113,14 +103,8 @@ export default {
             }
         });
 
-        this.$root.$emit('CountryDataRequested');
         this.$root.$emit('UserAuthDataRequested');
-    },
-    destroyed() {
-        this.$root.$off('CountriesDataReceived');
-        this.$root.$off('CitiesDataReceived');
-        this.$root.$off('RegionsDataReceived');
-        this.$root.$off('BillingDetailDataUpdateReceived');
+        this.getCountries();
     },
     data() {
         return {
@@ -160,6 +144,27 @@ export default {
         },
         cityChanged: function(e) {
             this.payload.city_id = e.target.value;
+        },
+        getCountries: function() {
+            this.$http.get('/api/render/countries').then((response) => {
+                if (response.data.success) {
+                    this.countries = response.data.payload;
+                }
+            });
+        },
+        getRegions: function(countryId) {
+            this.$http.get('/api/render/regions/' + countryId).then((response) => {
+                if (response.data.success) {
+                    this.regions = response.data.payload;
+                }
+            });
+        },
+        getCities: function(regionId) {
+            this.$http.get('/api/render/cities/' + regionId).then((response) => {
+                if (response.data.success) {
+                    this.cities = response.data.payload;
+                }
+            });
         },
     }
 }
