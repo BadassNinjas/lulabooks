@@ -3,10 +3,10 @@
     <div class="table-responsive">
         <vuetable ref="vuetable" api-url="/api/products" table-class="table table-bordered table-striped table-hover" ascending-icon="fa fa-chevron-up" descending-icon="fa fa-chevron-down" pagination-path="payload" data-path="payload.data" :per-page="perPage"
             :fields="columns" :pagination-component="paginationComponent" @vuetable:pagination-data="onPaginationData"></vuetable>
-            <div class="vuetable-pagination well">
-                <vuetable-pagination-info class="vuetable-pagination-info" ref="paginationInfo" :paginationInfoClass="paginationInfoClass" :pagination-info-template="paginationInfoTemplate"></vuetable-pagination-info>
-                <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
-            </div>
+        <div class="vuetable-pagination well">
+            <vuetable-pagination-info class="vuetable-pagination-info" ref="paginationInfo" :paginationInfoClass="paginationInfoClass" :pagination-info-template="paginationInfoTemplate"></vuetable-pagination-info>
+            <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
+        </div>
     </div>
 </div>
 </template>
@@ -32,6 +32,8 @@ Vue.component('custom-actions', {
             var ProductView = ListingComponent.$parent;
 
             if (action == 'edit-item') {
+                alert('Wat');
+
                 ProductView.withId = data.id;
                 ProductView.ViewState = "product";
             } else if (action == 'delete-item') {
@@ -46,8 +48,7 @@ export default {
             columns: [{
                     name: 'name',
                     label: 'Product',
-                },
-                {
+                }, {
                     name: 'price',
                     label: 'Price',
                 },
@@ -110,11 +111,13 @@ export default {
 .vuetable-pagination .pagination-info {
     padding-top: 7px;
 }
+
 .vuetable-pagination.well {
     padding: 15px;
     padding-bottom: 50px;
     margin: 0;
 }
+
 .vuetable-pagination .btn {
     margin: 0;
 }

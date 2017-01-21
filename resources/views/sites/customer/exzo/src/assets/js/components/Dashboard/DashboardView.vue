@@ -1,17 +1,6 @@
 <template>
 <div>
     <div class="row">
-        <div class="col-lg-12">
-            <center>
-                <img src="/img/lulalogo.png" alt="" width="255" />
-                <br/><br/><br/><br/>
-                <h4 class="h5">
-                We are all about buying and selling University text books. We have a full range of new, second hand and e-books and are focussed on providing convenience and cutting costs for students.
-            </h4>
-            </center>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-6 col-xs-b30 col-md-b0">
             <div class="banner-shortcode style-6">
                 <img class="image" src="/img/customer/buy_books.jpg" alt="">
@@ -52,7 +41,6 @@
             <hr/>
         </div>
     </div>
-
     <product-grid></product-grid>
 </div>
 </template>
