@@ -68,7 +68,7 @@ class PaymentController extends Controller
             'trans_method' => $payment_method,
             'trans_amount' => ShopKit::getShoppingCart()->getPriceTotal(),
             'trans_currency' => 'ZAR',
-            'notify_url' => str_replace('localhost', 'lulabooks.co.za', URL::to('/api/payments/notify/')),
+            'notify_url' => str_replace('localhost', 'lulabooks.co.za', URL::to('/api/payment/notify/')),
             'return_url' => str_replace('localhost', 'lulabooks.co.za', URL::to('/payment'))
         ]);
 
