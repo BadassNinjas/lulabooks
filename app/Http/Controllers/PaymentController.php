@@ -8,10 +8,16 @@ use AddPay\Http\Client\AddPayHttpClient;
 use ShopKit\Core\Facades\ShopKit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Log;
 use App\Models\Transaction;
 
 class PaymentController extends Controller
 {
+    const PAYMENT_PAID = 0;
+    const PAYMENT_PENDING = 1;
+    const PAYMENT_CANCELLED = 2;
+    const PAYMENT_FAILED = 4;
+
     public function getPaymentMethods()
     {
         $client = new AddPayHttpClient();
@@ -22,6 +28,32 @@ class PaymentController extends Controller
         }
 
         return (array) $result;
+    }
+
+    public function postPaymentNotification()
+    {
+        Log::info('Pamyent notification received: ', ['data' => request()->all()]);
+
+        $payment_ref = request('return_token');
+
+        $transaction = Transaction::where('payment_ref', $payment_ref)->first();
+        $transaction_status = request('trans_result');
+
+        switch ($transaction_status) {
+          case self::PAYMENT_PAID:
+            $transaction->payment_status = 'PAID';
+            break;
+
+          case self::PAYMENT_CANCELLED:
+              $transaction->payment_status = 'CANCELLED';
+              break;
+
+          case self::PAYMENT_FAILED:
+              $transaction->payment_status = 'PAYMENT_FAILED';
+              break;
+        }
+
+        $transaction->save();
     }
 
     public function getPreparedPayment($payment_method)

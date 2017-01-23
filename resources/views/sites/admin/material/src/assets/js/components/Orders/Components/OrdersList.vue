@@ -45,10 +45,6 @@
                                         <td>Order Payment Method</td>
                                         <td>{{ order.payment_method }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Order Payment Method</td>
-                                        <td>{{ order.payment_method }}</td>
-                                    </tr>
                                 </tbody>
                             </table>
                             <br/><br/>
