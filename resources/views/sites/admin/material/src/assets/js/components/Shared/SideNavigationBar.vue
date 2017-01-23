@@ -16,9 +16,9 @@
                 <router-link tag="a" to="/order-manager"><i class="zmdi zmdi-shopping-cart"></i> Order Manager</router-link>
             </li>
             <li>
-                <router-link tag="a" to="/sale-manager"><i class="zmdi zmdi-shopping-cart"></i> Sales Requests</router-link>
+                <router-link tag="a" to="/sale-manager"><i class="zmdi zmdi-star"></i> Sales Requests</router-link>
             </li>
-            <li class="sub-menu">
+            <!-- <li class="sub-menu">
                 <a href="javascript:;" data-ma-action="submenu-toggle"><i class="zmdi zmdi-settings"></i> Settings</a>
                 <ul>
                     <li>
@@ -28,7 +28,7 @@
                         <router-link tag="a" to="/">Something Else</router-link>
                     </li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </aside>
 </div>
