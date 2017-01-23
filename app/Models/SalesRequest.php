@@ -81,10 +81,16 @@ class SalesRequest extends Model
       'isbn',
       'firstname',
       'lastname',
+      'name',
       'grade',
       'email',
       'phone',
       'price',
       'status',
     ];
+
+    public function getStatusAttribute($value)
+    {
+        return strtoupper($value);
+    }
 }

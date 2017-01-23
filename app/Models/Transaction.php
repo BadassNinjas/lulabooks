@@ -59,4 +59,23 @@ class Transaction extends Model
         ]
       ],
     ];
+
+    protected $fillable = [
+      'payment_status',
+      'status'
+    ];
+
+    protected $with = [
+      'user'
+    ];
+
+    public function user()
+    {
+        return $this->hasOne('\ShopKit\ACL\Models\User', 'id', 'user_id');
+    }
+
+    public function getItemsAttribute($value)
+    {
+        return json_decode($value);
+    }
 }

@@ -3,19 +3,26 @@
     <div class="table-responsive" v-if="state == 'listing'">
         <vuetable ref="vuetable" api-url="/api/sales/request" table-class="table table-bordered table-striped table-hover" ascending-icon="fa fa-chevron-up" descending-icon="fa fa-chevron-down" pagination-path="payload" data-path="payload.data" :per-page="perPage"
             :fields="columns" :pagination-component="paginationComponent" @vuetable:pagination-data="onPaginationData"></vuetable>
-        <div class="vuetable-pagination well">
-            <vuetable-pagination-info class="vuetable-pagination-info" ref="paginationInfo" :paginationInfoClass="paginationInfoClass" :pagination-info-template="paginationInfoTemplate"></vuetable-pagination-info>
-            <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
-        </div>
+            <div class="vuetable-pagination well">
+                <vuetable-pagination-info class="vuetable-pagination-info" ref="paginationInfo" :paginationInfoClass="paginationInfoClass" :pagination-info-template="paginationInfoTemplate"></vuetable-pagination-info>
+                <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
+            </div>
     </div>
     <div class="" v-if="state == 'editing'">
         <div class="row">
-            <div class="col-sm-12 col-md-8 col-md-offset-2">
+            <div class="col-sm-12 col-md-12">
                 <div>
-                    <h1 style="font-weight: 300;" class="text-center">{{ 'Edit Request ID' + salesRequest.id }}</h1>
+                    <h4 style="font-weight: 300;" class="text-center">{{ 'Edit Request ID #' + salesRequest.id }}</h4>
                 </div>
                 <br/><br/>
                 <form v-on:submit.prevent="submitSalesRequestEditForm()">
+                    <div class="row" v-if="error">
+                        <div class="col-lg-12">
+                            <div class="alert alert-danger">
+                                <p><b>{{ error }}</b></p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <h4>Customer Detail</h4>
@@ -23,7 +30,50 @@
                             <br/><br/>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.firstname != null && salesRequest.firstname.length }">
+                                    <input type="text" class="input-lg form-control fg-input" disabled v-model="salesRequest.firstname">
+                                    <label class="fg-label">Customer Firstname</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.lastname != null && salesRequest.lastname.length }">
+                                    <input type="text" class="input-lg form-control fg-input" disabled v-model="salesRequest.lastname">
+                                    <label class="fg-label">Customer Lastname</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.email != null && salesRequest.email.length }">
+                                    <input type="text" class="input-lg form-control fg-input" disabled v-model="salesRequest.email">
+                                    <label class="fg-label">Customer Email Address</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.phone != null && salesRequest.phone.length }">
+                                    <input type="text" class="input-lg form-control fg-input" disabled v-model="salesRequest.phone">
+                                    <label class="fg-label">Customer Phone Number</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <br/><br/>
+                            <br/><br/>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <h4>Book Detail</h4>
@@ -63,11 +113,40 @@
                             </div>
                         </div>
                     </div>
-                    <br/><br/>
-                    <center>
-                        <button type="submit" class="btn btn-lg btn-success waves-effect">Update</button>
-                        <button type="button" class="btn btn-lg btn-default waves-effect">Cancel</button>
-                    </center>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.price != null && salesRequest.price.length }">
+                                    <input type="text" class="input-lg form-control fg-input" v-model="salesRequest.price">
+                                    <label class="fg-label">Book Price / Quote</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.status != null && salesRequest.status.length }">
+                                    <input type="text" class="input-lg form-control fg-input" v-model="salesRequest.status">
+                                    <label class="fg-label">Sale Status</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <hr/>
+                            <center>
+                                <button type="submit" class="btn btn-lg btn-success waves-effect">Update</button>
+                                <button type="button" class="btn btn-lg btn-default waves-effect" @click="state = 'listing'">Cancel</button>
+                            </center>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -106,6 +185,7 @@ Vue.component('custom-request-actions', {
 export default {
     data: function() {
         return {
+            error: false,
             state: 'listing',
             salesRequest: {},
             columns: [{
@@ -184,7 +264,15 @@ export default {
             });
         },
         submitSalesRequestEditForm: function() {
-
+            this.$http.put('/api/sales/request/' + this.salesRequest.id, this.salesRequest).then((response) => {
+                if (response.data.success) {
+                    this.state = 'listing';
+                    this.$refs.vuetable.reload();
+                } else {
+                    this.error = response.data.error.desc;
+                    window.scrollTo(0, 0);
+                }
+            });
         }
     }
 }

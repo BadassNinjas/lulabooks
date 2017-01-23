@@ -8,6 +8,8 @@ import CategoryView from '../components/CategoryManager/CategoryView.vue';
 import ProductView from '../components/Product/Layout.vue';
 import LoginView from '../components/Login/LoginView.vue';
 import SalesRequestsView from '../components/SalesRequests/SalesRequests.vue';
+import OrdersView from '../components/Orders/OrdersView.vue';
+
 
 var base_path = '/admin/';
 
@@ -36,6 +38,10 @@ export default new Router({
         {
             path: '/sale-manager',
             component: SalesRequestsView
+        },
+        {
+            path: '/order-manager',
+            component: OrdersView
         },
         {
             path: '*',
