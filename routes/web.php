@@ -49,7 +49,8 @@ Route::post('/api/checkout/billing', 'CheckoutController@updateBillingDetail');
 Route::post('/api/checkout/shipping', 'CheckoutController@updateShippingDetail');
 
 Route::get('/api/payment/methods', 'PaymentController@getPaymentMethods');
-Route::get('/api/payment/prepare', 'PaymentController@getPreparedPayment');
+Route::get('/api/payment/prepare/{payment_method}', 'PaymentController@getPreparedPayment');
+Route::get('/api/payment/notify', 'PaymentController@postPaymentNotification');
 
  Route::group(['prefix' => '/admin'], function () {
      Route::get('/', 'Base\Controller@renderAdminPage');

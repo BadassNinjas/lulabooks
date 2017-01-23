@@ -80,7 +80,7 @@ export default {
         });
 
         this.$root.$on('BillingDetailDataUpdateReceived', function(payload) {
-            that.state.phase = 'shipping-address';
+            that.state.phase = 'payment-methods';
         });
 
         this.$root.$on('BillingDetailDataUpdateFailed', function(error) {

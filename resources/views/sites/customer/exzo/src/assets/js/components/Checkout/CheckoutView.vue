@@ -12,7 +12,6 @@
             <div class="col-md-6 col-xs-b50 col-md-b0">
                 <pre-auth :state="state" v-show="state.phase == 'pre-auth'"></pre-auth>
                 <billing-address :state="state" v-show="state.phase == 'billing-address'"></billing-address>
-                <shipping-address :state="state" v-show="state.phase == 'shipping-address'"></shipping-address>
                 <payment-methods :state="state" v-show="state.phase == 'payment-methods'"></payment-methods>
             </div>
             <div class="col-md-6">
@@ -27,7 +26,6 @@
 
 <script>
 import BillingAddress from './Components/BillingAddress.vue';
-import ShippingAddress from './Components/ShippingAddress.vue';
 import OrderItems from './Components/OrderItems.vue';
 import PaymentMethods from './Components/PaymentMethods.vue';
 import PreAuth from './Components/PreAuth.vue';
@@ -40,7 +38,6 @@ export default {
     },
     components: {
         BillingAddress,
-        ShippingAddress,
         OrderItems,
         PaymentMethods,
         PreAuth,

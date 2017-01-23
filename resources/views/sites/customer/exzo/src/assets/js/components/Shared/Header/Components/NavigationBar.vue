@@ -3,10 +3,10 @@
     <div class="header-bottom">
         <div class="content-margins">
             <div class="row">
-                <div class="col-xs-5 col-sm-5">
-                    <router-link tag="a" to="/" id="logo"><img src="img/lulalogo.png" alt="" /></router-link>
+                <div class="col-xs-2 col-sm-2">
+                    <router-link tag="a" to="/" id="logo"><img src="/img/lulalogo.png" alt="" /></router-link>
                 </div>
-                <div class="col-xs-7 col-sm-7 text-right">
+                <div class="col-xs-10 col-sm-10 text-right">
                     <div class="nav-wrapper">
                         <div class="nav-close-layer"></div>
                         <nav>
@@ -14,11 +14,8 @@
                                 <li :class="{ 'active': $route.name == 'Home'}">
                                     <router-link tag="a" to="/">Home</router-link>
                                 </li>
-                                <li :class="{ 'active': $route.name == 'Products'}">
-                                    <router-link tag="a" to="/products">Products</router-link>
-                                </li>
-                                <li :class="{ 'active': $route.name == 'Sale'}">
-                                    <router-link tag="a" to="/sell">Sell Books</router-link>
+                                <li v-for="category in categories" :class="{ 'active': $route.params.category_id == category.id}">
+                                    <router-link tag="a" :to="'/products/' + category.id">{{ category.name }}</router-link>
                                 </li>
                                 <li :class="{ 'active': $route.name == 'Checkout'}" v-if="ShoppingCart.items.length">
                                     <router-link tag="a" to="/checkout">Checkout ({{ ShoppingCart.items.length }} Items @ R{{ ShoppingCart.total }})</router-link>
@@ -67,8 +64,22 @@
 </template>
 <script>
 export default {
+    created() {
+        var that = this;
+
+        this.$root.$on('CategoryDataReceived', function(categories) {
+            that.categories = categories;
+        });
+
+        this.$root.$emit('CategoryDataRequested');
+    },
     props: [
         'ShoppingCart',
-    ]
+    ],
+    data: function() {
+        return {
+            categories: []
+        }
+    }
 }
 </script>

@@ -35,7 +35,7 @@ export default new Router({
             component: SalesRequestView
         },
         {
-            path: '/products',
+            path: '/products/:category_id',
             name: 'Products',
             component: ProductsView
         },

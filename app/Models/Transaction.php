@@ -26,6 +26,10 @@ class Transaction extends Model
           'nullable'
         ]
       ],
+      'payment_ref' => [
+        'type' => 'string',
+        'length' => 256
+      ],
       'payment_method' => [
         'type' => 'string',
         'length' => 128,
@@ -41,13 +45,13 @@ class Transaction extends Model
         ]
       ],
       'items' => [
-        'type' => 'string',
+        'type' => 'text',
         'length' => 64000,
         'modifiers' => [
           'nullable'
         ]
       ],
-      'item_total' => [
+      'items_total' => [
         'type' => 'decimal',
         'length' => 12,
         'modifiers' => [

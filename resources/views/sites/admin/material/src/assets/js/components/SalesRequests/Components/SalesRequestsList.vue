@@ -12,7 +12,7 @@
 </template>
 <script>
 import Vue from 'vue';
-Vue.component('custom-actions', {
+Vue.component('custom-request-actions', {
     template: [
         '<div class="pull-right">',
         '<button class="btn btn-xs btn-default btn-link" @click="itemAction(\'edit-item\', rowData)"><i class="fa fa-pencil"></i> Edit</button>',
@@ -62,7 +62,7 @@ export default {
                     name: 'grade',
                     label: 'Grade',
                 },
-                '__component:custom-actions',
+                '__component:custom-request-actions',
             ],
             pageData: {},
             perPage: 10,
