@@ -83,27 +83,27 @@
                                 <tbody>
                                     <tr>
                                         <td>Firstname</td>
-                                        <td>{{ order.user.firstname }}</td>
+                                        <td>{{ order.user.billing_detail.firstname }}</td>
                                     </tr>
                                     <tr>
                                         <td>Lastname</td>
-                                        <td>{{ order.user.lastname }}</td>
+                                        <td>{{ order.user.billing_detail.lastname }}</td>
                                     </tr>
                                     <tr>
                                         <td>Company</td>
-                                        <td>{{ order.user.company }}</td>
+                                        <td>{{ order.user.billing_detail.company }}</td>
                                     </tr>
                                     <tr>
                                         <td>Company VAT #</td>
-                                        <td>{{ order.user.company_vat }}</td>
+                                        <td>{{ order.user.billing_detail.company_vat }}</td>
                                     </tr>
                                     <tr>
                                         <td>Email Address</td>
-                                        <td>{{ order.user.email }}</td>
+                                        <td>{{ order.user.billing_detail.email }}</td>
                                     </tr>
                                     <tr>
                                         <td>Phone Number</td>
-                                        <td>{{ order.user.phone }}</td>
+                                        <td>{{ order.user.billing_detail.phone }}</td>
                                     </tr>
                                     <tr>
                                         <td>Address</td>
@@ -171,14 +171,18 @@ export default {
             state: 'listing',
             order: {},
             columns: [{
-                    name: 'firstname',
-                    label: 'Firstname',
+                    name: 'id',
+                    title: 'ID',
+                },
+                {
+                    name: 'user.billing_detail.firstname',
+                    title: 'Firstname',
                 }, {
-                    name: 'lastname',
-                    label: 'Firstname',
+                    name: 'user.billing_detail.lastname',
+                    title: 'Lastname',
                 }, {
                     name: 'items_total',
-                    label: 'Order Total',
+                    title: 'Order Total Price',
                 },
                 '__component:custom-order-actions',
             ],

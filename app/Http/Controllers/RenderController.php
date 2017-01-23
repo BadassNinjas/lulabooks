@@ -26,7 +26,7 @@ class RenderController extends Controller
 
     public function getWorldCountries()
     {
-        $countries = Cache::get('geo.countries', Country::orderBy('name', 'ASC')->get());
+        $countries = Cache::get('geo.countries', Country::orderBy('name', 'ASC')->whereHas('regions')->get());
 
         Cache::put('geo.countries', $countries, 3600);
 

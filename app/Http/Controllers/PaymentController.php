@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Log;
 use App\Models\Transaction;
+use AddPay\Http\Client\Facades\AddPay;
 
 class PaymentController extends Controller
 {
@@ -20,8 +21,7 @@ class PaymentController extends Controller
 
     public function getPaymentMethods()
     {
-        $client = new AddPayHttpClient();
-        $result = $client->getPaymentMethods();
+        $result = AddPay::getPaymentMethods();
 
         if (!$result) {
             return Response::build('Could not retrieve payment methods', 500);
@@ -60,8 +60,7 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
 
-        $client = new AddPayHttpClient();
-        $result = $client->preparePayment([
+        $result = AddPay::preparePayment([
             'payer_firstname' => $user->billing_detail->firstname,
             'payer_lastname' => $user->billing_detail->lastname,
             'payer_email' => $user->billing_detail->email,
@@ -72,8 +71,6 @@ class PaymentController extends Controller
             'notify_url' => str_replace('localhost', 'lulabooks.co.za', URL::to('/api/payments/notify/')),
             'return_url' => str_replace('localhost', 'lulabooks.co.za', URL::to('/payment'))
         ]);
-
-
 
         if (!$result) {
             return Response::build('Could not retrieve payment methods', 500);

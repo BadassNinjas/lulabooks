@@ -180,6 +180,8 @@ return [
         BadassNinjas\Migrator\MigratorServiceProvider::class,
         BadassNinjas\RFS\RFSServiceProvider::class,
         BadassNinjas\Geo\GeoServiceProvider::class,
+        
+        AddPay\Http\Client\AddPayServiceProvider::class,
     ],
 
     /*

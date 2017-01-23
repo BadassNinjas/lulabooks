@@ -19,17 +19,17 @@
         <div class="empty-space col-xs-b20"></div>
         <input class="simple-input" type="text" value="" placeholder="Company VAT Number - OPTIONAL" v-model="payload.company_vat" />
         <div class="empty-space col-xs-b20"></div>
-        <select v-on:change="countryChanged" class="form-control simple-input">
-           <option :value="country.id" v-for="country in countries" >{{ country.name }}</option>
+        <select v-model="payload.country" class="form-control simple-input">
+           <option :value="country.name" v-for="country in countries" :selected="country.name == payload.country">{{ country.name }}</option>
        </select>
         <div class="empty-space col-xs-b20"></div>
-        <select v-on:change="regionChanged" v-if="regions.length" class="form-control simple-input">
-       <option :value="region.id" v-for="region in regions">{{ region.name }}</option>
-   </select>
+        <select v-model="payload.region" v-if="regions.length || payload.region" class="form-control simple-input">
+           <option :value="region.name" v-for="region in regions" :selected="region.name == payload.region">{{ region.name }}</option>
+       </select>
         <div class="empty-space col-xs-b20"></div>
-        <select v-on:change="cityChanged" t v-if="cities.length" class="form-control simple-input">
-       <option :value="city.id" v-for="city in cities">{{ city.name }}</option>
-   </select>
+        <select v-model="payload.city" v-if="cities.length || payload.city" class="form-control simple-input">
+           <option :name="city.name" :value="city.id" v-for="city in cities" :selected="city.name == payload.city">{{ city.name }}</option>
+       </select>
         <div class="empty-space col-xs-b20"></div>
         <input class="simple-input" type="text" value="" placeholder="Postcode/ZIP" v-model="payload.postcode" />
         <div class="empty-space col-xs-b20"></div>
@@ -69,16 +69,6 @@ export default {
     mounted() {
         var that = this;
 
-        this.$watch('payload.country_id', function(nVal, oVal) {
-            if (nVal != oVal) {
-                that.getRegions(that.payload.country_id);
-            }
-        });
-
-        this.$watch('payload.region_id', function() {
-            that.getCities(that.payload.region_id);
-        });
-
         this.$root.$on('BillingDetailDataUpdateReceived', function(payload) {
             that.state.phase = 'payment-methods';
         });
@@ -99,11 +89,15 @@ export default {
                     that.payload.postcode = user.billing_detail.postcode;
                     that.payload.building = user.billing_detail.building;
                     that.payload.street = user.billing_detail.street;
+                    that.payload.country = user.billing_detail.country;
+                    that.payload.city = user.billing_detail.city;
+                    that.payload.region = user.billing_detail.region;
                 }
             }
         });
 
         this.$root.$emit('UserAuthDataRequested');
+
         this.getCountries();
     },
     data() {
@@ -121,9 +115,9 @@ export default {
                 postcode: '',
                 building: '',
                 street: '',
-                country_id: '',
-                region_id: '',
-                city_id: '',
+                country: '',
+                region: '',
+                city: '',
             },
             error: false,
         }
@@ -135,15 +129,6 @@ export default {
         showError: function(message) {
             window.scrollTo(0, 0);
             this.error = message;
-        },
-        countryChanged: function(e) {
-            this.payload.country_id = e.target.value;
-        },
-        regionChanged: function(e) {
-            this.payload.region_id = e.target.value;
-        },
-        cityChanged: function(e) {
-            this.payload.city_id = e.target.value;
         },
         getCountries: function() {
             this.$http.get('/api/render/countries').then((response) => {
