@@ -1,17 +1,82 @@
 <template>
 <div>
-    <div class="table-responsive">
+    <div class="table-responsive" v-if="state == 'listing'">
         <vuetable ref="vuetable" api-url="/api/sales/request" table-class="table table-bordered table-striped table-hover" ascending-icon="fa fa-chevron-up" descending-icon="fa fa-chevron-down" pagination-path="payload" data-path="payload.data" :per-page="perPage"
             :fields="columns" :pagination-component="paginationComponent" @vuetable:pagination-data="onPaginationData"></vuetable>
-            <div class="vuetable-pagination well">
-                <vuetable-pagination-info class="vuetable-pagination-info" ref="paginationInfo" :paginationInfoClass="paginationInfoClass" :pagination-info-template="paginationInfoTemplate"></vuetable-pagination-info>
-                <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
+        <div class="vuetable-pagination well">
+            <vuetable-pagination-info class="vuetable-pagination-info" ref="paginationInfo" :paginationInfoClass="paginationInfoClass" :pagination-info-template="paginationInfoTemplate"></vuetable-pagination-info>
+            <vuetable-pagination class="vuetable-pagination-component" :icons="VueTablePagination.css.icons" :css="VueTablePagination.css" ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
+        </div>
+    </div>
+    <div class="" v-if="state == 'editing'">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-md-offset-2">
+                <div>
+                    <h1 style="font-weight: 300;" class="text-center">{{ 'Edit Request ID' + salesRequest.id }}</h1>
+                </div>
+                <br/><br/>
+                <form v-on:submit.prevent="submitSalesRequestEditForm()">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4>Customer Detail</h4>
+                            <hr/>
+                            <br/><br/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4>Book Detail</h4>
+                            <hr/>
+                            <br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.isbn != null && salesRequest.isbn.length }">
+                                    <input type="text" class="input-lg form-control fg-input" v-model="salesRequest.isbn">
+                                    <label class="fg-label">Book ISBN</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group input-group fg-float">
+                                <span class="input-group-addon"></span>
+                                <div class="fg-line" :class="{ 'fg-toggled': salesRequest.name != null && salesRequest.name.length }">
+                                    <input type="text" class="input-lg form-control fg-input" v-model="salesRequest.name">
+                                    <label class="fg-label">Book Title</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <div class="select">
+                                        <select class="form-control" v-model="salesRequest.grade">
+                                                  <option :selected="salesRequest.grade == 'A-GRADE'" :value="'A-GRADE'">A-GRADE</option>
+                                                  <option :selected="salesRequest.grade == 'B-GRADE'" :value="'B-GRADE'">B-GRADE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <center>
+                        <button type="submit" class="btn btn-lg btn-success waves-effect">Update</button>
+                        <button type="button" class="btn btn-lg btn-default waves-effect">Cancel</button>
+                    </center>
+                </form>
             </div>
+        </div>
     </div>
 </div>
 </template>
 <script>
 import Vue from 'vue';
+
 Vue.component('custom-request-actions', {
     template: [
         '<div class="pull-right">',
@@ -29,12 +94,11 @@ Vue.component('custom-request-actions', {
         itemAction: function(action, data) {
             var VueTableComponent = this.$parent;
             var ListingComponent = VueTableComponent.$parent;
-            var ProductView = ListingComponent.$parent;
 
             if (action == 'edit-item') {
-
+                ListingComponent.showEditScreen(data);
             } else if (action == 'delete-item') {
-
+                ListingComponent.showConfirmRequestDelete(data.id);
             }
         }
     }
@@ -42,23 +106,21 @@ Vue.component('custom-request-actions', {
 export default {
     data: function() {
         return {
+            state: 'listing',
+            salesRequest: {},
             columns: [{
                     name: 'firstname',
                     label: 'Firstname',
-                },
-                {
+                }, {
                     name: 'lastname',
                     label: 'Firstname',
-                },
-                {
+                }, {
                     name: 'isbn',
                     label: 'Book ISBN',
-                },
-                {
+                }, {
                     name: 'name',
                     label: 'Book Title',
-                },
-                {
+                }, {
                     name: 'grade',
                     label: 'Grade',
                 },
@@ -96,7 +158,14 @@ export default {
         onChangePage: function(newPageNumber) {
             this.$refs.vuetable.changePage(newPageNumber);
         },
-        showConfirmProductDelete: function(requestId) {
+        onStateChange: function(state) {
+            this.state = state;
+        },
+        showEditScreen: function(salesRequest) {
+            this.salesRequest = salesRequest;
+            this.state = 'editing';
+        },
+        showConfirmRequestDelete: function(requestId) {
             var that = this;
             swal({
                 title: "Are you sure you want to delete this sales request?",
@@ -113,6 +182,9 @@ export default {
                     }
                 });
             });
+        },
+        submitSalesRequestEditForm: function() {
+
         }
     }
 }
