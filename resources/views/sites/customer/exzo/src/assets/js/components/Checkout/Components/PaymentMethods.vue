@@ -51,7 +51,8 @@ export default {
                     if (response.data.payload.trans_method != 'METH_PAYMENT_BANK_TRANSFER') {
                         location.href = response.data.payload.redirect;
                     } else {
-                        this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please following the directions within the email provided in order to complete your transaction.';
+                        this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please <b>follow the directions within the email sent to ' + response.data.payload.payer_email +
+                            '</b> in order to complete your transaction.';
                     }
 
                 }
