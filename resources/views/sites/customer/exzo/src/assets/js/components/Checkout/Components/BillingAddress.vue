@@ -15,28 +15,32 @@
                 <div class="empty-space col-xs-b20"></div>
             </div>
         </div>
-        <input class="simple-input" type="text" value="" placeholder="Company Name - OPTIONAL" v-model="payload.company" />
-        <div class="empty-space col-xs-b20"></div>
-        <input class="simple-input" type="text" value="" placeholder="Company VAT Number - OPTIONAL" v-model="payload.company_vat" />
-        <div class="empty-space col-xs-b20"></div>
-        <select v-model="payload.country" class="form-control simple-input">
-           <option :value="country.name" v-for="country in countries" :selected="country.name == payload.country">{{ country.name }}</option>
-       </select>
-        <div class="empty-space col-xs-b20"></div>
-        <select v-model="payload.region" v-if="regions.length || payload.region" class="form-control simple-input">
-           <option :value="region.name" v-for="region in regions" :selected="region.name == payload.region">{{ region.name }}</option>
-       </select>
-        <div class="empty-space col-xs-b20"></div>
-        <select v-model="payload.city" v-if="cities.length || payload.city" class="form-control simple-input">
-           <option :name="city.name" :value="city.id" v-for="city in cities" :selected="city.name == payload.city">{{ city.name }}</option>
-       </select>
-        <div class="empty-space col-xs-b20"></div>
-        <input class="simple-input" type="text" value="" placeholder="Postcode/ZIP" v-model="payload.postcode" />
-        <div class="empty-space col-xs-b20"></div>
-        <input class="simple-input" type="text" value="" placeholder="Appartment/Block Number/Other" v-model="payload.building" />
-        <div class="empty-space col-xs-b20"></div>
-        <input class="simple-input" type="text" value="" placeholder="Street address" v-model="payload.street" />
-        <div class="empty-space col-xs-b20"></div>
+        <div class="row m10">
+            <div class="col-sm-6">
+                <input class="simple-input" type="text" value="" placeholder="Country" v-model="payload.country" />
+                <div class="empty-space col-xs-b20"></div>
+            </div>
+            <div class="col-sm-6">
+                <input class="simple-input" type="text" value="" placeholder="State/Region" v-model="payload.region" />
+                <div class="empty-space col-xs-b20"></div>
+            </div>
+        </div>
+        <div class="row m10">
+            <div class="col-sm-6">
+                <input class="simple-input" type="text" value="" placeholder="City" v-model="payload.city" />
+                <div class="empty-space col-xs-b20"></div>
+            </div>
+            <div class="col-sm-6">
+                <input class="simple-input" type="text" value="" placeholder="Postcode/ZIP" v-model="payload.postcode" />
+                <div class="empty-space col-xs-b20"></div>
+            </div>
+        </div>
+        <div class="row m10">
+            <div class="col-sm-12">
+                <input class="simple-input" type="text" value="" placeholder="Street address" v-model="payload.street" />
+                <div class="empty-space col-xs-b20"></div>
+            </div>
+        </div>
         <div class="row m10">
             <div class="col-sm-6">
                 <input class="simple-input" type="text" value="" placeholder="Email" v-model="payload.email" />
@@ -97,8 +101,6 @@ export default {
         });
 
         this.$root.$emit('UserAuthDataRequested');
-
-        this.getCountries();
     },
     data() {
         return {
@@ -129,27 +131,6 @@ export default {
         showError: function(message) {
             window.scrollTo(0, 0);
             this.error = message;
-        },
-        getCountries: function() {
-            this.$http.get('/api/render/countries').then((response) => {
-                if (response.data.success) {
-                    this.countries = response.data.payload;
-                }
-            });
-        },
-        getRegions: function(countryId) {
-            this.$http.get('/api/render/regions/' + countryId).then((response) => {
-                if (response.data.success) {
-                    this.regions = response.data.payload;
-                }
-            });
-        },
-        getCities: function(regionId) {
-            this.$http.get('/api/render/cities/' + regionId).then((response) => {
-                if (response.data.success) {
-                    this.cities = response.data.payload;
-                }
-            });
         },
     }
 }
