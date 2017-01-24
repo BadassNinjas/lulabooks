@@ -8,6 +8,7 @@ import CheckoutView from '../components/Checkout/CheckoutView.vue';
 import ContactView from '../components/Contact/ContactView.vue';
 import ProductsView from '../components/Products/ProductsView.vue';
 import SalesRequestView from '../components/SalesRequest/SalesRequest.vue';
+import PaymentCompleteView from '../components/Checkout/PaymentComplete.vue';
 
 export default new Router({
     mode: 'history',
@@ -33,6 +34,11 @@ export default new Router({
             path: '/sell',
             name: 'Sale',
             component: SalesRequestView
+        },
+        {
+            path: '/payment',
+            name: 'Payment',
+            component: PaymentCompleteView
         },
         {
             path: '/products/:category_id',

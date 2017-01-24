@@ -13,7 +13,7 @@
                 </div>
                 <div class="preview">
                     <img v-if="product.images.length" :src="product.images[0].url" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
-                    <img v-else="!product.images.length" src="/img/customer/box.jpg" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
+                    <img v-else="!product.images.length" src="/img/box.png" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                     <div class="preview-buttons valign-middle">
                         <div class="valign-middle-content open-popup" data-rel="ProductView" @click="setProductview(product)">
                             <a class="button size-2 style-3" href="#">
