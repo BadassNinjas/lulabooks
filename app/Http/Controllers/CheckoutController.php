@@ -29,22 +29,6 @@ class CheckoutController extends Controller
           'postcode' => 'required',
         ]);
 
-        $user = Auth::user();
-
-        if (is_null($user) || is_null($user->billing_detail)) {
-            if (!request('country_id', false)) {
-                return Response::build('Country is required', 403);
-            }
-
-            if (!request('region_id', false)) {
-                return Response::build('Region/state is required', 403);
-            }
-
-            if (!request('city_id', false)) {
-                return Response::build('City/Town is required', 403);
-            }
-        }
-
         if (!Auth::check()) {
             $user = new User();
             $user->firstname = 'Guest';
@@ -52,8 +36,6 @@ class CheckoutController extends Controller
             $user->email = 'Guest';
             $user->password = 'Guest';
             $user->save();
-
-            $billing_detail = new UserBillingDetail();
         } else {
             $user = Auth::user();
             $billing_detail = $user->billing_detail;
