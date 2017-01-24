@@ -55,14 +55,11 @@ class CheckoutController extends Controller
           'phone',
           'building',
           'street',
-          'postcode'
+          'postcode',
+          'country',
+          'region',
+          'city'
         ]));
-
-        if (request('country_id', false)) {
-            $billing_detail->country = Country::find(request('country_id'))->name;
-            $billing_detail->region = Region::find(request('region_id'))->name;
-            $billing_detail->city = City::find(request('city_id'))->name;
-        }
 
         $billing_detail->save();
 
