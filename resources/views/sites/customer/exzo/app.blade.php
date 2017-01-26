@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="/css/customer.min.css">
 
         <link rel="apple-touch-icon-precomposed" href="/img/lulalogo.png">
-        <link rel="icon" href="/img/lulalogo.png">
+        <link rel="icon" href="/img/favicon.png">
     </head>
     <body>
           <div id="app"></div>
