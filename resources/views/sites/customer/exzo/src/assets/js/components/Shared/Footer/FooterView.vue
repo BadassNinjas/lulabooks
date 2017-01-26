@@ -1,11 +1,13 @@
 <template>
 <div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
     <footer>
         <div class="container">
             <div class="footer-top">
                 <div class="row">
                     <div class="col-sm-4 col-md-3 col-xs-b30 col-md-b0">
-                        <img src="img/lulalogowhite.png" alt="" style="height:60px;width:150px;" />
+                        <img src="/img/lulalogowhite.png" alt="" style="height:60px;width:150px;" />
                         <div class="empty-space col-xs-b20"></div>
                         <div class="simple-article size-2 light fulltransparent">We are all about buying and selling University text books. We have a full range of new, second hand and e-books and are focussed on providing convenience and cutting costs for students.</div>
                     </div>

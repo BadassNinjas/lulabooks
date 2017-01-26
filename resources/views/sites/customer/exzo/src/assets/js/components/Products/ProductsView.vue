@@ -7,7 +7,8 @@
                 <div class="h4"><span v-if="category.parent">{{ category.parent.name }} &raquo; </span> {{ category.name }}</div>
             </div>
             <div class="align-inline spacing-1" v-else-if="products.length == 0">
-                <div class="h6 text-center">There are no items listed under {{ category.name }} specifically, select a sub-category on the left to explore this section.</div>
+                <div class="h6 text-center" v-if="category">There are no items listed under {{ category.name }} specifically, select a sub-category on the left to explore this section.</div>
+                <div class="h6 text-center" v-else-if="category == null">Select a category to browser by.</div>
             </div>
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="products-content">
@@ -103,14 +104,23 @@ export default {
             this.$root.$emit('ProductViewSelected', product);
         },
         checkRoute: function(to) {
-            this.$http.get('/api/categories/' + to.params.category_id).then((response) => {
+            if (to.params.category_id) {
+                this.$http.get('/api/categories/' + to.params.category_id).then((response) => {
 
-                if (response.data.success) {
-                    this.category = response.data.payload;
-                    this.categories = this.category.children;
-                    this.$root.$emit('ProductsOnCategoryDataRequested', to.params.category_id);
-                }
-            });
+                    if (response.data.success) {
+                        this.category = response.data.payload;
+                        this.categories = this.category.children;
+                        this.$root.$emit('ProductsOnCategoryDataRequested', to.params.category_id);
+                    }
+                });
+            } else {
+                this.$http.get('/api/categories').then((response) => {
+                    if (response.data.success) {
+                        this.category = null;
+                        this.categories = response.data.payload;
+                    }
+                });
+            }
         }
     }
 }

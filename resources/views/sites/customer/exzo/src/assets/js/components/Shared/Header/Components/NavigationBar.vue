@@ -20,6 +20,12 @@
                                 <li :class="{ 'active': $route.name == 'Checkout'}" v-if="ShoppingCart.items.length">
                                     <router-link tag="a" to="/checkout">Checkout ({{ ShoppingCart.items.length }} Items @ R{{ ShoppingCart.total }})</router-link>
                                 </li>
+                                <li :class="{ 'active': $route.name == 'FAQ'}">
+                                    <router-link tag="a" to="/faq">FAQ</router-link>
+                                </li>
+                                <li :class="{ 'active': $route.name == 'About'}">
+                                    <router-link tag="a" to="/about">About Us</router-link>
+                                </li>
                                 <li :class="{ 'active': $route.name == 'Contact'}">
                                     <router-link tag="a" to="/contact">Contact</router-link>
                                 </li>

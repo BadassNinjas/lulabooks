@@ -9,6 +9,8 @@ import ContactView from '../components/Contact/ContactView.vue';
 import ProductsView from '../components/Products/ProductsView.vue';
 import SalesRequestView from '../components/SalesRequest/SalesRequest.vue';
 import PaymentCompleteView from '../components/Checkout/PaymentComplete.vue';
+import FaqView from '../components/Faq/FAQView.vue';
+import AboutView from '../components/About/AboutView.vue';
 
 export default new Router({
     mode: 'history',
@@ -41,9 +43,23 @@ export default new Router({
             component: PaymentCompleteView
         },
         {
+            path: '/products',
+            component: ProductsView
+        },
+        {
             path: '/products/:category_id',
             name: 'Products',
             component: ProductsView
+        },
+        {
+            path: '/faq',
+            name: 'FAQ',
+            component: FaqView
+        },
+        {
+            path: '/about',
+            name: 'About',
+            component: AboutView
         },
         {
             path: '*',
