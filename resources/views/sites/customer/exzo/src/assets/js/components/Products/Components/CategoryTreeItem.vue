@@ -1,6 +1,6 @@
 <template>
 <li>
-    <a href="#" @click="emitClickedCategory(item)">{{ item.name }}</a>
+    <a href="javascript:;" @click="emitClickedCategory">{{ item.name }}</a>
     <div class="toggle" v-if="item.children.length"></div>
     <ul v-if="item.children.length">
         <slot name="childTreeComponent"></slot>
@@ -13,8 +13,10 @@ export default {
         'item'
     ],
     methods: {
-        emitClickedCategory: function(category) {
-            this.$root.$emit('ClickedCategory', category);
+        emitClickedCategory: function(e) {
+            this.$root.$emit('ClickedCategory', this.item);
+
+            $(e.target).parent().find('ul').first().slideToggle();
         }
     }
 }
