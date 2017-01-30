@@ -55,9 +55,14 @@
             </ul>
         </div>
     </div>
-    <div class="empty-space col-xs-b15 col-sm-b75"></div>
-    <div class="empty-space col-xs-b15 col-sm-b75"></div>
-    <div class="empty-space col-xs-b15 col-sm-b75"></div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
+    <div class="empty-space col-xs-b50"></div>
 </div>
 </template>
 <script>
