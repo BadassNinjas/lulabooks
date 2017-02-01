@@ -15,7 +15,7 @@
                         <h6 class="h6 light">contact</h6>
                         <div class="empty-space col-xs-b20"></div>
                         <div class="footer-contact"><i class="fa fa-mobile" aria-hidden="true"></i> phone: <a href="tel:+27799479680">+27 79 947 9680</a></div>
-                        <div class="footer-contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> email: <a href="mailto:lucky@lulabooks.mobi">lucky@lulabooks.mobi</a></div>
+                        <div class="footer-contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> email: <a href="mailto:info@lulabooks.mobi">info@lulabooks.mobi</a></div>
                         <div class="footer-contact"><i class="fa fa-map-marker" aria-hidden="true"></i> address: <a href="#">Robert Sobukwe Road, UWC, Bellville</a></div>
                     </div>
                     <div class="clear visible-sm"></div>

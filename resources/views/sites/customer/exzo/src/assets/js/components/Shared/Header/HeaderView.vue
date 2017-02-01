@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-5 hidden-xs hidden-sm">
                         <div class="entry"><b>contact us:</b> <a href="tel:+27799479680">+27 79 947 9680</a></div>
-                        <div class="entry"><b>email:</b> <a href="mailto:lucky@lulabooks.mobi">lucky@lulabooks.mobi</a></div>
+                        <div class="entry"><b>email:</b> <a href="mailto:info@lulabooks.mobi">info@lulabooks.mobi</a></div>
                     </div>
                     <div class="col-md-7 col-md-text-right">
                         <div class="entry language">

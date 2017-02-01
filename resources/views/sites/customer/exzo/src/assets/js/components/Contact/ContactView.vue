@@ -22,7 +22,7 @@
             <div class="icon-description-shortcode style-1">
                 <img class="icon" src="/img/customer/exzo/icon-28.png" alt="">
                 <div class="title h6">email</div>
-                <div class="description simple-article size-2"><a href="mailto:LUCKY@LULABOOKS.MOBI">LUCKY@LULABOOKS.MOBI</a></div>
+                <div class="description simple-article size-2"><a href="mailto:info@lulabooks.mobi">info@lulabooks.mobi</a></div>
             </div>
         </div>
     </div>
