@@ -7,6 +7,7 @@ use BadassNinjas\Helpers\Response;
 use ShopKit\Product\Models\Product;
 use ShopKit\Product\Models\ProductImage;
 use BadassNinjas\RFS\Facades\RFS;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -80,5 +81,19 @@ class ProductController extends Controller
         }
 
         return Response::build();
+    }
+
+    public function searchProducts($search_term)
+    {
+        $results = Product::
+                      where('name', 'like', '%' . $search_term . '%')
+                      ->orWhere('caption', 'like', '%' . $search_term . '%')
+                      ->orWhere('detail', 'like', '%' . $search_term . '%')
+                      ->get();
+
+        return Response::build([
+          'term' => $search_term,
+          'results' => $results,
+        ]);
     }
 }

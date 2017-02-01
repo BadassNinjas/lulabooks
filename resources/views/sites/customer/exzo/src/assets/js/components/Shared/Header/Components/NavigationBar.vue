@@ -38,8 +38,10 @@
                                     <span></span>
                                 </div>
                             </div>
+
                         </nav>
                     </div>
+                    <div class="header-bottom-icon toggle-search"><i class="fa fa-search" aria-hidden="true"></i></div>
                     <router-link tag="div" to="/checkout" class="header-bottom-icon visible-rd">
                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                         <span class="cart-label" v-if="ShoppingCart">{{ ShoppingCart.items.length }}</span>
@@ -51,12 +53,12 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
-                                <form>
+                                <form v-on:submit.prevent="submitSearch">
                                     <div class="search-submit">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                         <input type="submit" />
                                     </div>
-                                    <input class="simple-input style-1" type="text" value="" placeholder="Enter keyword" />
+                                    <input class="simple-input style-1" type="text" value="" placeholder="Enter keyword" v-model="searchTerm" />
                                 </form>
                             </div>
                         </div>
@@ -84,7 +86,15 @@ export default {
     ],
     data: function() {
         return {
-            categories: []
+            categories: [],
+            searchTerm: '',
+        }
+    },
+    methods: {
+        submitSearch: function() {
+            this.$http.get('/api/products/search/' + this.searchTerm).then((response) => {
+                this.$root.$emit('SearchResultsReturned', response.data.payload);
+            });
         }
     }
 }

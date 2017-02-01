@@ -183,6 +183,9 @@ export default {
                 }, {
                     name: 'items_total',
                     title: 'Order Total Price',
+                }, {
+                    name: 'status',
+                    title: 'Order Status',
                 },
                 '__component:custom-order-actions',
             ],

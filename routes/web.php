@@ -15,6 +15,7 @@ Route::get('/api/products/{productId}', 'ProductController@getProduct');
 Route::put('/api/products/{productId}', 'ProductController@createOrUpdateProduct');
 Route::delete('/api/products/{productId}', 'ProductController@deleteProduct');
 Route::post('/api/products', 'ProductController@createOrUpdateProduct');
+Route::get('/api/products/search/{search_term}', 'ProductController@searchProducts');
 
 Route::post('/api/products/{productId}/image/', 'ProductController@attachImage');
 Route::delete('/api/products/{productId}/image/{imageId}', 'ProductController@addProductImage');

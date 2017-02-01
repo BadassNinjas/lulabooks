@@ -12,6 +12,7 @@
     <div class="popup-wrapper">
         <div class="bg-layer"></div>
         <product-view></product-view>
+        <search-result-view></search-result-view>
     </div>
     <auth ref="auth"></auth>
     <store ref="store"></store>
@@ -25,6 +26,7 @@ import Auth from './Shared/Auth.vue';
 import PageHeader from './Shared/Header/HeaderView.vue';
 import PageFooter from './Shared/Footer/FooterView.vue';
 import ProductView from './Dashboard/Components/ProductView.vue';
+import SearchResultView from './Dashboard/Components/SearchResultView.vue';
 
 export default {
     created() {
@@ -151,6 +153,7 @@ export default {
         PageHeader,
         PageFooter,
         ProductView,
+        SearchResultView,
         Store,
         Auth
     },
