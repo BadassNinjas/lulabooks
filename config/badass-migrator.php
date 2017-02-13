@@ -10,5 +10,5 @@ return [
     \App\Models\SalesRequest::class,
     \App\Models\ContactMessage::class,
     \App\Models\Transaction::class,
-  ]
+  ],
 ];

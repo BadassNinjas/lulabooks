@@ -24,6 +24,6 @@
             }
           </script>
           <script src="/js/customer.min.js"></script>
-            <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+          <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     </body>
 </html>

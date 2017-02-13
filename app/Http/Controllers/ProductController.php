@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
-use ShopKit\Product\Models\Product;
-use ShopKit\Product\Models\ProductImage;
+use App\Models\Product;
+use App\Models\ProductImage;
+use App\Models\ProductCategory;
 use BadassNinjas\RFS\Facades\RFS;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -36,10 +36,20 @@ class ProductController extends Controller
 
         if (request('category_id', false) && !is_null($product)) {
             if (!is_null($product->category)) {
-                $product->category()->detach($product->category->id);
+                while (($category = $product->category) != null) {
+                    $category->products()->detach($product->id);
+                }
             }
 
-            $product->categories()->attach(request('category_id'));
+            $category = ProductCategory::find(request('category_id'));
+
+            if ($category->exists()) {
+                $product->categories()->attach($category->id);
+
+                while (($category = $category->parent) != null) {
+                    $category->products()->attach($product->id);
+                }
+            }
         }
 
         return Response::build($product);
@@ -86,9 +96,9 @@ class ProductController extends Controller
     public function searchProducts($search_term)
     {
         $results = Product::
-                      where('name', 'like', '%' . $search_term . '%')
-                      ->orWhere('caption', 'like', '%' . $search_term . '%')
-                      ->orWhere('detail', 'like', '%' . $search_term . '%')
+                      where('name', 'like', '%'.$search_term.'%')
+                      ->orWhere('caption', 'like', '%'.$search_term.'%')
+                      ->orWhere('detail', 'like', '%'.$search_term.'%')
                       ->get();
 
         return Response::build([

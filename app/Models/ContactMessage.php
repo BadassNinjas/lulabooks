@@ -11,42 +11,44 @@ class ContactMessage extends Model
 
     public $table = 'contact_message';
 
+    // See laravel migration modifiers:
+    // https://laravel.com/docs/5.3/migrations#column-modifiers
     protected $schema = [
       'firstname' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'lastname' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'email' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'phone' => [
         'type' => 'string',
-        'length' => 32,
+        'length' => 10,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'message' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
-      ]
+          'nullable',
+        ],
+      ],
     ];
 
     protected $fillable = [
