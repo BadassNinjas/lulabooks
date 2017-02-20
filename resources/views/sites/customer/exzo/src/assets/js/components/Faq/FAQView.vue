@@ -27,6 +27,23 @@
                 </ul>
             </div>
         </div>
+    </div><br><br>
+    <div class="row">
+      <div class="col-sm-4 simple-article size-5">
+        <b>How we price your books?<b>
+        <hr>
+        <p>We have dedicated sales represantitives that help you find buyers for your book. As we have assigned one now the price of grade A textbooks are 90% of our normal new textbook and B grade is 85% so our sales commission is 15% of your selling price for each textbook so for example if our textbook online is R100 then the same textbook you sell A grade will be R90 and our commission will be R13,50 and  R87,50 paid to you and on B grade with the same R100 new textbook your selling on our Web will be R85 and our commission will be R12,75  and R72,25.</p>
+      </div>
+      <div class="col-sm-4 simple-article size-5">
+        <b>I submitted a sale request form,What now?<b>
+        <hr>
+        <p>In oder to proceed with your sale we just come and do quality control to see weather your textbooks are grade A or B this is to protect the buyers and the sellers.</p>
+      </div>
+      <div class="col-sm-4 simple-article size-5">
+        <b>what we believe in?<b>
+        <hr>
+        <p>We believe in total transparency,ours is not to buy books cheaper to the seller and yet sell it expensive to the buyers because that exploit both those who sell and those who buy.</p>
+      </div>
     </div>
     <div class="empty-space col-xs-b50"></div>
     <div class="empty-space col-xs-b50"></div>

@@ -40,7 +40,7 @@
                 shipping and handling
             </div>
             <div class="col-xs-6 col-xs-text-right">
-                <div class="color">free shipping</div>
+                <div class="color">free shipping for UWC students</div>
             </div>
         </div>
     </div>
