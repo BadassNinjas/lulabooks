@@ -35,9 +35,15 @@
                         <div class="h3 col-xs-b25">{{ Product.name }}</div>
                         <div class="row col-xs-b25">
                             <div class="col-sm-6">
-                                <div class="simple-article size-5 grey">PRICE: <span class="color">R{{ Product.price }}</span></div>
+                              <select class="form-control simple-input" v-model="Grade">
+                                <option disabled hidden></option>
+                                <option value="1">NEW</option>
+                                <option value="0.9">A-GRADE</option>
+                                <option value="0.85">B-GRADE</option>
+                              </select>
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
+                                <div class="simple-article size-5 grey">PRICE: <span class="color">R{{ Product.price * Grade }}</span></div>
                                 <div class="rate-wrapper align-inline">
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -95,7 +101,7 @@ export default {
         this.$root.$on('ProductViewSelected', function(Product) {
             that.Product = Product;
             that.OrderQuantity = 1;
-            that.ProductSelectedImage = null;
+
         });
     },
     data() {
@@ -105,6 +111,7 @@ export default {
             },
             OrderQuantity: 1,
             ProductSelectedImage: null,
+            Grade: 1,
         }
     },
     methods: {
@@ -128,7 +135,8 @@ export default {
         ProductAdd: function() {
             var payload = {
                 id: this.Product.id,
-                qty: this.OrderQuantity,
+                qty: this.OrderQuantity*this.Grade,
+                grade: this.Grade,
             };
 
             this.$root.$emit('AddBasketProduct', payload);
