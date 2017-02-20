@@ -7,7 +7,6 @@ use BadassNinjas\Helpers\Response;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductCategory;
-use BadassNinjas\RFS\Facades\RFS;
 
 class ProductController extends Controller
 {
@@ -63,23 +62,17 @@ class ProductController extends Controller
             return Response::build('Product invalid', 404);
         }
 
-        $media = RFS::uploadMediaFromRequest('file');
+        $file = request()->file('file')->store('product_images');
 
-        if ($media) {
-            $media = (object) $media;
+        $image = new ProductImage();
+        $image->external_id = time();
+        $image->hostname = '/';
+        $image->path = $file;
+        $image->save();
 
-            $image = new ProductImage();
-            $image->external_id = time();
-            $image->hostname = $media->payload->host;
-            $image->path = $media->payload->path;
-            $image->save();
+        $product->images()->attach($image->id);
 
-            $product->images()->attach($image->id);
-
-            return Response::build($product);
-        }
-
-        return Response::build('Failed to upload image', 500);
+        return Response::build($product);
     }
 
     public function deleteProduct($productId)

@@ -35,7 +35,12 @@ class ProductImage extends Model
 
     public function getUrlAttribute($value)
     {
-        return "https://{$this->hostname}{$this->path}";
+        return "/product_images/{$this->path}";
+    }
+
+    public function getPathAttribute($value)
+    {
+        return "/{$value}";
     }
 
     public function products()
@@ -50,6 +55,5 @@ class ProductImage extends Model
                 $product->images()->detach($this->getKey());
             }
         }
-        parent::delete();
     }
 }

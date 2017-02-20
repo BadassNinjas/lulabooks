@@ -16,8 +16,8 @@
                         <div class="col-lg-3" v-for="image in product.images">
                             <div class="media" style="padding: 9px;">
                                 <div class="pull-left">
-                                    <a :href="'https://' + image.hostname + image.path" target="_blank">
-                                        <img :src="'https://' + image.hostname + image.path" width="72" height="72" />
+                                    <a :href="image.path" target="_blank">
+                                        <img :src="image.path" width="72" height="72" />
                                     </a>
                                 </div>
                                 <div class="media-body">

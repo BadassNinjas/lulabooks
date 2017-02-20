@@ -9,7 +9,7 @@
                         <h4 class="title h4 col-xs-b5"><span class="color">BUY BOOKS</span> <br> FOR ALL YOUR SUBJECTS</h4>
                         <router-link class="button size-2 style-3" tag="a" to="/products">
                             <span class="button-wrapper">
-                              <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
+                              <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
                             <span class="text">BUY BOOKS</span>
                             </span>
                         </router-link>
@@ -25,7 +25,7 @@
                         <h4 class="title h4 col-xs-b5"><span class="color">SELL BOOKS</span> <br> YOU NO LONGER NEED</h4>
                         <router-link class="button size-2 style-3" tag="a" to="/sell">
                             <span class="button-wrapper">
-                              <span class="icon"><img src="img/customer/exzo/icon-4.png" alt=""></span>
+                              <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
                             <span class="text">SELL BOOKS</span>
                             </span>
                         </router-link>

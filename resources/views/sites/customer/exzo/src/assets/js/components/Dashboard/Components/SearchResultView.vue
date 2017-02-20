@@ -17,7 +17,7 @@
                                 <div class="h6 animate-to-green"><a href="#">{{ product.name }}</a></div>
                             </div>
                             <div class="preview">
-                                <img v-if="product.images.length" :src="product.images[0].url" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
+                                <img v-if="product.images.length" :src="product.images[0].path" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                                 <img v-else="!product.images.length" src="/img/box.png" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                                 <div class="preview-buttons valign-middle">
                                     <div class="valign-middle-content open-popup" data-rel="ProductView" @click="setProductview(product)">

@@ -10,13 +10,13 @@
                             <section class="regular slider" v-if="Product.images.length">
                                 <hr/>
                                 <center>
-                                    <img style="border: 1px solid whitesmoke; cursor: pointer; padding: 7px;" :src="'https://' + image.hostname + image.path" width="64" height="64" v-for="image in Product.images" @click="ProductSelectedImage = 'https://' + image.hostname + image.path">
+                                    <img style="border: 1px solid whitesmoke; cursor: pointer; padding: 7px;" :src="image.path" width="64" height="64" v-for="image in Product.images" @click="ProductSelectedImage = image.path">
                                 </center>
                                 <hr/>
                                 <br/>
                                 <div>
                                     <center>
-                                        <img class="img img-responsive" :src="ProductSelectedImage ? ProductSelectedImage : 'https://' + Product.images[0].hostname + Product.images[0].path" />
+                                        <img class="img img-responsive" :src="ProductSelectedImage ? ProductSelectedImage : Product.images[0].path" />
                                     </center>
                                 </div>
                             </section>
@@ -35,7 +35,7 @@
                         <div class="h3 col-xs-b25">{{ Product.name }}</div>
                         <div class="row col-xs-b25">
                             <div class="col-sm-6">
-                              <select class="form-control simple-input" v-model="Grade">
+                                <select class="form-control simple-input" v-model="Grade">
                                 <option disabled hidden></option>
                                 <option value="1">NEW</option>
                                 <option value="0.9">A-GRADE</option>
@@ -135,7 +135,7 @@ export default {
         ProductAdd: function() {
             var payload = {
                 id: this.Product.id,
-                qty: this.OrderQuantity*this.Grade,
+                qty: this.OrderQuantity * this.Grade,
                 grade: this.Grade,
             };
 
