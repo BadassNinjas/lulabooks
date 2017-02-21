@@ -4,7 +4,7 @@
     <div class="cart-entry clearfix" v-for="item in ShoppingCart.items">
         <a class="cart-entry-thumbnail" href="#">
             <img :src="item.misc.image" alt="" v-if="!item.originalItem.images.length" width="64" height="64">
-            <img :src="item.originalItem.images[0].url" alt="" v-else="item.originalItem.images.length" width="64" height="64">
+            <img :src="item.originalItem.images[0].path" alt="" v-else="item.originalItem.images.length" width="64" height="64">
         </a>
         <div class="cart-entry-description">
             <table>
