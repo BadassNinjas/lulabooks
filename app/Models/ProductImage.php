@@ -15,10 +15,6 @@ class ProductImage extends Model
       'external_id' => [
         'type' => 'bigInteger',
       ],
-      'hostname' => [
-        'type' => 'string',
-        'length' => 255,
-      ],
       'path' => [
         'type' => 'string',
         'length' => 255,
@@ -28,20 +24,6 @@ class ProductImage extends Model
     protected $hidden = [
       'products',
     ];
-
-    protected $appends = [
-      'url',
-    ];
-
-    public function getUrlAttribute($value)
-    {
-        return "/product_images/{$this->path}";
-    }
-
-    public function getPathAttribute($value)
-    {
-        return "/{$value}";
-    }
 
     public function products()
     {
