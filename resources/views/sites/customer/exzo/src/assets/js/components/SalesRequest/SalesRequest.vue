@@ -96,18 +96,28 @@
     <div class="col-lg-4">
         <div class="empty-space col-xs-b50"></div>
         <p style="font-size: 16px;">
-            <b>Grade A</b> - Requirements
-            <ul>
+            <b class="alert alert-success">Grade A - Requirements</b>
+            <ul class="alert alert-success">
                 <li>No markings</li>
                 <li>No highlighting</li>
                 <li>Near brand new condition</li>
             </ul>
             <br/>
-            <b>Grade B</b> - Requirements
-            <ul>
+            <b class="alert alert-success">Grade B - Requirements</b>
+            <ul class="alert alert-success">
                 <li>Minimal markings</li>
                 <li>Minimal highlighting</li>
                 <li>Completely intact</li>
+            </ul>
+            <br>
+            <b class="alert alert-danger">We don't accept these books</b>
+            <ul class="alert alert-danger">
+                <li>Excessive Highlighting</li>
+                <li>Torn or missing pages</li>
+                <li>Marks</li>
+                <li>Stains</li>
+                <li>Bends</li>
+
             </ul>
         </p>
     </div>
