@@ -11,7 +11,7 @@
     <div class="cart-toggle hidden-xs hidden-sm">
         <div class="cart-overflow">
             <div class="cart-entry clearfix" v-for="item in ShoppingCart.items">
-                <a class="cart-entry-thumbnail" href="#"><img src="item.images[0].path" alt="" style="width:60px;height:60px;" /></a>
+                <a class="cart-entry-thumbnail" href="#"><img :src="item.originalItem.images[0].path" alt="" style="width:60px;height:60px;" /></a>
                 <div class="cart-entry-description">
                     <table>
                         <tr>
