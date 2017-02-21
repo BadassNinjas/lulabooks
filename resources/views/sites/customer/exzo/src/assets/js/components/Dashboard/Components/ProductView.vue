@@ -43,7 +43,7 @@
                               </select>
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
-                                <div class="simple-article size-5 grey">PRICE: <span class="color">R{{ Product.price * Grade }}</span></div>
+                                <div class="simple-article size-5 grey">PRICE: <span class="color" >R{{ (Product.price*Grade).toFixed(2) }}</span></div>
                                 <div class="rate-wrapper align-inline">
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -101,7 +101,6 @@ export default {
         this.$root.$on('ProductViewSelected', function(Product) {
             that.Product = Product;
             that.OrderQuantity = 1;
-
         });
     },
     data() {
