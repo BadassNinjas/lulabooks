@@ -66,7 +66,6 @@ class ProductController extends Controller
 
         $image = new ProductImage();
         $image->external_id = time();
-        $image->hostname = '/';
         $image->path = '/product_images/' . $file;
         $image->save();
 
