@@ -101,6 +101,7 @@ export default {
         this.$root.$on('ProductViewSelected', function(Product) {
             that.Product = Product;
             that.OrderQuantity = 1;
+            that.ProductSelectedImage= "";
         });
     },
     data() {
