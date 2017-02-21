@@ -103,8 +103,8 @@
                 <li>Near brand new condition</li>
             </ul>
             <br/>
-            <b class="alert alert-success">Grade B - Requirements</b>
-            <ul class="alert alert-success">
+            <b class="alert alert-warning">Grade B - Requirements</b>
+            <ul class="alert alert-warning">
                 <li>Minimal markings</li>
                 <li>Minimal highlighting</li>
                 <li>Completely intact</li>
