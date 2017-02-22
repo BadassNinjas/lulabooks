@@ -66,8 +66,9 @@ class ProductController extends Controller
 
         $image = new ProductImage();
         $image->external_id = time();
-        $image->path = '/product_images/' . $file;
+        $image->path = $file;
         $image->save();
+
 
         $product->images()->attach($image->id);
 
