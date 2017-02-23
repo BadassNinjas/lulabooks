@@ -11,7 +11,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'LulaBooks',
 
     /*
     |--------------------------------------------------------------------------
@@ -180,8 +180,8 @@ return [
         BadassNinjas\Migrator\MigratorServiceProvider::class,
         BadassNinjas\RFS\RFSServiceProvider::class,
         BadassNinjas\Geo\GeoServiceProvider::class,
-        
-        AddPay\Http\Client\AddPayServiceProvider::class,
+
+        AddPay\Wrapper\Client\AddPayServiceProvider::class,
     ],
 
     /*
@@ -229,6 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'AddPayHttp' => AddPay\Wrapper\Client\Facades\AddPay::class,
 
     ],
 

@@ -1,7 +1,6 @@
 <?php
 
 return [
-  'API_VERSION' => 'v1',
-  'API_APP_KEY' => '0f90cea0-b75a-4eca-9e7c-18448c9954c4',
-  'API_APP_SECRET' => 'd546f196808ad3f5a636bb7381be9e46',
+  'API_APP_KEY' => 'e0eeb5c3-91d8-49a9-9555-4a9dd10c1212',
+  'API_APP_SECRET' => '482a030167b5a16d6fb16f9c55d0625e',
 ];

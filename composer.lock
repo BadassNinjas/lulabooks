@@ -4,9 +4,95 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "53b4d26354f5f6c1c8a50863519a24de",
-    "content-hash": "2f5311ab21732a9c78ed8b2853076bf5",
+    "hash": "9b8f37cc827b81223d79fb42f7902c09",
+    "content-hash": "5a448ca0995ab7159a3261fe9856cf02",
     "packages": [
+        {
+            "name": "addpay/addpay-laravel-client",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/addpay/addpay-laravel-client.git",
+                "reference": "b02605ce82e88811b36aac22acd63d54a9d0fdb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/addpay/addpay-laravel-client/zipball/b02605ce82e88811b36aac22acd63d54a9d0fdb1",
+                "reference": "b02605ce82e88811b36aac22acd63d54a9d0fdb1",
+                "shasum": ""
+            },
+            "require": {
+                "addpay/addpay-php-client": "^1.0",
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AddPay\\Wrapper\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Lake",
+                    "email": "stephen-lake@live.com",
+                    "homepage": "https://github.com/stephenlake",
+                    "role": "Developer"
+                }
+            ],
+            "description": "addPay Http Client",
+            "keywords": [
+                "addpay",
+                "client"
+            ],
+            "time": "2017-02-21 23:50:29"
+        },
+        {
+            "name": "addpay/addpay-php-client",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/addpay/addpay-php-client.git",
+                "reference": "8ff918677964dd1fd5548a53748b4cb693fa3375"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/addpay/addpay-php-client/zipball/8ff918677964dd1fd5548a53748b4cb693fa3375",
+                "reference": "8ff918677964dd1fd5548a53748b4cb693fa3375",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AddPay\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Lake",
+                    "email": "stephen-lake@live.com",
+                    "homepage": "https://github.com/stephenlake",
+                    "role": "Developer"
+                }
+            ],
+            "description": "addPay Http Client",
+            "keywords": [
+                "addpay",
+                "client"
+            ],
+            "time": "2017-01-25 04:06:37"
+        },
         {
             "name": "badassninjas/addpay-client",
             "version": "v1.1",
