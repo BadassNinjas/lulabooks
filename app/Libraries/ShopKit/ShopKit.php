@@ -11,7 +11,8 @@ class ShopKit
         $cart = Session::get('shopkit-cart', null);
 
         if (is_null($cart)) {
-            $cart = $this->use(ShopKitCart::getCodeName());
+            $cart = new ShopKitCart();
+
             Session::set('shopkit-cart', $cart);
         }
 
