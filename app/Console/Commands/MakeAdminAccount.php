@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use ShopKit\ACL\Models\User;
+use App\Models\User;
 
 class MakeAdminAccount extends Command
 {

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
-use ShopKit\ACL\Models\User;
+use App\Models\User;
 
 class AuthController extends Controller
 {

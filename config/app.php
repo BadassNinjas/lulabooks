@@ -175,11 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        ShopKit\Core\ShopKitServiceProvider::class,
-
         BadassNinjas\Migrator\MigratorServiceProvider::class,
-        BadassNinjas\RFS\RFSServiceProvider::class,
-        BadassNinjas\Geo\GeoServiceProvider::class,
 
         AddPay\Wrapper\Client\AddPayServiceProvider::class,
     ],

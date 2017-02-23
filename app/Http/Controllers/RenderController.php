@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Base\Controller;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\ProductImage;
 use BadassNinjas\Helpers\Response;
 use BadassNinjas\RFS\Facades\RFS;
-use BadassNinjas\Geo\Models\Country;
-use BadassNinjas\Geo\Models\Region;
-use ShopKit\Product\Models\Product;
-use ShopKit\Product\Models\ProductCategory;
-use ShopKit\Product\Models\ProductImage;
 use Illuminate\Support\Facades\Cache;
 
 class RenderController extends Controller

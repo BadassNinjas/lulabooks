@@ -8,7 +8,7 @@ use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use App\Models\SalesRequest;
 
-use ShopKit\ACL\Models\User;
+use App\Models\User;
 
 class SalesRequestController extends Controller
 {

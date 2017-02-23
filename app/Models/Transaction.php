@@ -71,7 +71,7 @@ class Transaction extends Model
 
     public function user()
     {
-        return $this->hasOne('\ShopKit\ACL\Models\User', 'id', 'user_id');
+        return $this->hasOne('\App\Models\User', 'id', 'user_id');
     }
 
     public function getItemsAttribute($value)

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use AddPay\Http\Client\AddPayHttpClient;
-use ShopKit\Core\Facades\ShopKit;
+use ShopKit\Core\ShopKit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Log;
@@ -21,7 +21,7 @@ class PaymentController extends Controller
 
     public function getPaymentMethods()
     {
-        $result = AddPay::getPaymentMethods();
+        $result = AddPay::setAppKey(config('addpay-client.API_APP_KEY'))->setAppSecret(config('addpay-client.API_APP_SECRET'))->getPaymentMethods();
 
         if (!$result) {
             return Response::build('Could not retrieve payment methods', 500);
@@ -60,7 +60,7 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
 
-        $result = AddPay::preparePayment([
+        $result = AddPay::setAppKey(config('addpay-client.API_APP_KEY'))->setAppSecret(config('addpay-client.API_APP_SECRET'))->preparePayment([
             'payer_firstname' => $user->billing_detail->firstname,
             'payer_lastname' => $user->billing_detail->lastname,
             'payer_email' => $user->billing_detail->email,

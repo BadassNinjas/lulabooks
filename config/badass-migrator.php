@@ -2,12 +2,11 @@
 
 return [
   'models' => [
-    \ShopKit\Product\Models\Product::class,
+    \App\Models\Product::class,
     \App\Models\ProductImage::class,
-    \ShopKit\Product\Models\ProductCategory::class,
-    \ShopKit\ACL\Models\User::class,
-    \ShopKit\ACL\Models\UserBillingDetail::class,
-    \ShopKit\ACL\Models\UserShippingDetail::class,
+    \App\Models\ProductCategory::class,
+    \App\Models\User::class,
+    \App\Models\UserBillingDetail::class,
     \App\Models\SalesRequest::class,
     \App\Models\ContactMessage::class,
     \App\Models\Transaction::class,

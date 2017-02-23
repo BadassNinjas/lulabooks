@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
-use ShopKit\Core\Facades\ShopKit;
+use ShopKit\Core\ShopKit;
 use App\Models\Product;
 
 class CartController extends Controller

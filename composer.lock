@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9b8f37cc827b81223d79fb42f7902c09",
-    "content-hash": "5a448ca0995ab7159a3261fe9856cf02",
+    "hash": "0d5cc7cd195da41660b46b845254aa9b",
+    "content-hash": "e662896f48de8191bc77f871067d746b",
     "packages": [
         {
             "name": "addpay/addpay-laravel-client",
@@ -94,49 +94,6 @@
             "time": "2017-01-25 04:06:37"
         },
         {
-            "name": "badassninjas/addpay-client",
-            "version": "v1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BadassNinjas/addpay-client.git",
-                "reference": "ebf06324fa9eb7c8bb907bfc202c1c70cd2255cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/addpay-client/zipball/ebf06324fa9eb7c8bb907bfc202c1c70cd2255cc",
-                "reference": "ebf06324fa9eb7c8bb907bfc202c1c70cd2255cc",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.2",
-                "php": ">=7.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "AddPay\\Http\\Client\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stephen Lake",
-                    "email": "stephen-lake@live.com",
-                    "homepage": "https://github.com/stephenlake",
-                    "role": "Developer"
-                }
-            ],
-            "description": "addPay Http Client",
-            "keywords": [
-                "addpay",
-                "client"
-            ],
-            "time": "2017-01-23 23:17:29"
-        },
-        {
             "name": "badassninjas/badass-utils",
             "version": "v1.3.3",
             "source": {
@@ -188,150 +145,6 @@
                 "issues": "https://github.com/BadassNinjas/badass-utils/issues"
             },
             "time": "2017-01-12 12:49:28"
-        },
-        {
-            "name": "badassninjas/shopkit-acl",
-            "version": "v0.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BadassNinjas/shopkit-acl.git",
-                "reference": "b3c36c486c636bfbdb438d5ba5ecda38d2278a4d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/shopkit-acl/zipball/b3c36c486c636bfbdb438d5ba5ecda38d2278a4d",
-                "reference": "b3c36c486c636bfbdb438d5ba5ecda38d2278a4d",
-                "shasum": ""
-            },
-            "require": {
-                "badassninjas/shopkit-core": "^0.7.5",
-                "php": ">=7.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ShopKit\\ACL\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stephen Lake",
-                    "email": "stephen-lake@live.com",
-                    "homepage": "https://github.com/stephenlake",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Shopkit ACL Extension",
-            "keywords": [
-                "acl",
-                "shopkit"
-            ],
-            "support": {
-                "source": "https://github.com/BadassNinjas/shopkit-acl/tree/v0.4.3",
-                "issues": "https://github.com/BadassNinjas/shopkit-acl/issues"
-            },
-            "time": "2017-01-12 04:33:31"
-        },
-        {
-            "name": "badassninjas/shopkit-core",
-            "version": "v0.7.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BadassNinjas/shopkit-core.git",
-                "reference": "268250a4de2be6d77559c86c7f0361d366b018aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/shopkit-core/zipball/268250a4de2be6d77559c86c7f0361d366b018aa",
-                "reference": "268250a4de2be6d77559c86c7f0361d366b018aa",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.2",
-                "php": ">=7.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ShopKit\\Core\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stephen Lake",
-                    "email": "stephen-lake@live.com",
-                    "homepage": "https://github.com/stephenlake",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Shopkit Core Foundation",
-            "keywords": [
-                "core",
-                "shopkit"
-            ],
-            "support": {
-                "source": "https://github.com/BadassNinjas/shopkit-core/tree/v0.7.12",
-                "issues": "https://github.com/BadassNinjas/shopkit-core/issues"
-            },
-            "time": "2017-01-16 18:35:55"
-        },
-        {
-            "name": "badassninjas/shopkit-product",
-            "version": "v0.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BadassNinjas/shopkit-product.git",
-                "reference": "e621e7b557982f95cbac4a71fa2e741ab79d4085"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BadassNinjas/shopkit-product/zipball/e621e7b557982f95cbac4a71fa2e741ab79d4085",
-                "reference": "e621e7b557982f95cbac4a71fa2e741ab79d4085",
-                "shasum": ""
-            },
-            "require": {
-                "badassninjas/shopkit-core": "^0.7.12",
-                "php": ">=7.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ShopKit\\Product\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stephen Lake",
-                    "email": "stephen-lake@live.com",
-                    "homepage": "https://github.com/stephenlake",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Shopkit Product Extension",
-            "keywords": [
-                "product",
-                "shopkit"
-            ],
-            "support": {
-                "source": "https://github.com/BadassNinjas/shopkit-product/tree/v0.3.1",
-                "issues": "https://github.com/BadassNinjas/shopkit-product/issues"
-            },
-            "time": "2017-01-16 18:38:48"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -1005,16 +818,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b"
+                "reference": "04a6d1a00ea5da0727ee94309a9f0d3dbaecb569"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/04a6d1a00ea5da0727ee94309a9f0d3dbaecb569",
+                "reference": "04a6d1a00ea5da0727ee94309a9f0d3dbaecb569",
                 "shasum": ""
             },
             "require": {
@@ -1050,16 +863,23 @@
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
                 }
             ],
-            "description": "PSR-7 message implementation",
+            "description": "PSR-7 message implementation that also provides common utility methods",
             "keywords": [
                 "http",
                 "message",
+                "request",
+                "response",
                 "stream",
-                "uri"
+                "uri",
+                "url"
             ],
-            "time": "2016-06-24 23:00:38"
+            "time": "2017-02-21 01:20:32"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2224,7 +2044,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3645,16 +3465,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.13",
+            "version": "5.7.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34"
+                "reference": "4906b8faf23e42612182fd212eb6f4c0f2954b57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
-                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4906b8faf23e42612182fd212eb6f4c0f2954b57",
+                "reference": "4906b8faf23e42612182fd212eb6f4c0f2954b57",
                 "shasum": ""
             },
             "require": {
@@ -3678,7 +3498,7 @@
                 "sebastian/global-state": "^1.1",
                 "sebastian/object-enumerator": "~2.0",
                 "sebastian/resource-operations": "~1.0",
-                "sebastian/version": "~1.0|~2.0",
+                "sebastian/version": "~1.0.3|~2.0",
                 "symfony/yaml": "~2.1|~3.0"
             },
             "conflict": {
@@ -3723,7 +3543,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-02-10 09:05:10"
+            "time": "2017-02-19 07:22:16"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4115,16 +3935,16 @@
         },
         {
             "name": "sebastian/object-enumerator",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-enumerator.git",
-                "reference": "96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35"
+                "reference": "1311872ac850040a79c3c058bea3e22d0f09cbb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35",
-                "reference": "96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/1311872ac850040a79c3c058bea3e22d0f09cbb7",
+                "reference": "1311872ac850040a79c3c058bea3e22d0f09cbb7",
                 "shasum": ""
             },
             "require": {
@@ -4157,7 +3977,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2016-11-19 07:35:10"
+            "time": "2017-02-18 15:18:39"
         },
         {
             "name": "sebastian/recursion-context",
@@ -4408,16 +4228,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e1718c6bf57e1efbb8793ada951584b2ab27775b"
+                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e1718c6bf57e1efbb8793ada951584b2ab27775b",
-                "reference": "e1718c6bf57e1efbb8793ada951584b2ab27775b",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
+                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
                 "shasum": ""
             },
             "require": {
@@ -4459,7 +4279,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-21 17:06:35"
+            "time": "2017-02-16 22:46:52"
         },
         {
             "name": "webmozart/assert",
