@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0d5cc7cd195da41660b46b845254aa9b",
-    "content-hash": "e662896f48de8191bc77f871067d746b",
+    "hash": "615e60428e4b63e4c4bdc710b2a4dd17",
+    "content-hash": "449974bb34165e01363e10db943eacc5",
     "packages": [
         {
             "name": "addpay/addpay-laravel-client",

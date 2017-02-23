@@ -4,10 +4,6 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/BadassNinjas/badass-utils.git"
-    }],
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
