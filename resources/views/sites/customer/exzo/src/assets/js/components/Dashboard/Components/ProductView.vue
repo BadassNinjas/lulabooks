@@ -51,8 +51,13 @@
                                 <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">#{{ Product.id }}</span></div>
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
-                                
-
+                            <div class="rate-wrapper align-inline">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
                             </div>
                         </div>
                         <div class="simple-article size-3 col-xs-b30">{{ Product.caption }}</div>
