@@ -44,13 +44,6 @@
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
                                 <div class="simple-article size-5 grey">PRICE: <span class="color" >R{{ (Product.price*Grade).toFixed(2) }}</span></div>
-                                <div class="rate-wrapper align-inline">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -58,7 +51,14 @@
                                 <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">#{{ Product.id }}</span></div>
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
-                                <div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">YES</span></div>
+                                <!--<div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">YES</span></div>-->
+                                <div class="rate-wrapper align-inline">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="simple-article size-3 col-xs-b30">{{ Product.caption }}</div>
