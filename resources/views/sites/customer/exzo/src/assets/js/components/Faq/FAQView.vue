@@ -32,17 +32,20 @@
       <div class="col-sm-4 simple-article size-5">
         <b>How we price your books?<b>
         <hr>
-        <p>We have dedicated sales represantitives that help you find buyers for your book. As we have assigned one now the price of grade A textbooks are 90% of our normal new textbook and B grade is 85% so our sales commission is 15% of your selling price for each textbook so for example if our textbook online is R100 then the same textbook you sell A grade will be R90 and our commission will be R13,50 and  R87,50 paid to you and on B grade with the same R100 new textbook your selling on our Web will be R85 and our commission will be R12,75  and R72,25.</p>
+        <p>Our dedicated sales representatives will help you find buyers for your used books.
+Used pricing is: A-Grade (no markings) textbooks are 90% of new textbook price, and B-Grade is 85%.  Our sales commission is 15% of your selling price.
+E.g.  if a new textbook online is R100, then  A-Grade it will be R90,  R13.50 commission, and R87,50 paid to you.
+Or if you sell the same R100 new textbook as B-Grade, then your selling price on our Web will be R85, our commission will be R12,75,  and you will receive R72,25.</p>
       </div>
       <div class="col-sm-4 simple-article size-5">
         <b>I submitted a sale request form,What now?<b>
         <hr>
-        <p>In oder to proceed with your sale we just come and do quality control to see weather your textbooks are grade A or B this is to protect the buyers and the sellers.</p>
+        <p>In order to proceed with your sale we need to do quality control to see whether your textbooks are grade A or B, this is necessary to protect both buyers and sellers.</p>
       </div>
       <div class="col-sm-4 simple-article size-5">
         <b>what we believe in?<b>
         <hr>
-        <p>We believe in total transparency,ours is not to buy books cheaper to the seller and yet sell it expensive to the buyers because that exploit both those who sell and those who buy.</p>
+        <p>We believe in total transparency, ours is not to buy books cheaper from the seller and yet sell it expensively to the buyers, because that exploits both those who sell and those who buy</p>
       </div>
     </div>
     <div class="empty-space col-xs-b50"></div>
