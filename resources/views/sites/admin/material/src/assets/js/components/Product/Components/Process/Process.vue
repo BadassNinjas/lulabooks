@@ -9,7 +9,7 @@
                 <div style="padding: 0 26px">
                     <h1 style="font-weight: 300;" class="text-center">Images</h1>
                 </div>
-                <div v-if="product.images">
+                 <div v-if="product.images">
                     <h3 style="font-weight: 300;">Existing Images</h3>
                     <br/>
                     <div class="row">
@@ -21,7 +21,7 @@
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <button class="btn btn-default btn-link" type="button"><i class="fa fa-trash"></i> Remove</button>
+                                    <button class="btn btn-default btn-link" type="button" v-on:click="showConfirmImageDelete(image.id)"><i class="fa fa-trash"></i> Remove</button>
                                 </div>
                             </div>
                         </div>
@@ -203,10 +203,29 @@ export default {
                 this.process.step = 6;
             }
         },
+        showConfirmImageDelete: function(imageId) {
+            var that = this;
+            swal({
+                title: "Are you sure you want to delete this image?",
+                text: "This action cannot be undone!",
+                type: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "I'm sure, delete it!",
+                closeOnConfirm: true
+            }, function() {
+                that.$http.delete('/api/products/deleteImage/' + imageId).then((response) => {
+                    if (response.data.success) {
+                        
+                    }
+                });
+            });
+        },
         endProcess: function() {
             this.instance(null);
             this.$parent.ViewState = 'dash';
         }
+
     },
     components: {
         Dropzone,

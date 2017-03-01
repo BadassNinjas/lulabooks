@@ -30,7 +30,7 @@
     </div><br><br>
     <div class="row">
       <div class="col-sm-4 simple-article size-5">
-        <b>How we price your books?<b>
+        <b>How we price your books?</b>
         <hr>
         <p>Our dedicated sales representatives will help you find buyers for your used books.
 Used pricing is: A-Grade (no markings) textbooks are 90% of new textbook price, and B-Grade is 85%.  Our sales commission is 15% of your selling price.
@@ -38,12 +38,12 @@ E.g.  if a new textbook online is R100, then  A-Grade it will be R90,  R13.50 co
 Or if you sell the same R100 new textbook as B-Grade, then your selling price on our Web will be R85, our commission will be R12,75,  and you will receive R72,25.</p>
       </div>
       <div class="col-sm-4 simple-article size-5">
-        <b>I submitted a sale request form,What now?<b>
+        <b>I submitted a sale request form,What now?</b>
         <hr>
         <p>In order to proceed with your sale we need to do quality control to see whether your textbooks are grade A or B, this is necessary to protect both buyers and sellers.</p>
       </div>
       <div class="col-sm-4 simple-article size-5">
-        <b>what we believe in?<b>
+        <b>what we believe in?</b>
         <hr>
         <p>We believe in total transparency, ours is not to buy books cheaper from the seller and yet sell it expensively to the buyers, because that exploits both those who sell and those who buy</p>
       </div>

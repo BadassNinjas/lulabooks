@@ -85,7 +85,14 @@ class ProductController extends Controller
 
         return Response::build();
     }
+    public function deleteImage($imageId){
 
+      $image = ProductImage::find($imageId);
+
+      $image->delete();
+
+      return Response::build();
+    }
     public function searchProducts($search_term)
     {
         $results = Product::
