@@ -204,6 +204,10 @@ export default {
                     name: 'grade',
                     label: 'Grade',
                 },
+                {
+                    name: 'status',
+                    label: 'Status',
+                },
                 '__component:custom-request-actions',
             ],
             pageData: {},
