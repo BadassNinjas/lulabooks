@@ -175,15 +175,32 @@ export default {
                     title: 'ID',
                 },
                 {
+                    name: 'created_at',
+                    title: 'Date',
+                },
+                {
                     name: 'user.billing_detail.firstname',
                     title: 'Firstname',
-                }, {
+                },
+                {
                     name: 'user.billing_detail.lastname',
                     title: 'Lastname',
                 }, {
+                    name: 'user.billing_detail.email',
+                    title: 'Email',
+                }, {
                     name: 'items_total',
                     title: 'Order Total Price',
-                }, {
+                },
+                {
+                    name: 'payment_method',
+                    title: 'Payment Method',
+                },
+                {
+                    name: 'payment_status',
+                    title: 'Payment Status',
+                },
+                 {
                     name: 'status',
                     title: 'Order Status',
                 },

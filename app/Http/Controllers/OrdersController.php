@@ -31,7 +31,7 @@ class OrdersController extends Controller
 
     public function getOrders()
     {
-        return Response::build(Transaction::with(['user.billing_detail'])->paginate(request('per_page', 15)));
+        return Response::build(Transaction::with(['user.billing_detail'])->orderBy('created_at','desc')->paginate(request('per_page', 15)));
     }
     public function deleteOrder($orderId){
 
