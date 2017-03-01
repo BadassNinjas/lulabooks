@@ -12,7 +12,8 @@
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div>
-                    <h4 style="font-weight: 300;" class="text-center">{{ 'Viewing Order ID #' + order.id }}</h4>
+                    <h4 style="font-weight: 300;" class="text-center">{{ 'Viewing Order ID #' + order.id}}</h4>
+                    <h4 style="font-weight: 300;" class="text-center">{{ 'Created ' + order.created_at}}</h4>
                 </div>
                 <br/><br/>
                 <form v-on:submit.prevent="submitOrderEditForm()">
@@ -36,9 +37,27 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Order Last Update </td>
+                                        <td>
+                                            <input type="text" class="input-sm form-control fg-input" v-model="order.updated_at">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Order Payment Status</td>
                                         <td>
                                             <input type="text" class="input-sm form-control fg-input" v-model="order.payment_status">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Order Amount</td>
+                                        <td>
+                                            <input type="text" class="input-sm form-control fg-input" v-model="order.items_total">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Order Payment Reference </td>
+                                        <td>
+                                            <input type="text" class="input-sm form-control fg-input" v-model="order.payment_ref">
                                         </td>
                                     </tr>
                                     <tr>
