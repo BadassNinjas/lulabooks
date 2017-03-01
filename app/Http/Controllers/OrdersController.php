@@ -33,4 +33,14 @@ class OrdersController extends Controller
     {
         return Response::build(Transaction::with(['user.billing_detail'])->paginate(request('per_page', 15)));
     }
+    public function deleteOrder($orderId){
+
+      $order = Transaction::find($orderId);
+
+      if (!is_null($orderId)) {
+          $order->delete();
+      }
+
+      return Response::build();
+    }
 }

@@ -239,7 +239,7 @@ export default {
                 confirmButtonText: "I'm sure, delete it!",
                 closeOnConfirm: true
             }, function() {
-                that.$http.delete('/api/orders' + requestId).then((response) => {
+                that.$http.delete('/api/orders/' + requestId).then((response) => {
                     if (response.data.success) {
                         that.$refs.vuetable.reload();
                     }

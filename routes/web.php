@@ -47,6 +47,7 @@ Route::put('/api/sales/request/{requestId}', 'SalesRequestController@submitSales
 
 Route::get('/api/orders', 'OrdersController@getOrders');
 Route::put('/api/orders/{orderid}', 'OrdersController@submitOrder');
+Route::delete('/api/orders/{orderid}', 'OrdersController@deleteOrder');
 
 Route::post('/api/contact', 'ContactController@submitContactMessage');
 
