@@ -45,4 +45,15 @@ class SalesRequestController extends Controller
     {
         return Response::build(SalesRequest::paginate(request('per_page', 15)));
     }
+    public function deleteSalesRequest($saleId){
+
+      $salesrequest = SalesRequest::find($saleId);
+
+      if(!is_null($salesrequest)){
+        $salesrequest->delete();
+      }
+
+      return Response::build();
+
+    }
 }

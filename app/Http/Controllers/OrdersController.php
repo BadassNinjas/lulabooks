@@ -40,7 +40,6 @@ class OrdersController extends Controller
       if (!is_null($orderId)) {
           $order->delete();
       }
-
       return Response::build();
     }
 }

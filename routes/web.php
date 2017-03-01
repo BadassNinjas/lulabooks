@@ -44,6 +44,7 @@ Route::get('/api/render/cities/{region_id}', 'RenderController@getCitiesOnRegion
 Route::get('/api/sales/request', 'SalesRequestController@getSalesRequests');
 Route::post('/api/sales/request', 'SalesRequestController@submitSalesRequest');
 Route::put('/api/sales/request/{requestId}', 'SalesRequestController@submitSalesRequest');
+Route::delete('/api/sales/request/{requestId}', 'SalesRequestController@deleteSalesRequest');
 
 Route::get('/api/orders', 'OrdersController@getOrders');
 Route::put('/api/orders/{orderid}', 'OrdersController@submitOrder');
