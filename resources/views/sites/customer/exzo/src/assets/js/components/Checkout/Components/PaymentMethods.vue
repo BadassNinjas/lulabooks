@@ -11,7 +11,11 @@
         <div class="empty-space col-xs-b30"></div>
         <textarea class="simple-input" placeholder="Do you have any notes or special requests for your order? Enter them here."></textarea>
         <div class="empty-space col-xs-b30"></div>
-        <div class="button block size-2 style-3" @click="postPaymentPrepare()">
+        <div class="checkbox" v-if="!agreeToTerms">
+          <input type="checkbox" id="checkbox" v-model="agreeToTerms">
+          <label for="checkbox" style="color: #F31717;">Agree to our Terms and Conditions by clicking on this text before you can continue with your order.</label>
+        </div>
+        <div v-if="agreeToTerms" class="button block size-2 style-3" @click="postPaymentPrepare()">
             <span class="button-wrapper">
              <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
             <span class="text">place order</span>
@@ -37,7 +41,9 @@ export default {
             availablePaymentMethods: [],
             payment_method: '',
             complete: false,
+            agreeToTerms:false,
         }
+
     },
     methods: {
         getPaymentMethods: function() {

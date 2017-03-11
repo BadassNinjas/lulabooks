@@ -10,6 +10,7 @@ import ProductsView from '../components/Products/ProductsView.vue';
 import SalesRequestView from '../components/SalesRequest/SalesRequest.vue';
 import PaymentCompleteView from '../components/Checkout/PaymentComplete.vue';
 import FaqView from '../components/Faq/FAQView.vue';
+import TermsView from '../components/Terms/TermsView.vue';
 import AboutView from '../components/About/AboutView.vue';
 
 export default new Router({
@@ -26,6 +27,11 @@ export default new Router({
             path: '/checkout',
             name: 'Checkout',
             component: CheckoutView
+        },
+        {
+          path: '/terms',
+          name: 'Terms and Conditions',
+          component: TermsView
         },
         {
             path: '/contact',
