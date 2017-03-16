@@ -66,7 +66,7 @@
                                     </tr>
                                     <tr>
                                         <td>Order Shipping Required?</td>
-                                        <td>{{ order.shipping }}</td>
+                                          <td>{{ order.shipping }}</td>
                                     </tr>
                                 </tbody>
                             </table>
