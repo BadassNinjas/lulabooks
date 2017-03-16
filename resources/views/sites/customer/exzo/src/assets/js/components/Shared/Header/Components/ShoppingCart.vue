@@ -20,8 +20,8 @@
                                 <div class="simple-article size-1">QUANTITY: {{ item.quantity }}</div>
                             </td>
                             <td>
-                                <div class="simple-article size-3">R {{ item.price }} X{{ item.quantity }}</div>
-                                <div class="simple-article size-2"><b>R {{ (item.price * item.quantity).toFixed(2) }}</b></div>
+                                <div class="simple-article size-3">R {{ item.price*item.grade }} X{{ item.quantity }}</div>
+                                <div class="simple-article size-2"><b>R {{ (item.price * item.quantity*item.grade).toFixed(2) }}</b></div>
                             </td>
                             <td>
                                 <div class="simple-article size-3">X{{ item.quantity }}</div>

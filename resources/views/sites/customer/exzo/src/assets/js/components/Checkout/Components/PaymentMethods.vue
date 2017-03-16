@@ -11,7 +11,20 @@
         <div class="empty-space col-xs-b30"></div>
         <textarea class="simple-input" placeholder="Do you have any notes or special requests for your order? Enter them here."></textarea>
         <div class="empty-space col-xs-b30"></div>
-        <div class="button block size-2 style-3" @click="postPaymentPrepare()">
+        <label class="checkbox-entry">
+          <input type="checkbox" v-model="shipping">
+          <span>Shipping Required?
+          </span>
+          <div class="simple-article size-1">*If you stay somewhere else rather than UWC please tick this box</div>
+        </label>
+        <div class="empty-space col-xs-b30"></div>
+        <label class="checkbox-entry">
+          <input type="checkbox" v-model="agreeToTerms">
+          <span>Agree to Terms & Conditions
+          </span>
+        </label>
+        <div class="empty-space col-xs-b30"></div>
+        <div v-if="agreeToTerms" class="button block size-2 style-3" @click="postPaymentPrepare()">
             <span class="button-wrapper">
              <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
             <span class="text">place order</span>
@@ -37,6 +50,8 @@ export default {
             availablePaymentMethods: [],
             payment_method: '',
             complete: false,
+            agreeToTerms: false,
+            shipping:false,
         }
     },
     methods: {
@@ -46,7 +61,7 @@ export default {
             });
         },
         postPaymentPrepare: function() {
-            this.$http.get('/api/payment/prepare/' + this.payment_method).then((response) => {
+            this.$http.get('/api/payment/prepare/' + this.payment_method+'/'+this.shipping).then((response) => {
                 if (response.data.success) {
                     if (response.data.payload.trans_method != 'METH_PAYMENT_BANK_TRANSFER') {
                         location.href = response.data.payload.redirect;

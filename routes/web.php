@@ -18,6 +18,8 @@ Route::delete('/api/products/deleteImage/{imageId}', 'ProductController@deleteIm
 Route::post('/api/products', 'ProductController@createOrUpdateProduct');
 Route::get('/api/products/search/{search_term}', 'ProductController@searchProducts');
 
+Route::get('/api/availability/{productId}/{grade}', 'ProductController@checkAvailability');
+
 Route::post('/api/products/{productId}/image/', 'ProductController@attachImage');
 Route::delete('/api/products/{productId}/image/{imageId}', 'ProductController@addProductImage');
 
@@ -57,7 +59,7 @@ Route::post('/api/checkout/billing', 'CheckoutController@updateBillingDetail');
 Route::post('/api/checkout/shipping', 'CheckoutController@updateShippingDetail');
 
 Route::get('/api/payment/methods', 'PaymentController@getPaymentMethods');
-Route::get('/api/payment/prepare/{payment_method}', 'PaymentController@getPreparedPayment');
+Route::get('/api/payment/prepare/{payment_method}/{shipping}', 'PaymentController@getPreparedPayment');
 Route::post('/api/payment/notify', 'PaymentController@postPaymentNotification');
 
  Route::group(['prefix' => '/admin'], function () {

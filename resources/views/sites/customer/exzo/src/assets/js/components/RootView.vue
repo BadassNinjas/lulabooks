@@ -75,6 +75,9 @@ export default {
         this.$root.$on('UserAuthDataRequested', function(user) {
             this.$root.$emit('UserAuthDataReceived', that.user);
         });
+        this.$root.$on('ProductAvailabilityDataRequested', function(productId) {
+            that.getProductAvailability(productId);
+        });
     },
     mounted() {
         this.getShoppingCart();
@@ -86,6 +89,13 @@ export default {
                     this.$root.$emit('CategoryDataReceived', response.data.payload);
                 }
             });
+        },
+        getProductAvailability: function(productId){
+          this.$http.get('/api/availability/'+ productId).then((response) => {
+              if (response.data.success) {
+                  this.$root.$emit('ProductAvailabilityDataReceived', response.data.payload);
+              }
+          });
         },
         getShoppingCart: function() {
             this.$http.get('/api/basket').then((response) => {

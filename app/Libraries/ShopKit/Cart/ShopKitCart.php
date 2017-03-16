@@ -16,7 +16,7 @@ class ShopKitCart
 
     public function createItem()
     {
-        return new ShopKitCartItem();
+          return new ShopKitCartItem();
     }
 
     public function addItem(ShopKitCartItem $item)
@@ -76,9 +76,9 @@ class ShopKitCart
     }
 
     private function updatePriceTotal()
-    {
+    {   
         $this->priceTotal = $this->getItems()->sum(function ($item) {
-            return ($item->getPrice()*$item->getQuantity());
+            return ($item->getPrice()*($item->getQuantity()*$item->getGrade()));
         });
     }
 }

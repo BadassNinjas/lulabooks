@@ -180,7 +180,18 @@ body.mobile .fixed-background{background-attachment: scroll;}
 .simple-article ul li{padding-bottom: 4px; padding-top: 4px; position: relative;}
 .simple-article ul li:before{content: ""; width: 17px; height: 13px; display: inline-block; vertical-align: middle; background: url(../img/customer/exzo/icon-20.png); position: relative; margin-right: 12px;}
 .simple-article.light ul li:before{background-image: url(../img/customer/exzo/icon-21.png);}
-
+.available{
+	color: #1c8644 !important;;
+	font-weight: 15;
+	line-height: 3.0em;
+	white-space: nowrap;
+}
+.unavailable{
+	color: #d50000 !important;;
+	font-weight: 15;
+	line-height: 3.0em;
+	white-space: nowrap;
+}
 .simple-article h1, .h1, .simple-article h2, .h2, .simple-article h3, .h3, .simple-article h4, .h4, .simple-article h5, .h5, .simple-article h6, .h6{color: #343434; font-weight: 900; font-family: 'Raleway', sans-serif; text-transform: uppercase;}
 .simple-article.light h1, .simple-article.light .h1, .h1.light, .simple-article.light h2, .simple-article.light .h2, .h2.light, .simple-article.light h3, .simple-article.light .h3, .h3.light, .simple-article.light h4, .simple-article.light .h4, .h4.light, .simple-article.light h5, .simple-article.light .h5, .h5.light, .simple-article.light h6, .simple-article.light .h6, .h6.light{color: #fff; text-shadow: 1px 1px 1px rgba(0,0,0,.1);}
 .simple-article h1 a, .h1 a, .simple-article h2 a, .h2 a, .simple-article h3 a, .h3 a, .simple-article h4 a, .h4 a, .simple-article h5 a, .h5 a, .simple-article h6 a, .h6 a{transition: all .15s; -webkit-transition: all .15s;}

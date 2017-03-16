@@ -6,6 +6,7 @@ class ShopKitCartItem
     public $id;
     public $name;
     public $quantity;
+    public $grade;
     public $price;
     public $misc;
     public $originalItem;
@@ -70,6 +71,16 @@ class ShopKitCartItem
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
+    }
+
+    public function getGrade()
+    {
+        return $this->grade;
+    }
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
         return $this;
     }
     /**

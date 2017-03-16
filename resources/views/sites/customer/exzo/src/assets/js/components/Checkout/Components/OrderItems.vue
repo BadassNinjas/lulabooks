@@ -13,10 +13,13 @@
                         <td>
                             <div class="h6"><a href="#">{{ item.name }}</a></div>
                             <div class="simple-article size-1">QUANTITY: {{ item.quantity }}</div>
+                            <div v-if="item.grade === '0.9'" class="simple-article size-1">Grade: A-GRADE </div>
+                            <div v-else-if ="item.grade === '0.85'" class="simple-article size-1">Grade: B-GRADE </div>
+                            <div v-else class="simple-article size-1">Grade: New </div>
                         </td>
                         <td>
-                            <div class="simple-article size-3 grey">R {{ (item.price) }} X{{ item.quantity }}</div>
-                            <div class="simple-article size-1">TOTAL: R {{ (item.price*item.quantity) }}</div>
+                            <div class="simple-article size-3 grey">R {{ (item.price*item.grade) }} X{{ item.quantity }}</div>
+                            <div class="simple-article size-1">TOTAL: R {{ (item.price*(item.quantity*item.grade)) }}</div>
                         </td>
                     </tr>
                 </tbody>

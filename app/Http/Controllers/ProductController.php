@@ -6,7 +6,11 @@ use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\BookProduct;
+use App\Models\StationeryProduct;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Validator;
+use Log;
 
 class ProductController extends Controller
 {
@@ -49,9 +53,49 @@ class ProductController extends Controller
                     $category->products()->attach($product->id);
                 }
             }
+          }
+
+        $product->type = request('type');
+        $product->save();
+
+        $grade = request('grade');
+
+        if($product->type === 'book'){
+
+            if(!is_null($grade)){
+              $bookproduct = BookProduct::updateOrCreate(['product_id'=>$product->id,'grade'=>$grade]);
+              $bookproduct->in_stock = (int)$bookproduct->in_stock+(int)request('stock');
+              $bookproduct->save();
+            }
+
+        }
+        else{
+            $stationeryproduct = StationeryProduct::updateOrCreate(['product_id'=>$product->id]);
+            $stationeryproduct->in_stock = (int)$stationeryproduct->in_stock+(int)request('stock');
+            $stationeryproduct->save();
         }
 
+
         return Response::build($product);
+    }
+    public function checkAvailability($productId,$grade){
+
+          $product = Product::find($productId);
+          $bookproduct = $product->bookproduct()->where('product_id','=',$product->id)->get();
+          $productAvailableCount = 0;
+          switch ($grade) {
+            case '0.9':
+              $productAvailableCount = $bookproduct->where('grade','=','A-GRADE')->count();
+              break;
+            case '0.85':
+              $productAvailableCount = $bookproduct->where('grade','=','B-GRADE')->count();
+              break;
+            default:
+              $productAvailableCount = $bookproduct->where('grade','=','new')->count();
+              break;
+          }
+
+          return Response::build($productAvailableCount);
     }
 
     public function attachImage($productId = null)

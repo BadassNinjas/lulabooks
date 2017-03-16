@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use App\Models\SalesRequest;
+use App\Mail\saleRequestMail;
 
 use App\Models\User;
 
@@ -36,7 +37,7 @@ class SalesRequestController extends Controller
 
         $sales_request = SalesRequest::updateOrCreate(['id' => $requestId], request()->only($input));
         $sales_request->save();
-
+        Mail::to('lux589@gmail.com')->send(new saleRequestMail($sale_request->firstname));
         return Response::build($sales_request);
     }
 

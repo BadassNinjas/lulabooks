@@ -44,6 +44,13 @@ class Transaction extends Model
           'nullable'
         ]
       ],
+      'shipping' => [
+        'type' => 'string',
+        'length' => 32,
+        'modifiers' => [
+          'default' => 'no',
+        ]
+      ],
       'items' => [
         'type' => 'text',
         'length' => 64000,

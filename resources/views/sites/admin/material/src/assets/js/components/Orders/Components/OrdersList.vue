@@ -64,6 +64,10 @@
                                         <td>Order Payment Method</td>
                                         <td>{{ order.payment_method }}</td>
                                     </tr>
+                                    <tr>
+                                        <td>Order Shipping Required?</td>
+                                        <td>{{ order.shipping }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <br/><br/>
@@ -71,23 +75,30 @@
                             <h4>Order Items</h4>
                             <br/><br/>
                             <table class="table table-responsive table-bordered table-condensed">
+                                <thead>
+                                  <tr>
+                                    <td><b>Product Code</b></td>
+                                    <td><b>Name</b></td>
+                                    <td><b>Grade</b></td>
+                                    <td><b>Quantity</b></td>
+                                    <td><b>Price Each</b></td>
+                                  </tr>
+                                </thead>
                                 <tbody v-for="item in order.items">
                                     <tr>
-                                        <td><b>Name</b></td>
+                                        <td>{{ item.id }}</td>
                                         <td>{{ item.name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Price</b></td>
-                                        <td>R{{ item.price }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Quantity</b></td>
+                                        <td v-if="item.grade === '0.9'">A-GRADE</td>
+                                        <td v-else-if="item.grade === '0.85'">B-GRADE</td>
+                                        <td v-else>New</td>
                                         <td>{{ item.quantity }}</td>
+                                        <td>R{{ item.price*item.grade }}</td>
                                     </tr>
+
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="5">
                                             <h4 class="pull-right">Total <b>R{{ order.items_total}}</b></h4>
                                         </td>
                                     </tr>

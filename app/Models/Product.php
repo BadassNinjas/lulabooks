@@ -31,6 +31,13 @@ class Product extends Model
           'nullable',
         ],
       ],
+      'type' => [
+        'type' => 'string',
+        'length' => '32',
+        'modifiers' => [
+          'default' => 'book',
+        ],
+      ],
     ];
     protected $pivots = [
         ProductImage::class,
@@ -62,6 +69,12 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Models\ProductCategory');
+    }
+    public function bookproduct(){
+      return $this->hasMany('App\Models\BookProduct');
+    }
+    public function stationeryproduct(){
+      return $this->hasOne('App\Models\StationeryProduct');
     }
     public function images()
     {

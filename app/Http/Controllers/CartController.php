@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use ShopKit\Core\ShopKit;
 use App\Models\Product;
+use Log;
 
 class CartController extends Controller
 {
@@ -31,20 +33,21 @@ class CartController extends Controller
 
         $product = Product::find(request('id'));
 
+
         ShopKit::getShoppingCart()
                    ->addItem(ShopKit::getShoppingCart()
                                            ->createItem()
                                            ->setId($product->id)
                                            ->setName($product->name)
                                            ->setQuantity(request('qty'))
+                                           ->setGrade(request('grade'))
                                            ->setPrice($product->price)
                                            ->setOriginalItem($product)
                                            ->setMisc([
                                              'description' => $product->description,
                                              'image' => $product->images->count() ? $product->images->first()->url : '/img/box.png',
                                            ]));
-
-        return $this->getShoppingCart();
+       return $this->getShoppingCart();
     }
 
     public function removeShoppingCartItem($productId)

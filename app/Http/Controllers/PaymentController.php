@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Log;
 use App\Models\Transaction;
 use AddPay\Wrapper\Client\Facades\AddPay;
+use App\Mail\orderPlaced;
+
 
 class PaymentController extends Controller
 {
@@ -56,7 +58,7 @@ class PaymentController extends Controller
         $transaction->save();
     }
 
-    public function getPreparedPayment($payment_method)
+    public function getPreparedPayment($payment_method,$shipping)
     {
         $user = Auth::user();
 
@@ -76,6 +78,8 @@ class PaymentController extends Controller
             return Response::build('Could not retrieve payment methods', 500);
         }
 
+
+
         if ($result->success) {
             $transaction = new Transaction();
             $transaction->payment_ref = $result->payload->return_token;
@@ -84,11 +88,18 @@ class PaymentController extends Controller
             $transaction->status = 'UNRESOLVED';
             $transaction->payment_method = $payment_method;
             $transaction->payment_status = 'UNPAID';
+
+            if($shipping){
+              $transaction->shipping = 'yes';
+            }
+
             $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal();
             $transaction->save();
 
             ShopKit::getShoppingCart()->emptyCart();
         }
+
+        \Mail::to($user->billing_detail->email)->send(new orderPlaced($user));
 
         return (array) $result;
     }
