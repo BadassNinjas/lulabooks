@@ -89,7 +89,9 @@ class PaymentController extends Controller
             $transaction->payment_method = $payment_method;
             $transaction->payment_status = 'UNPAID';
 
-            
+            if($shipping === 'true' ){
+              $transaction->shipping = 'yes';
+            }
 
             $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal();
             $transaction->save();
@@ -97,7 +99,7 @@ class PaymentController extends Controller
             ShopKit::getShoppingCart()->emptyCart();
         }
 
-        \Mail::to($user->billing_detail->email)->send(new orderPlaced($user));
+        //Mail::to($user->billing_detail->email)->send(new orderPlaced($user));
 
         return (array) $result;
     }
