@@ -69,7 +69,8 @@ class Transaction extends Model
 
     protected $fillable = [
       'payment_status',
-      'status'
+      'status',
+      'shipping',
     ];
 
     protected $with = [
