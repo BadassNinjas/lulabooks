@@ -89,9 +89,7 @@ class PaymentController extends Controller
             $transaction->payment_method = $payment_method;
             $transaction->payment_status = 'UNPAID';
 
-            if($shipping === 'true' ){
-              $transaction->shipping = 'yes';
-            }
+            
 
             $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal();
             $transaction->save();
