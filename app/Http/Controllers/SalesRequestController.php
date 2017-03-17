@@ -31,7 +31,7 @@ class SalesRequestController extends Controller
           'grade' => 'required',
       ]);
 
-        if (!$validator->fails()) {
+        if ($validator->fails()) {
             return Response::build($validator->errors()->first(), 500);
         }
 
