@@ -89,7 +89,7 @@ class PaymentController extends Controller
             $transaction->payment_method = $payment_method;
             $transaction->payment_status = 'UNPAID';
 
-            if($shipping){
+            if($shipping === 'true' ){
               $transaction->shipping = 'yes';
             }
 
