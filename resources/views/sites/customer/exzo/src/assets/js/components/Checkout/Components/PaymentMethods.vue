@@ -69,7 +69,7 @@ export default {
                         this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please follow the directions within the email sent to ' + response.data.payload.payer_email +
                             ' in order to complete your transaction.';
                     }
-                    console.log('shipping val :'+this.shipping)
+                    
                 }
             });
         }
