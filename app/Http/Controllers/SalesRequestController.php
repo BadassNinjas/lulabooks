@@ -30,14 +30,21 @@ class SalesRequestController extends Controller
           'isbn' => 'required',
           'grade' => 'required',
       ]);
-
         if ($validator->fails()) {
             return Response::build($validator->errors()->first(), 500);
         }
 
         $sales_request = SalesRequest::updateOrCreate(['id' => $requestId], request()->only($input));
+
+        if(is_null(request('price')) || is_null(request('status'))){
+          $sales_request->price = 0;
+          $sales_request->status = 'UNRESOLVED';
+        }
+
         $sales_request->save();
-        Mail::to('lux589@gmail.com')->send(new saleRequestMail($sale_request->firstname));
+
+        \Mail::to('lux589@gmail.com')->send(new saleRequestMail($sales_request->firstname));
+
         return Response::build($sales_request);
     }
 

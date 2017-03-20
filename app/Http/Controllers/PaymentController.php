@@ -13,7 +13,6 @@ use App\Models\Transaction;
 use AddPay\Wrapper\Client\Facades\AddPay;
 use App\Mail\orderPlaced;
 
-
 class PaymentController extends Controller
 {
     const PAYMENT_PAID = 0;
@@ -99,7 +98,7 @@ class PaymentController extends Controller
             ShopKit::getShoppingCart()->emptyCart();
         }
 
-        //Mail::to($user->billing_detail->email)->send(new orderPlaced($user));
+        \Mail::to($user->billing_detail->email)->send(new orderPlaced($user));
 
         return (array) $result;
     }

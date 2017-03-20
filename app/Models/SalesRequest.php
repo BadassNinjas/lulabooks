@@ -16,65 +16,67 @@ class SalesRequest extends Model
         'type' => 'string',
         'length' => 128,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'firstname' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'lastname' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'email' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'name' => [
         'type' => 'string',
         'length' => 64,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'phone' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'grade' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'nullable'
-        ]
+          'nullable',
+        ],
       ],
       'price' => [
         'type' => 'decimal',
         'length' => 12,
         'modifiers' => [
-          'default' => 0
-        ]
+          'default' => 0.0,
+          'nullable',
+        ],
       ],
       'status' => [
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'default' => 'UNRESOLVED'
-        ]
-      ]
+          'default' => 'UNRESOLVED',
+          'nullable',
+        ],
+      ],
     ];
 
     protected $fillable = [
