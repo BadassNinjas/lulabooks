@@ -37,7 +37,7 @@ class SalesRequestController extends Controller
 
         $sales_request = SalesRequest::updateOrCreate(['id' => $requestId], request()->only($input));
         $sales_request->save();
-        Mail::to('lux589@gmail.com')->send(new saleRequestMail($sale_request->firstname));
+        \Mail::to('lux589@gmail.com')->send(new saleRequestMail($sales_request->firstname));
         return Response::build($sales_request);
     }
 
