@@ -98,8 +98,6 @@ class PaymentController extends Controller
             ShopKit::getShoppingCart()->emptyCart();
         }
 
-        \Mail::to($user->billing_detail->email)->send(new orderPlaced($user));
-
         return (array) $result;
     }
 }
