@@ -48,7 +48,7 @@ class Transaction extends Model
         'type' => 'string',
         'length' => 32,
         'modifiers' => [
-          'default' => 'no',
+          'default' => "no",
         ]
       ],
       'items' => [
