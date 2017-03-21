@@ -43,8 +43,6 @@ class SalesRequestController extends Controller
 
         $sales_request->save();
 
-        \Mail::to('lux589@gmail.com')->send(new saleRequestMail($sales_request->firstname));
-
         return Response::build($sales_request);
     }
 
