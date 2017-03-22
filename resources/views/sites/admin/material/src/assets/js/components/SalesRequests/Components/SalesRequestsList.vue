@@ -194,7 +194,12 @@ export default {
                 }, {
                     name: 'lastname',
                     label: 'Firstname',
-                }, {
+                },
+                {
+                    name: 'created_at',
+                    label: 'Date & Time',
+                },
+                 {
                     name: 'isbn',
                     label: 'Book ISBN',
                 }, {
