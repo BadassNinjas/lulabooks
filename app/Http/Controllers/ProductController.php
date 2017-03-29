@@ -85,19 +85,26 @@ class ProductController extends Controller
           $productAvailableCount = 0;
           switch ($grade) {
             case '0.9':
-              $productAvailableCount = $bookproduct->where('grade','=','A-GRADE')->count();
+              if(!is_null($bookproduct->where('grade','=','A-GRADE')->first())){
+                $productAvailableCount = $bookproduct->where('grade','=','A-GRADE')->first()->in_stock;
+              }
+
               break;
             case '0.85':
-              $productAvailableCount = $bookproduct->where('grade','=','B-GRADE')->count();
+              if(!is_null($bookproduct->where('grade','=','B-GRADE')->first())){
+                $productAvailableCount = $bookproduct->where('grade','=','B-GRADE')->first()->in_stock;
+              }
               break;
             default:
-              $productAvailableCount = $bookproduct->where('grade','=','new')->count();
+              if(!is_null($bookproduct->where('grade','=','new')->first())){
+                $productAvailableCount = $bookproduct->where('grade','=','new')->first()->in_stock;
+              }
               break;
           }
 
-          return Response::build($productAvailableCount);
-    }
 
+          return Response::build((int)$productAvailableCount);
+    }
     public function attachImage($productId = null)
     {
         $product = Product::find($productId);
