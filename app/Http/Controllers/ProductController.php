@@ -81,26 +81,37 @@ class ProductController extends Controller
     public function checkAvailability($productId,$grade){
 
           $product = Product::find($productId);
-          $bookproduct = $product->bookproduct()->where('product_id','=',$product->id)->get();
           $productAvailableCount = 0;
-          switch ($grade) {
-            case '0.9':
-              if(!is_null($bookproduct->where('grade','=','A-GRADE')->first())){
-                $productAvailableCount = $bookproduct->where('grade','=','A-GRADE')->first()->in_stock;
-              }
 
-              break;
-            case '0.85':
-              if(!is_null($bookproduct->where('grade','=','B-GRADE')->first())){
-                $productAvailableCount = $bookproduct->where('grade','=','B-GRADE')->first()->in_stock;
-              }
-              break;
-            default:
-              if(!is_null($bookproduct->where('grade','=','new')->first())){
-                $productAvailableCount = $bookproduct->where('grade','=','new')->first()->in_stock;
-              }
-              break;
+          if($product->type === 'stationery'){
+            $productAvailableCount = $product->stationeryproduct()->where('product_id','=',$product->id)->first()->in_stock;
           }
+          else{
+            $bookproduct = $product->bookproduct()->where('product_id','=',$product->id)->get();
+
+            switch ($grade) {
+              case '0.9':
+                if(!is_null($bookproduct->where('grade','=','A-GRADE')->first())){
+                  $productAvailableCount = $bookproduct->where('grade','=','A-GRADE')->first()->in_stock;
+                }
+
+                break;
+              case '0.85':
+                if(!is_null($bookproduct->where('grade','=','B-GRADE')->first())){
+                  $productAvailableCount = $bookproduct->where('grade','=','B-GRADE')->first()->in_stock;
+                }
+                break;
+              default:
+                if(!is_null($bookproduct->where('grade','=','new')->first())){
+                  $productAvailableCount = $bookproduct->where('grade','=','new')->first()->in_stock;
+                }
+                break;
+            }
+
+          }
+
+
+
 
 
           return Response::build((int)$productAvailableCount);

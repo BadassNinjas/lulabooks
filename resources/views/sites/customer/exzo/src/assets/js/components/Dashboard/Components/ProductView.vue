@@ -136,6 +136,7 @@ export default {
             that.ProductSelectedImage= "";
             that.Available = 10;
             that.Grade = 1;
+            that.checkAvailability();
         });
 
     },
@@ -187,6 +188,13 @@ export default {
               this.OrderQuantity++;
             }
 
+        },
+        checkAvailability: function(){
+            this.$http.get('/api/availability/'+ this.Product.id+'/'+this.Grade).then((response) => {
+            if (response.data.success) {
+                  this.Available = response.data.payload;
+                }
+            });
         },
         ProductAdd: function() {
             var payload = {
