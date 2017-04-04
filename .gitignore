@@ -8,3 +8,4 @@ Homestead.yaml
 /resources/views/sites/admin/material/src/node_modules/
 /resources/views/sites/customer/exzo/src/node_modules/
 /public/product_images/
+composer.lock
