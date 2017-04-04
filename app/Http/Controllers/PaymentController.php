@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Transaction;
 use AddPay\Wrapper\Client\Facades\AddPay;
 use App\Mail\orderPlaced;
+use AddPay\Client\Containers\Transaction\Transaction as AddpayTransaction;
 
 class PaymentController extends Controller
 {
@@ -22,12 +23,12 @@ class PaymentController extends Controller
 
     public function getPaymentMethods()
     {
-        $result = AddPay::setAppKey(config('addpay-client.API_APP_KEY'))->setAppSecret(config('addpay-client.API_APP_SECRET'))->getPaymentMethods();
+        $result = AddPay::setAppId(config('addpay-client.API_APP_KEY'))->setAppSecret(config('addpay-client.API_APP_SECRET'))->getPaymentMethods();
 
         if (!$result) {
             return Response::build('Could not retrieve payment methods', 500);
         }
-
+        $result = json_decode($result->getBody());
         return (array) $result;
     }
 
@@ -61,42 +62,49 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
 
-        $result = AddPay::setAppKey(config('addpay-client.API_APP_KEY'))->setAppSecret(config('addpay-client.API_APP_SECRET'))->preparePayment([
-            'payer_firstname' => $user->billing_detail->firstname,
-            'payer_lastname' => $user->billing_detail->lastname,
-            'payer_email' => $user->billing_detail->email,
-            'trans_desc' => 'LulaBooks Online Purchase',
-            'trans_method' => $payment_method,
-            'trans_amount' => ShopKit::getShoppingCart()->getPriceTotal(),
-            'trans_currency' => 'ZAR',
-            'notify_url' => str_replace('localhost', 'lulabooks.co.za', URL::to('/api/payment/notify/')),
-            'return_url' => str_replace('localhost', 'lulabooks.co.za', URL::to('/payment'))
-        ]);
+        $transaction = new AddpayTransaction();
+        $transaction->setPayerFirstname($user->billing_detail->firstname);
+        $transaction->setPayerLastname($user->billing_detail->lastname);
+        $transaction->setPayerEmail($user->billing_detail->email);
+        $transaction->setMethod($payment_method); // see getPaymentMethods()
+        $transaction->setAmountValue(ShopKit::getShoppingCart()->getPriceTotal()*100);
+        $transaction->setAmountCurrency('ZAR');
+        $transaction->setAppReturnUrl(str_replace('localhost', 'lulabooks.co.za', URL::to('/payment')));
+        $transaction->setAppNotifyUrl(str_replace('localhost', 'lulabooks.co.za', URL::to('/api/payment/notify/')));
+        $transaction->setApiMode('live');
 
-        if (!$result) {
-            return Response::build('Could not retrieve payment methods', 500);
+        try {
+            $result = AddPay::setAppId(config('addpay-client.API_APP_KEY'))
+                            ->setAppSecret(config('addpay-client.API_APP_SECRET'))
+                            ->submitTransaction($transaction);
+            $result = json_decode($result->getBody());
+        }
+        catch (RequestException $e) {
+            return Response::build($e->getMessage(), 500);
+        } catch (ConnectException $e) {
+            return Response::build($e->getMessage(), 500);
+        } catch (ClientException $e) {
+            return Response::build($e->getMessage(), 500);
+        } catch (\Exception $e) {
+            return Response::build($e->getMessage(), 500);
         }
 
+        $transaction = new Transaction();
+        $transaction->payment_ref = $result->app->return_token;
+        $transaction->user_id = $user->id;
+        $transaction->items = json_encode(ShopKit::getShoppingCart()->getItems());
+        $transaction->status = 'UNRESOLVED';
+        $transaction->payment_method = $payment_method;
+        $transaction->payment_status = 'UNPAID';
 
-
-        if ($result->success) {
-            $transaction = new Transaction();
-            $transaction->payment_ref = $result->payload->return_token;
-            $transaction->user_id = $user->id;
-            $transaction->items = json_encode(ShopKit::getShoppingCart()->getItems());
-            $transaction->status = 'UNRESOLVED';
-            $transaction->payment_method = $payment_method;
-            $transaction->payment_status = 'UNPAID';
-
-            if($shipping === 'true' ){
-              $transaction->shipping = 'yes';
-            }
-
-            $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal();
-            $transaction->save();
-
-            ShopKit::getShoppingCart()->emptyCart();
+        if($shipping === 'true' ){
+          $transaction->shipping = 'yes';
         }
+
+        $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal();
+        $transaction->save();
+
+        ShopKit::getShoppingCart()->emptyCart();
 
         return (array) $result;
     }

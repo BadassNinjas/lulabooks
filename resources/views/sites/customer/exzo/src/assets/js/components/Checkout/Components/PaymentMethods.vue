@@ -57,19 +57,16 @@ export default {
     methods: {
         getPaymentMethods: function() {
             this.$http.get('/api/payment/methods').then((response) => {
-                this.availablePaymentMethods = response.data.payload;
+                this.availablePaymentMethods = response.data;
             });
         },
         postPaymentPrepare: function() {
             this.$http.get('/api/payment/prepare/' + this.payment_method+'/'+this.shipping).then((response) => {
-                if (response.data.success) {
-                    if (response.data.payload.trans_method != 'METH_PAYMENT_BANK_TRANSFER') {
-                        location.href = response.data.payload.redirect;
-                    } else {
-                        this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please follow the directions within the email sent to ' + response.data.payload.payer_email +
-                            ' in order to complete your transaction.';
-                    }
-                    
+                if (response.data.method != 'METH_PAYMENT_BANK_TRANSFER') {
+                    location.href = response.data.status.redirect;
+                } else {
+                    this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please follow the directions within the email sent to ' + response.data.payer.email +
+                        ' in order to complete your transaction.';
                 }
             });
         }
