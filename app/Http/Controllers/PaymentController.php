@@ -37,7 +37,7 @@ class PaymentController extends Controller
         Log::info('Pamyent notification received: ', ['data' => request()->all()]);
 
         $payment_ref = request('return_token');
-
+        Log::info($payment_ref);
         $transaction = Transaction::where('payment_ref', $payment_ref)->first();
         $transaction_status = request('trans_result');
 
@@ -61,7 +61,7 @@ class PaymentController extends Controller
     public function getPreparedPayment($payment_method,$shipping)
     {
         $user = Auth::user();
-
+        $payment_reference = '';
         $transaction = new AddpayTransaction();
         $transaction->setPayerFirstname($user->billing_detail->firstname);
         $transaction->setPayerLastname($user->billing_detail->lastname);
@@ -78,6 +78,12 @@ class PaymentController extends Controller
                             ->setAppSecret(config('addpay-client.API_APP_SECRET'))
                             ->submitTransaction($transaction);
             $result = json_decode($result->getBody());
+            foreach($result as $key => $value){
+
+              if($key ==='reference'){
+                $payment_reference = $value;
+              }
+            }
         }
         catch (RequestException $e) {
             return Response::build($e->getMessage(), 500);
@@ -90,7 +96,7 @@ class PaymentController extends Controller
         }
 
         $transaction = new Transaction();
-        $transaction->payment_ref = $result->app->return_token;
+        $transaction->payment_ref = $payment_reference;
         $transaction->user_id = $user->id;
         $transaction->items = json_encode(ShopKit::getShoppingCart()->getItems());
         $transaction->status = 'UNRESOLVED';
