@@ -16,10 +16,9 @@ use AddPay\Client\Containers\Transaction\Transaction as AddpayTransaction;
 
 class PaymentController extends Controller
 {
-    const PAYMENT_PAID = 0;
-    const PAYMENT_PENDING = 1;
-    const PAYMENT_CANCELLED = 2;
-    const PAYMENT_FAILED = 4;
+    const PAYMENT_PAID = 'processed';
+    const PAYMENT_CANCELLED = 'cancelled';
+    const PAYMENT_FAILED = 'failed';
 
     public function getPaymentMethods()
     {
@@ -34,12 +33,12 @@ class PaymentController extends Controller
 
     public function postPaymentNotification()
     {
-        Log::info('Pamyent notification received: ', ['data' => request()->all()]);
-
-        $payment_ref = request('return_token');
+        Log::info('Payment notification received: ', ['data' => request()->all()]);
+        $data = request()->all();
+        $payment_ref = $data['id'];
         Log::info($payment_ref);
         $transaction = Transaction::where('payment_ref', $payment_ref)->first();
-        $transaction_status = request('trans_result');
+        $transaction_status = $data['status']['state'];
 
         switch ($transaction_status) {
           case self::PAYMENT_PAID:
