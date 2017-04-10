@@ -33,6 +33,8 @@ class PaymentController extends Controller
 
     public function postPaymentNotification()
     {
+        Log::info('Payment Notification Hit');
+
         $data = request()->all();
 
         Log::info('Payment notification received: ', ['data' => $data]);
