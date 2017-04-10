@@ -33,14 +33,13 @@ class PaymentController extends Controller
 
     public function postPaymentNotification()
     {
-        Log::info('Payment notification received: ', ['data' => request()->all()]);
         $data = request()->all();
-        $payment_ref = $data['id'];
-        Log::info($payment_ref);
-        $transaction = Transaction::where('payment_ref', $payment_ref)->first();
-        $transaction_status = $data['status']['state'];
 
-        switch ($transaction_status) {
+        Log::info('Payment notification received: ', ['data' => $data]);
+
+        $transaction = Transaction::where('payment_ref', $data['id'])->first();
+
+        switch ($data['status']['state']) {
           case self::PAYMENT_PAID:
             $transaction->payment_status = 'PAID';
             break;
