@@ -58,9 +58,6 @@ class PaymentController extends Controller
 
     public function getPreparedPayment($payment_method,$shipping)
     {
-
-        Log::info(str_replace('localhost', 'lulabooks.co.za', URL::to('/payment')));
-
         $user = Auth::user();
         $payment_reference = '';
         $transaction = new AddpayTransaction();
