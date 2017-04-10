@@ -33,8 +33,6 @@ class PaymentController extends Controller
 
     public function postPaymentNotification()
     {
-        Log::info('Payment Notification Hit');
-
         $data = request()->all();
 
         Log::info('Payment notification received: ', ['data' => $data]);
@@ -60,6 +58,9 @@ class PaymentController extends Controller
 
     public function getPreparedPayment($payment_method,$shipping)
     {
+
+        Log::info('Prepared Payment Hit');
+
         $user = Auth::user();
         $payment_reference = '';
         $transaction = new AddpayTransaction();
