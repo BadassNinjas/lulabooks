@@ -4,20 +4,20 @@
         <h4 class="h4 col-xs-b25">payment method</h4>
         <select class="form-control simple-input" v-model="payment_method">
           <option :selected="true" :disabled="true">Select Payment Method</option>
-          <option :value="method.internal_type" v-for="method in availablePaymentMethods">{{ method.display_name }}</option>
+          <option :value="method.method" v-for="method in availablePaymentMethods">{{ method.display_name }}</option>
      </select>
         <div class="empty-space col-xs-b10"></div>
         <div class="simple-article size-2">* For credit/debit card payments, you will be redirected to the addPay payment platform to perform continue payment. Once payment has been made, a confirmation email will be sent to you and you will be returned to LulaBooks.</div>
         <div class="empty-space col-xs-b30"></div>
         <textarea class="simple-input" placeholder="Do you have any notes or special requests for your order? Enter them here."></textarea>
         <div class="empty-space col-xs-b30"></div>
-        <label class="checkbox-entry" >
+        <label class="checkbox-entry">
           <input type="checkbox" v-model="shipping">
           <span> Shipping Required?</span>
           <div class="simple-article size-1">*if you live Anywhere else besides UWC you need to tick this box</div>
         </label>
         <div class="empty-space col-xs-b30"></div>
-        <label class="checkbox-entry" >
+        <label class="checkbox-entry">
           <input type="checkbox" v-model="agreeToTerms">
           <span> Agree to Terms & Conditions</span>
         </label>
@@ -49,8 +49,8 @@ export default {
             availablePaymentMethods: [],
             payment_method: '',
             complete: false,
-            agreeToTerms:false,
-            shipping:false,
+            agreeToTerms: false,
+            shipping: false,
         }
 
     },
@@ -61,7 +61,7 @@ export default {
             });
         },
         postPaymentPrepare: function() {
-            this.$http.get('/api/payment/prepare/' + this.payment_method+'/'+this.shipping).then((response) => {
+            this.$http.get('/api/payment/prepare/' + this.payment_method + '/' + this.shipping).then((response) => {
                 if (response.data.method != 'METH_PAYMENT_BANK_TRANSFER') {
                     location.href = response.data.status.redirect;
                 } else {
