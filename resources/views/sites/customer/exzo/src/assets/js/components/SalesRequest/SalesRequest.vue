@@ -5,7 +5,7 @@
         <div v-if="isComplete">
             <div class="empty-space col-xs-b50"></div>
             <h3 class="h3">
-                Thank you! We have received your request and will be in contact with you soon!
+                We will get in cotact as soon as we have a buyer for your textbooks!!!
             </h3>
             <div class="empty-space col-xs-b50"></div>
             <div class="empty-space col-xs-b50"></div>
@@ -20,6 +20,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-lg-12">
                     <p>Do you have old books that you don't need anymore? We buy books! Enter your details and the relevant information of your book and we will get in touch as soon as possible!</p>
