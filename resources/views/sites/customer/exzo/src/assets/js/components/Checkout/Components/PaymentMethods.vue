@@ -19,7 +19,13 @@
         <div class="empty-space col-xs-b30"></div>
         <label class="checkbox-entry">
           <input type="checkbox" v-model="agreeToTerms">
-          <span> Agree to Terms & Conditions</span>
+
+          <span > 
+              Agree to 
+              <a href="docs/terms-and-conditions.pdf" alt="terms and conditions document" style="color:#fc0000">
+                <strong>Terms & Conditions</strong>
+              </a>
+          </span>
         </label>
 
         <div class="empty-space col-xs-b30"></div>

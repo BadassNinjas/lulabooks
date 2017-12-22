@@ -20,9 +20,9 @@
                                 <li :class="{ 'active': $route.name == 'FAQ'}">
                                     <router-link tag="a" to="/faq">FAQ</router-link>
                                 </li>
-                                <li :class="{ 'active': $route.name == 'Terms'}">
+                                <!-- <li :class="{ 'active': $route.name == 'Terms'}">
                                     <router-link tag="a" to="/terms">Terms and Conditions</router-link>
-                                </li>
+                                </li> -->
                                 <li :class="{ 'active': $route.name == 'About'}">
                                     <router-link tag="a" to="/about">About Us</router-link>
                                 </li>
