@@ -3,41 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use BadassNinjas\Migrator\Traits\MigratorTrait;
 
 class ProductCategory extends Model
 {
-    use MigratorTrait;
 
     public $table = 'product_category';
 
     public $timestamps = false;
-
-    protected $schema = [
-      'parent_id' => [
-        'type' => 'bigInteger',
-        'modifiers' => [
-          'nullable',
-        ],
-      ],
-      'name' => [
-        'type' => 'string',
-        'length' => 64,
-      ],
-      'sort_order' => [
-          'type' => 'integer',
-          'modifiers' => [
-            'default' => 0,
-          ],
-      ],
-      'description' => [
-        'type' => 'string',
-        'length' => 8000,
-        'modifiers' => [
-          'default' => '',
-        ],
-      ],
-    ];
 
     protected $pivots = [
       Product::class,

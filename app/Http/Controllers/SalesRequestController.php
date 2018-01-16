@@ -8,6 +8,8 @@ use App\Http\Controllers\Base\Controller;
 use BadassNinjas\Helpers\Response;
 use App\Models\SalesRequest;
 use App\Mail\saleRequestMail;
+use Illuminate\Support\Facades\Mail;
+
 
 use App\Models\User;
 
@@ -43,6 +45,8 @@ class SalesRequestController extends Controller
 
         $sales_request->save();
 
+        Mail::to($sales_request->email)->send(new SaleRequestMail($sales_request->firstname));
+        
         return Response::build($sales_request);
     }
 
