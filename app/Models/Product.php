@@ -7,9 +7,38 @@ use BadassNinjas\Migrator\Traits\MigratorTrait;
 
 class Product extends Model
 {
+    use MigratorTrait;
 
     public $table = 'product';
 
+    protected $schema = [
+      'name' => [
+        'type' => 'string',
+        'length' => 64,
+      ],
+      'caption' => [
+        'type' => 'string',
+        'length' => 512,
+      ],
+      'price' => [
+        'type' => 'decimal',
+        'length' => '12',
+      ],
+      'detail' => [
+        'type' => 'string',
+        'length' => '16000',
+        'modifiers' => [
+          'nullable',
+        ],
+      ],
+      'type' => [
+        'type' => 'string',
+        'length' => '32',
+        'modifiers' => [
+          'default' => 'book',
+        ],
+      ],
+    ];
     protected $pivots = [
         ProductImage::class,
     ];
