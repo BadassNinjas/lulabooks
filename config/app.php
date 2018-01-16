@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        BadassNinjas\Migrator\MigratorServiceProvider::class,
+        //BadassNinjas\Migrator\MigratorServiceProvider::class,
 
         AddPay\Wrapper\Client\AddPayServiceProvider::class,
     ],
