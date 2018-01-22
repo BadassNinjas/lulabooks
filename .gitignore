@@ -1,5 +1,4 @@
 /node_modules
-/public/storage
 /vendor
 /.idea
 Homestead.json
@@ -7,5 +6,4 @@ Homestead.yaml
 .env
 /resources/views/sites/admin/material/src/node_modules/
 /resources/views/sites/customer/exzo/src/node_modules/
-/public/product_images/
 composer.lock
