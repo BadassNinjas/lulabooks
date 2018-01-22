@@ -3,45 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use BadassNinjas\Migrator\Traits\MigratorTrait;
 
 class ProductCategory extends Model
 {
-    use MigratorTrait;
-
     public $table = 'product_category';
 
     public $timestamps = false;
-
-    protected $schema = [
-      'parent_id' => [
-        'type' => 'bigInteger',
-        'modifiers' => [
-          'nullable',
-        ],
-      ],
-      'name' => [
-        'type' => 'string',
-        'length' => 64,
-      ],
-      'sort_order' => [
-          'type' => 'integer',
-          'modifiers' => [
-            'default' => 0,
-          ],
-      ],
-      'description' => [
-        'type' => 'string',
-        'length' => 8000,
-        'modifiers' => [
-          'default' => '',
-        ],
-      ],
-    ];
-
-    protected $pivots = [
-      Product::class,
-    ];
 
     protected $with = [
       'children',
@@ -50,12 +17,14 @@ class ProductCategory extends Model
     protected $appends = [
       'product_count',
     ];
+
     protected $fillable = [
         'parent_id',
         'sort_order',
         'description',
         'name',
     ];
+
     public function delete()
     {
         $category_child_keys = $this->children->keyBy('id')->keys();
@@ -70,22 +39,27 @@ class ProductCategory extends Model
         }
         parent::delete();
     }
+
     public function getProductCountAttribute($value)
     {
         return $this->product_count();
     }
+
     public function products()
     {
         return $this->belongsToMany('App\Models\Product');
     }
+
     public function product_count()
     {
         return $this->products()->count();
     }
+
     public function children()
     {
         return $this->hasMany(self::class, 'parent_id', 'id')->orderBy('sort_order', 'ASC');
     }
+    
     public function parent()
     {
         return $this->hasOne(self::class, 'id', 'parent_id');
