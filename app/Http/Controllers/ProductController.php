@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Base\Controller;
-use BadassNinjas\Helpers\Response;
+use App\Helpers\Response;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\BookProduct;

@@ -6,7 +6,7 @@ use App\Http\Controllers\Base\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductImage;
-use BadassNinjas\Helpers\Response;
+use App\Helpers\Response;
 use BadassNinjas\RFS\Facades\RFS;
 use Illuminate\Support\Facades\Cache;
 

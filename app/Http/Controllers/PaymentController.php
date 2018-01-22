@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Base\Controller;
-use BadassNinjas\Helpers\Response;
+use App\Helpers\Response;
 use AddPay\Http\Client\AddPayHttpClient;
 use ShopKit\Core\ShopKit;
 use Illuminate\Support\Facades\Auth;

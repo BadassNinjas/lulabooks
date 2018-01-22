@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Base\Controller;
-use BadassNinjas\Helpers\Response;
+use App\Helpers\Response;
 use ShopKit\Core\ShopKit;
 use App\Models\Product;
 use Log;
