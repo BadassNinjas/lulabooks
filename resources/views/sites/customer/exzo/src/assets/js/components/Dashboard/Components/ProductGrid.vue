@@ -3,7 +3,7 @@
     <div class="empty-space col-xs-b35 col-md-b20"></div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="h4 col-xs-b25 text-center">Available Products</div>
+            <div class="h4 col-xs-b25 text-center">Available Books</div>
         </div>
         <div class="col-sm-4" v-for="product in Products">
             <div class="product-shortcode style-1">
