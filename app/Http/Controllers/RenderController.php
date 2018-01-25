@@ -14,12 +14,15 @@ class RenderController extends Controller
 {
     public function getRenderProducts()
     {
-        return Response::build(Product::get());
+        return Response::build(Product::paginate(12));
     }
 
     public function getRenderProductsOnCategory($category_id)
     {
-        return Response::build(ProductCategory::find($category_id)->products);
+        $ProductCategory = ProductCategory::find($category_id)->products()->paginate(9);
+        
+
+        return Response::build($ProductCategory);
     }
 
     public function getWorldCountries()

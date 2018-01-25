@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://lulabooks.mobi'),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +174,7 @@ return [
         Snowfire\Beautymail\BeautymailServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        AddPay\Wrapper\Client\AddPayServiceProvider::class,
     ],
 
     /*
@@ -222,6 +223,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'AddPayHttp' => AddPay\Wrapper\Client\Facades\AddPay::class,
+        
 
     ],
 
