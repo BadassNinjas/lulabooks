@@ -3,10 +3,10 @@
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="row">
         <div class="col-md-9 col-md-push-3">
-            <div class="align-inline spacing-1" v-if="products.length">
+            <div class="align-inline spacing-1" v-if="Products.data.length">
                 <div class="h4"><span v-if="category.parent">{{ category.parent.name }} &raquo; </span> {{ category.name }}</div>
             </div>
-            <div class="align-inline spacing-1" v-else-if="products.length == 0">
+            <div class="align-inline spacing-1" v-else-if="Products.data.length == 0">
                 <div class="h6 text-center" v-if="category">There are no items listed under {{ category.name }} specifically, select a sub-category on the left to explore this section.</div>
                 <div class="h6 text-center" v-else-if="category == null">Select a category to browser by.</div>
             </div>
@@ -14,8 +14,8 @@
             <div class="products-content">
                 <div class="products-wrapper">
                     <div class="row nopadding">
-                        <div v-if="products.length">
-                            <div class="col-sm-4" v-for="product in products">
+                        <div v-if="Products.data.length">
+                            <div class="col-sm-4" v-for="product in Products.data">
                                 <div class="product-shortcode style-1">
                                     <div class="title">
                                         <div class="simple-article size-1 color col-xs-b5"><a href="#">{{ category.name }}</a></div>
@@ -47,6 +47,10 @@
                     </div>
                 </div>
             </div>
+            <vue-pagination  :pagination="Products"
+                @paginate="getProducts()"
+                :offset="4">
+            </vue-pagination>
         </div>
         <div class="col-md-3 col-md-pull-9">
             <div class="h4 col-xs-b10">categories</div>
@@ -55,6 +59,7 @@
             </ul>
         </div>
     </div>
+    
     <div class="empty-space col-xs-b50"></div>
     <div class="empty-space col-xs-b50"></div>
     <div class="empty-space col-xs-b50"></div>
@@ -67,7 +72,7 @@
 </template>
 <script>
 import CategoryTree from './Components/CategoryTree.vue';
-
+import VuePagination from './../Shared/Pagination.vue'
 export default {
     watch: {
         '$route' (to, from) {
@@ -82,18 +87,24 @@ export default {
         });
 
         this.$root.$on('ProductsOnCategoryDataReceived', function(products) {
-            that.products = products;
+            that.Products = products;
         });
 
         this.$root.$on('ClickedCategory', function(category) {
-            that.$root.$emit('ProductsOnCategoryDataRequested', category.id);
+            var payload = {
+                catId: category.id,
+                currentPage: 1
+            }
+
+            that.$root.$emit('ProductsOnCategoryDataRequested',payload);
             that.category = category;
         });
 
         this.checkRoute(this.$route);
     },
     components: {
-        CategoryTree
+        CategoryTree,
+        VuePagination
     },
     data: function() {
         return {
@@ -101,21 +112,45 @@ export default {
                 name: ''
             },
             categories: [],
-            products: []
+            Products: {
+                total: 0,
+                per_page: 2,
+                from: 1,
+                to: 0,
+                current_page: 1
+            },
+            offset: 4,
         }
     },
     methods: {
+        getProducts() {
+            
+            this.$http.get('/api/render/products/'+this.category.id+'?page='+this.Products.current_page).then((response) => {
+                if (response.data.success) {
+                    
+                    this.Products = response.data.payload;
+                }
+            });
+        },
         setProductView: function(product) {
             this.$root.$emit('ProductViewSelected', product);
         },
         checkRoute: function(to) {
-            if (to.params.category_id) {
+            var that = this;
+
+            if(to.params.category_id) {
                 this.$http.get('/api/categories/' + to.params.category_id).then((response) => {
 
                     if (response.data.success) {
                         this.category = response.data.payload;
                         this.categories = this.category.children;
-                        this.$root.$emit('ProductsOnCategoryDataRequested', to.params.category_id);
+
+                        var payload = {
+                            catId: to.params.category_id,
+                            currentPage: that.Products.current_page
+                        };
+
+                        this.$root.$emit('ProductsOnCategoryDataRequested', payload);
                     }
                 });
             } else {

@@ -1,11 +1,11 @@
 <template>
 <div>
-    <div class="container">
-        <div class="text-center">
+    <div class="container" style="padding-left: 0;">
+        <div class="">
             <div class="h2">CHECKOUT</div>
-            <div class="title-underline center"><span></span></div>
+            <div class="title-underline center" style="padding-left:15px;"><span></span></div>
         </div>
-        <div class="row">
+        <div class="row" style="padding-top:60px">
             <div class="col-md-6 col-xs-b50 col-md-b0">
                 <div v-if="state.phase == 'check-auth'">
                     <h3 class="h3"><i class="fa fa-refresh fa-spin"></i> &nbsp;&nbsp; Checking auth...</h3>

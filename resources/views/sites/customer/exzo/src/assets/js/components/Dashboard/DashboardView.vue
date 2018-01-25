@@ -7,7 +7,7 @@
                 <div class="content">
                     <div class="cell-view">
                         <h4 class="title h4 col-xs-b5"><span class="color">BUY BOOKS</span> <br> FOR ALL YOUR SUBJECTS</h4>
-                        <router-link class="button size-2 style-3" tag="a" to="/products">
+                        <router-link class="button size-2 style-3" tag="a" :to="'/products/'+5">
                             <span class="button-wrapper">
                               <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
                             <span class="text">BUY BOOKS</span>

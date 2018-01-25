@@ -6,7 +6,7 @@
             <div class="popup-align">
                 <div class="row">
                     <div class="col-sm-6 col-xs-b30 col-sm-b0">
-                        <div>
+                       <div>
                             <section class="regular slider" v-if="Product.images.length">
                                 <hr/>
                                 <center>
@@ -29,7 +29,7 @@
                                 </div>
                             </section>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-sm-6">
                         <div class="simple-article size-3 grey col-xs-b5" v-if="Product.category != null">{{ Product.category.name }}</div>
                         <div class="h3 col-xs-b25">{{ Product.name }}</div>
@@ -60,13 +60,13 @@
                                 <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">#{{ Product.id }}</span></div>
                             </div>
                             <div class="col-sm-6 col-sm-text-right">
-                            <div class="rate-wrapper align-inline">
+                            <!--<div class="rate-wrapper align-inline">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
-                            </div>
+                            </div>-->
                             <div v-if="Product.type === 'book'">
                               <div v-if="Available === 0" class="unavailable simple-article size-3 col-xs-b5">out of stock </span></div>
                               <div v-else class="available simple-article size-3 col-xs-b5">In stock </span></div>
@@ -87,7 +87,7 @@
                           <span class=" available ">Delivered in the next 48 hours (only to UWC students)</span>
                         </div>
                         <div class="row col-xs-b40">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" style="padding-bottom: 10px">
                                 <div class="h6 detail-data-title size-1">quantity:</div>
                             </div>
                             <div class="col-sm-6">
@@ -158,6 +158,7 @@ export default {
         }
 
     },
+    
     watch: {
       Grade: function(){
         this.$http.get('/api/availability/'+ this.Product.id+'/'+this.Grade).then((response) => {

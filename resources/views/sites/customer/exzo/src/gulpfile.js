@@ -19,5 +19,9 @@ elixir(mix => {
         './assets/js/plugins/global.js',
         './assets/js/plugins/jquery.sumoselect.min.js',
         './assets/js/compiled/app.js',
+        './assets/js/plugins/isotope.pkgd.min.js',
+        './assets/js/plugins/jquery-ui.min.js',
+        './assets/js/plugins/jquery.throttle.js',
+        './assets/js/plugins/jquery.knob.js',
     ], '../../../../../../public/js/customer.min.js');
 });

@@ -111,8 +111,8 @@ export default {
                 }
             });
         },
-        getProductsOnCategory: function(categoryId) {
-            this.$http.get('/api/render/products/' + categoryId).then((response) => {
+        getProductsOnCategory: function(payload) {
+            this.$http.get('/api/render/products/' + payload.catId+'?page='+payload.currentPage).then((response) => {
                 if (response.data.success) {
                     this.$root.$emit('ProductsOnCategoryDataReceived', response.data.payload);
                 }

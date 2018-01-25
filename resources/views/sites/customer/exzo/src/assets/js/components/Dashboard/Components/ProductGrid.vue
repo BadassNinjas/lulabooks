@@ -1,11 +1,12 @@
-<template>
+<template style="transition: all 4s ease">
 <div>
     <div class="empty-space col-xs-b35 col-md-b20"></div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="h4 col-xs-b25 text-center">Available Products</div>
+            <div class="h4 col-xs-b25 text-center">FEATURE BOOKS</div>
         </div>
-        <div class="col-sm-4" v-for="product in Products">
+        
+      <div class="col-sm-4" v-for="product in Products.data">
             <div class="product-shortcode style-1">
                 <div class="title">
                     <div class="simple-article size-1 color col-xs-b5"><a href="#">{{ product.category != null ? product.category.name : 'Uncategorized' }}</a></div>
@@ -35,30 +36,59 @@
             <div class="empty-space col-xs-b35 col-md-b20"></div>
         </div>
     </div>
+    <vue-pagination  :pagination="Products"
+                  @paginate="getProducts()"
+                  :offset="4">
+    </vue-pagination>
     <div class="empty-space col-xs-b35 col-md-b70"></div>
 </div>
+    
 </template>
 
 <script>
+
+import VuePagination from './../../Shared/Pagination.vue';
+
 export default {
     mounted() {
         var that = this;
 
-        this.$root.$on('ProductListDataReceived', function(Products) {
+/*this.$root.$on('ProductListDataReceived', function(Products) {
             that.Products = Products;
-        });
-
-        that.$root.$emit('ProductListDataRequested');
+        });*/
+        that.getProducts();
+        //that.$root.$emit('ProductListDataRequested');
     },
     data() {
         return {
-            Products: [],
+            Products: {
+                total: 0,
+                per_page: 2,
+                from: 1,
+                to: 0,
+                current_page: 1
+            },
+            offset: 4,
+
         }
+    },
+    components: {
+        VuePagination
     },
     methods: {
         setProductview: function(Product) {
             this.$root.$emit('ProductViewSelected', Product);
+        },
+        getProducts() {
+            
+            this.$http.get('/api/render/products?page='+this.Products.current_page).then((response) => {
+                if (response.data.success) {
+                    
+                    this.Products = response.data.payload;
+                }
+            });
         }
+
     }
 }
 </script>
