@@ -12,6 +12,7 @@
         "predis/predis": "^1.1",
         "snowfire/beautymail": "dev-master",
         "addpay/addpay-laravel-client": "^0.0.2"
+        
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
