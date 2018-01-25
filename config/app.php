@@ -174,7 +174,7 @@ return [
         Snowfire\Beautymail\BeautymailServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        AddPay\Wrapper\Client\AddPayServiceProvider::class,
+        
     ],
 
     /*
