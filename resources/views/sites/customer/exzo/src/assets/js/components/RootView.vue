@@ -193,7 +193,7 @@ export default {
         background-color: #fff;
         width: 100vw;
         height: 200vw;
-        line-height: 600px;
+        line-height: 100vw;
         opacity: 0.8;
         
     }
