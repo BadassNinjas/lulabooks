@@ -193,9 +193,16 @@ export default {
         background-color: #fff;
         width: 100vw;
         height: 200vw;
-        line-height: 100vw;
+        line-height: 50vw;
         opacity: 0.8;
         
+    }
+
+    @media screen and (max-width: 780px) {
+        .loader {
+            line-height: 215vw;
+            height: 300vw;
+        }
     }
 
 </style>
