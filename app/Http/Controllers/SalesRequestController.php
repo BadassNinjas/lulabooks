@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Base\Controller;
 use App\Helpers\Response;
 use App\Models\SalesRequest;
-use App\Mail\saleRequestMail;
+use App\Mail\saleRequestUserMail;
 
 use App\Models\User;
 
@@ -43,7 +43,11 @@ class SalesRequestController extends Controller
 
         $sales_request->save();
 
-        return Response::build($sales_request);
+        $fullname = $sales_request->firstname." ".$sales_request->lastname;
+
+        \Mail::to("lux589@gmail.com")->send(new saleRequestUserMail($fullname));
+
+        return Response::build("success success");
     }
 
 

@@ -2,6 +2,8 @@ window._ = require('lodash');
 window.Vue = require('vue');
 window.VueResource = require('vue-resource');
 
+var PulseLoader = require('vue-spinner/src/PulseLoader.vue');
+
 Vue.use(window.VueResource);
 
 Vue.http.interceptors.push((request, next) => {
@@ -15,5 +17,6 @@ import router from './config/router.js';
 window.Vue = new Vue({
     el: '#app',
     router: router,
-    render: h => h(entry)
+    render: h => h(entry),
+
 });

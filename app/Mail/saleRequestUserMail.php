@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 
-class saleRequestMail extends Mailable
+class saleRequestUserMail extends Mailable
 {
     use Queueable, SerializesModels;
     protected $name;
@@ -30,10 +30,9 @@ class saleRequestMail extends Mailable
      */
     public function build()
     {
-      return $this->from('info@lulabooks.mobi', 'info@lulabooks.mobi')
-      ->cc('info@lulabooks.mobi','lulabooks admin')
-      ->subject('Sales Request Filed') 
-      ->view('email.salesrequest')
+      return $this->from('info@lulabooks.mobi','info@lulabooks.mobi')
+      ->subject('Lulabooks Sale Request Captured') 
+      ->view('email.salesrequestuser')
       ->with('name', $this->name);
     }
 }

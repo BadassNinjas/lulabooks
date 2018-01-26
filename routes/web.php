@@ -44,7 +44,7 @@ Route::get('/api/render/products/{category_id}', 'RenderController@getRenderProd
 Route::get('/api/render/countries', 'RenderController@getWorldCountries');
 Route::get('/api/render/regions/{country_id}', 'RenderController@getRegionsOnCountry');
 Route::get('/api/render/cities/{region_id}', 'RenderController@getCitiesOnRegion');
-
+Route::get('/testEmail','RenderController@testSendingEmail');
 Route::get('/api/sales/request', 'SalesRequestController@getSalesRequests');
 Route::post('/api/sales/request', 'SalesRequestController@submitSalesRequest');
 Route::put('/api/sales/request/{requestId}', 'SalesRequestController@submitSalesRequest');

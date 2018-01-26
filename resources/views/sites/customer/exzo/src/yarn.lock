@@ -2267,9 +2267,9 @@ laravel-elixir-webpack-official@^1.0.2:
     webpack "2.1.0-beta.15 - 2.1.0-beta.22"
     webpack-stream "github:jeroennoten/webpack-stream#patch-1"
 
-laravel-elixir@^6.0.0-9:
-  version "6.0.0-16"
-  resolved "https://registry.yarnpkg.com/laravel-elixir/-/laravel-elixir-6.0.0-16.tgz#a8dd0c6bffc30f9977d8db40eb756ebf11647d18"
+laravel-elixir@^6.0.0-17:
+  version "6.0.0-17"
+  resolved "https://registry.yarnpkg.com/laravel-elixir/-/laravel-elixir-6.0.0-17.tgz#3046d8f098ba6d9e0d7d586696fa5b33c8d524b0"
   dependencies:
     clean-css "^3.4.12"
     cli-table "^0.3.1"
@@ -3899,6 +3899,10 @@ sax@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
+scss-loader@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/scss-loader/-/scss-loader-0.0.1.tgz#eae017b9e0f38c12a532db25c220b902fb34e671"
+
 scss-tokenizer@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"
@@ -4536,6 +4540,10 @@ vue-resource@^1.0.3:
 vue-router@^2.0.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.7.0.tgz#16d424493aa51c3c8cce8b7c7210ea4c3a89aff1"
+
+vue-spinner@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue-spinner/-/vue-spinner-1.0.3.tgz#eecd3f79f63a815b690e9d54b199ab65be695499"
 
 vue-style-loader@^1.0.0:
   version "1.0.0"
