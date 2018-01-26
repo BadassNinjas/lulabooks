@@ -1,5 +1,8 @@
 <template>
 <div>
+    <div class="loader" v-if="loader">
+        <rise-loader :loading="true" color="#dd4d42" :size="size"></rise-loader>
+    </div>
     <div id="loader-wrapper"></div>
     <div id="content-block">
         <page-header></page-header>
@@ -27,6 +30,7 @@ import PageHeader from './Shared/Header/HeaderView.vue';
 import PageFooter from './Shared/Footer/FooterView.vue';
 import ProductView from './Dashboard/Components/ProductView.vue';
 import SearchResultView from './Dashboard/Components/SearchResultView.vue';
+import RiseLoader from './../../../node_modules/vue-spinner/src/RiseLoader.vue'
 
 export default {
     created() {
@@ -77,6 +81,9 @@ export default {
         });
         this.$root.$on('ProductAvailabilityDataRequested', function(productId) {
             that.getProductAvailability(productId);
+        });
+        this.$root.$on('activateLoader',function(){
+            that.loading();
         });
     },
     mounted() {
@@ -157,6 +164,9 @@ export default {
         },
         setUserAuthData: function(user) {
             this.user = user;
+        },
+        loading: function(){
+            this.loader = !this.loader;
         }
     },
     components: {
@@ -165,12 +175,27 @@ export default {
         ProductView,
         SearchResultView,
         Store,
-        Auth
+        Auth,
+        RiseLoader
     },
     data: function() {
         return {
             user: null,
+            loader: false
         }
     }
 }
 </script>
+<style>
+    .loader {
+        position: absolute;
+        z-index: 200;
+        background-color: #fff;
+        width: 100vw;
+        height: 200vw;
+        line-height: 600px;
+        opacity: 0.8;
+        
+    }
+
+</style>

@@ -9,9 +9,12 @@ use App\Models\ProductImage;
 use App\Helpers\Response;
 use BadassNinjas\RFS\Facades\RFS;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\Mail;
 
 class RenderController extends Controller
 {
+    
+
     public function getRenderProducts()
     {
         return Response::build(Product::paginate(12));
@@ -25,6 +28,12 @@ class RenderController extends Controller
         return Response::build($ProductCategory);
     }
 
+    public function testSendingEmail(){
+
+        \Mail::raw('Test Email', function ($message){
+            $message->to('lux589@gmail.com');
+        });
+    }
     public function getWorldCountries()
     {
         $countries = Cache::get('geo.countries', Country::orderBy('name', 'ASC')->whereHas('regions')->get());

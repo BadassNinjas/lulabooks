@@ -1,5 +1,6 @@
 <template>
 <div class="row">
+    
     <div class="col-lg-7">
         <h4 class="h4 col-xs-b25">Book Sales Request</h4>
         <div v-if="isComplete">
@@ -12,6 +13,7 @@
             <div class="empty-space col-xs-b50"></div>
             <div class="empty-space col-xs-b50"></div>
         </div>
+        
         <form v-on:submit.prevent="submitRequest()" v-if="!isComplete">
             <div class="row" v-if="error">
                 <div class="col-lg-12">
@@ -20,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            
+           
             <div class="row">
                 <div class="col-lg-12">
                     <p>Do you have old books that you don't need anymore? We buy books! Enter your details and the relevant information of your book and we will get in touch as soon as possible!</p>
@@ -122,12 +124,17 @@
             </ul>
         </p>
     </div>
+    
 </div>
+
 </template>
 <script>
+
+
 export default {
     mounted() {
         this.addBook();
+
     },
     data: function() {
         return {
@@ -142,13 +149,15 @@ export default {
             success: false,
             error: false,
             result: false,
+            isComplete: false
+
         }
     },
-    computed: {
+   /* computed: {
         isComplete: function() {
             return (this.books.length > 0 && this.books.length == this.booksDone);
         }
-    },
+    },*/
     methods: {
         addBook: function() {
             var that = this;
@@ -162,6 +171,8 @@ export default {
         submitRequest: function() {
             var that = this;
 
+            that.$root.$emit('activateLoader');
+
             this.books.forEach(function(entry) {
                 var payload = that.payload;
                 payload.name = entry.name;
@@ -169,10 +180,20 @@ export default {
                 payload.grade = entry.grade;
 
                 that.$http.post('/api/sales/request', payload).then((response) => {
+
                     that.booksDone++;
+                    
+                    that.isComplete = !that.isComplete;
+
+                    that.$root.$emit('activateLoader');
+                    
+                    console.log(response.data);
                 });
             });
         }
     }
 }
 </script>
+
+
+
