@@ -66,6 +66,7 @@ export default {
 
         this.$root.$on('ProductsOnCategoryDataRequested', function(categoryId) {
             that.getProductsOnCategory(categoryId);
+            //that.loader = !that.loader;
         });
 
         this.$root.$on('BillingDetailDataUpdateRequested', function(payload) {
@@ -121,7 +122,9 @@ export default {
         getProductsOnCategory: function(payload) {
             this.$http.get('/api/render/products/' + payload.catId+'?page='+payload.currentPage).then((response) => {
                 if (response.data.success) {
+                    //this.loader = !this.loader;
                     this.$root.$emit('ProductsOnCategoryDataReceived', response.data.payload);
+                    
                 }
             });
         },
@@ -202,6 +205,7 @@ export default {
         .loader {
             line-height: 215vw;
             height: 300vw;
+
         }
     }
 

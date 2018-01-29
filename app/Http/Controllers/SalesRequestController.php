@@ -8,8 +8,10 @@ use App\Http\Controllers\Base\Controller;
 use App\Helpers\Response;
 use App\Models\SalesRequest;
 use App\Mail\saleRequestUserMail;
-
+use App\Mail\saleRequestAdminMail;
 use App\Models\User;
+use Log;
+
 
 class SalesRequestController extends Controller
 {
@@ -43,9 +45,15 @@ class SalesRequestController extends Controller
 
         $sales_request->save();
 
+
         $fullname = $sales_request->firstname." ".$sales_request->lastname;
 
-        \Mail::to("lux589@gmail.com")->send(new saleRequestUserMail($fullname));
+        \Mail::to($sales_request->email)->send(new saleRequestUserMail($fullname));
+
+        
+       
+        \Mail::to('wananaluckyl@gmail.com','lucky')->send(new saleRequestAdminMail($sales_request));
+        
 
         return Response::build("success success");
     }
