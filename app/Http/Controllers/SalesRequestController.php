@@ -17,7 +17,7 @@ class SalesRequestController extends Controller
 {
     public function submitSalesRequest($requestId = null)
     {
-        $input = ['firstname', 'lastname', 'grade', 'name', 'isbn', 'email', 'phone'];
+        $input = ['firstname', 'lastname', 'grade', 'name', 'isbn', 'email', 'phone',];
 
         if (Auth::check() && (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_SUPERADMIN)) {
             $input = array_merge($input, ['price', 'status']);
@@ -50,9 +50,11 @@ class SalesRequestController extends Controller
 
         \Mail::to($sales_request->email)->send(new saleRequestUserMail($fullname));
 
+        //\Mail::to(request()->adminEmail)->send(new saleRequestUserMail($fullname));
+
         
-       
-        \Mail::to('wananaluckyl@gmail.com','lucky')->send(new saleRequestAdminMail($sales_request));
+        //\Mail::to(request()->adminEmail)->send(new saleRequestAdminMail($sales_request));
+        
         
 
         return Response::build("success success");

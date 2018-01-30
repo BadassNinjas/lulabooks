@@ -30,7 +30,7 @@ class saleRequestUserMail extends Mailable
      */
     public function build()
     {
-      return $this->from('info@lulabooks.mobi','info@lulabooks.mobi')
+      return $this->from('info@lulabooks.mobi','Lulabooks')
       ->subject('Lulabooks Sale Request Captured') 
       ->view('email.salesrequestuser')
       ->with('name', $this->name);

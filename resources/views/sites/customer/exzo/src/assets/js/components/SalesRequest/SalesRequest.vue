@@ -143,6 +143,7 @@ export default {
                 lastname: '',
                 phone: '',
                 email: '',
+                adminEmail: 'luxolo@platinumseed.com'
             },
             books: [],
             booksDone: 0,
@@ -188,6 +189,7 @@ export default {
                     that.$root.$emit('activateLoader');
                     
                     console.log(response.data);
+                    
                 });
             });
         }

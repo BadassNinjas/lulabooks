@@ -30,16 +30,9 @@ class saleRequestAdminMail extends Mailable
      */
     public function build()
     {
-      return $this->from('info@lulabooks.mobi')
-      ->cc('lux@lulabooks.mobi')
-      ->subject('A User has just submitted a Sales Request on lulabooks website') 
+      return $this->from('info@lulabooks.mobi','Lulabooks')
+      ->subject('Sales Request Received') 
       ->view('email.salesrequestadmin')
-      ->with(['fullname' => $this->saleReq->firstname. " ".$this->saleReq->firstname,
-      'email' => $this->saleReq->email,
-      'phone' => $this->saleReq->phone,
-      'book_name' => $this->saleReq->name,
-      'book_isbn' => $this->saleReq->isbn,
-      'book_grade' => $this->saleReq->grade,
-      ]);
+      ->with(['fullname' => $this->saleReq->firstname,'email' => $this->saleReq->email,'phone' => $this->saleReq->phone,'book_name' => $this->saleReq->name,'book_isbn' => $this->saleReq->isbn,'book_grade' => $this->saleReq->grade]);
     }
 }
