@@ -19,8 +19,8 @@
                         </td>
                         
                         <td>
-                            <div class="simple-article size-3 grey">R {{ (item.price*item.grade) }} X{{ item.quantity }}</div>
-                            <div class="simple-article size-1">TOTAL: R {{ (item.price*(item.quantity*item.grade)) }}</div>
+                            <div class="simple-article size-3 grey">R {{ (item.price*item.grade).toFixed(2) }} X{{ item.quantity }}</div>
+                            <div class="simple-article size-1">TOTAL: R {{ (item.price*(item.quantity*item.grade)).toFixed(2) }}</div>
                         </td>
                     </tr>
                 </tbody>
@@ -34,7 +34,7 @@
                 cart subtotal
             </div>
             <div class="col-xs-6 col-xs-text-right">
-                <div class="color">R {{ ShoppingCart.total }}</div>
+                <div class="color">R {{ (ShoppingCart.total).toFixed(2) }}</div>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
                 order total
             </div>
             <div class="col-xs-6 col-xs-text-right">
-                <div class="color">R {{ ShoppingCart.total }}</div>
+                <div class="color">R {{ (ShoppingCart.total).toFixed(2) }}</div>
             </div>
         </div>
     </div>
