@@ -13,6 +13,7 @@ use App\Models\Transaction;
 use AddPay\Wrapper\Client\Facades\AddPay;
 use App\Mail\orderPlaced;
 use AddPay\Client\Containers\Transaction\Transaction as AddpayTransaction;
+use AddPay\Foundation\Protocol\API\OpenAPI;
 
 class PaymentController extends Controller
 {
@@ -22,20 +23,21 @@ class PaymentController extends Controller
 
     public function getPaymentMethods()
     {
-        $result = AddPay::setAppId(config('addpay-client.API_APP_KEY'))->setAppSecret(config('addpay-client.API_APP_SECRET'))->getPaymentMethods();
+        $api = new OpenAPI();
 
-        if (!$result) {
-            return Response::build('Could not retrieve payment methods', 500);
-        }
-        $result = json_decode($result->getBody());
-        return (array) $result;
+        $http = $api->services()
+                    ->withType('transaction')
+                    ->withIntent('SALE')
+                    ->get();
+        
+        return $http->all();
+        
     }
 
     public function postPaymentNotification()
     {
+        Log::info('onPostPayment notification');
         $data = request()->all();
-
-        Log::info('Payment notification received: ', ['data' => $data]);
 
         $transaction = Transaction::where('payment_ref', $data['id'])->first();
 
@@ -60,41 +62,34 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
         $payment_reference = '';
-        $transaction = new AddpayTransaction();
-        $transaction->setPayerFirstname($user->billing_detail->firstname);
-        $transaction->setPayerLastname($user->billing_detail->lastname);
-        $transaction->setPayerEmail($user->billing_detail->email);
-        $transaction->setMethod($payment_method); // see getPaymentMethods()
-        $transaction->setAmountValue(ShopKit::getShoppingCart()->getPriceTotal()*100);
-        $transaction->setAmountCurrency('ZAR');
-        $transaction->setAppReturnUrl(str_replace('localhost', 'lulabooks.co.za', URL::to('/payment')));
-        $transaction->setAppNotifyUrl(str_replace('localhost', 'lulabooks.co.za', URL::to('/api/payment/notify/')));
-        $transaction->setApiMode('live');
 
-        try {
-            $result = AddPay::setAppId(config('addpay-client.API_APP_KEY'))
-                            ->setAppSecret(config('addpay-client.API_APP_SECRET'))
-                            ->submitTransaction($transaction);
-            $result = json_decode($result->getBody());
-            foreach($result as $key => $value){
+        $api = new OpenAPI();
 
-              if($key ==='reference'){
-                $payment_reference = $value;
-              }
-            }
+        $http = $api->transactions()
+                    ->instantiate()
+                    ->withReference('LULPURCHASE'.rand(1,9).rand(0,9).rand(1,9))
+                    ->withDescription('Online store book purchase')
+                    ->withCustomerFirstname($user->billing_detail->firstname)
+                    ->withCustomerLastname($user->billing_detail->lastname)
+                    ->withCustomerEmail($user->billing_detail->email)
+                    ->withServiceIntent('SALE')
+                    ->withServiceKey($payment_method)
+                    ->withAmountValue(ShopKit::getShoppingCart()->getPriceTotal())
+                    ->withAmountCurrencyCode('ZAR')
+                    ->withNotifyUrl('https://lulabooks.dev/api/payment/notify')
+                    ->create();
+
+        if ($http->succeeds()) {
+            
+        } else {
+            $errorCode = $http->getErrorCode();
+            $errorMsg  = $http->getErrorMessage();
+
+            Log::info("Dang it! Error '{$errorCode}' with message '{$errorMsg}'.");
         }
-        catch (RequestException $e) {
-            return Response::build($e->getMessage(), 500);
-        } catch (ConnectException $e) {
-            return Response::build($e->getMessage(), 500);
-        } catch (ClientException $e) {
-            return Response::build($e->getMessage(), 500);
-        } catch (\Exception $e) {
-            return Response::build($e->getMessage(), 500);
-        }
-
+       
         $transaction = new Transaction();
-        $transaction->payment_ref = $payment_reference;
+        $transaction->payment_ref = $http->getReference();
         $transaction->user_id = $user->id;
         $transaction->items = json_encode(ShopKit::getShoppingCart()->getItems());
         $transaction->status = 'UNRESOLVED';
@@ -110,6 +105,6 @@ class PaymentController extends Controller
 
         ShopKit::getShoppingCart()->emptyCart();
 
-        return (array) $result;
+        return $http->all();
     }
 }
