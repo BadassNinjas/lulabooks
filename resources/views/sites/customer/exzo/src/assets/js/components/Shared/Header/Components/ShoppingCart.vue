@@ -20,7 +20,7 @@
                                 <div class="simple-article size-1">QUANTITY: {{ item.quantity }}</div>
                             </td>
                             <td>
-                                <div class="simple-article size-3">R {{ item.price*item.grade }} X{{ item.quantity }}</div>
+                                <div class="simple-article size-3">R {{ (item.price*item.grade).toFixed(2) }} X{{ item.quantity }}</div>
                                 <div class="simple-article size-2"><b>R {{ (item.price * item.quantity*item.grade).toFixed(2) }}</b></div>
                             </td>
                             <td>
@@ -40,7 +40,7 @@
             <div class="empty-space col-xs-b40"></div>
             <div class="col-xs-6">
                 <div class="cell-view empty-space col-xs-b50">
-                    <div class="simple-article size-5 grey">TOTAL <span class="color"><b>R{{ ShoppingCart.total }}</b></span></div>
+                    <div class="simple-article size-5 grey">TOTAL <span class="color"><b>R{{ (ShoppingCart.total).toFixed(2) }}</b></span></div>
                 </div>
             </div>
             <div class="col-xs-6 text-right">
