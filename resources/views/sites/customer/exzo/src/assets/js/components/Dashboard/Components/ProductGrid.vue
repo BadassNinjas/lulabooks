@@ -80,11 +80,12 @@ export default {
             this.$root.$emit('ProductViewSelected', Product);
         },
         getProducts() {
-            
+            //this.$root.$emit('activateLoader');
             this.$http.get('/api/render/products?page='+this.Products.current_page).then((response) => {
                 if (response.data.success) {
                     
                     this.Products = response.data.payload;
+                    //this.$root.$emit('activateLoader');
                 }
             });
         }

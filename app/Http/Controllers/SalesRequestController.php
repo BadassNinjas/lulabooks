@@ -8,14 +8,16 @@ use App\Http\Controllers\Base\Controller;
 use App\Helpers\Response;
 use App\Models\SalesRequest;
 use App\Mail\saleRequestUserMail;
-
+use App\Mail\saleRequestAdminMail;
 use App\Models\User;
+use Log;
+
 
 class SalesRequestController extends Controller
 {
     public function submitSalesRequest($requestId = null)
     {
-        $input = ['firstname', 'lastname', 'grade', 'name', 'isbn', 'email', 'phone'];
+        $input = ['firstname', 'lastname', 'grade', 'name', 'isbn', 'email', 'phone',];
 
         if (Auth::check() && (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_SUPERADMIN)) {
             $input = array_merge($input, ['price', 'status']);
@@ -43,9 +45,17 @@ class SalesRequestController extends Controller
 
         $sales_request->save();
 
+
         $fullname = $sales_request->firstname." ".$sales_request->lastname;
 
-        \Mail::to("lux589@gmail.com")->send(new saleRequestUserMail($fullname));
+        \Mail::to($sales_request->email)->send(new saleRequestUserMail($fullname));
+
+        //\Mail::to(request()->adminEmail)->send(new saleRequestUserMail($fullname));
+
+        
+        //\Mail::to(request()->adminEmail)->send(new saleRequestAdminMail($sales_request));
+        
+        
 
         return Response::build("success success");
     }

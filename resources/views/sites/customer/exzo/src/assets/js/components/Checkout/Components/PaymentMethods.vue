@@ -9,7 +9,7 @@
         <br>
         <br>
         <select class="form-control simple-input" v-model="payment_method">
-          <option :value="method.method" v-for="method in availablePaymentMethods">{{ method.display_name }}</option>
+          <option :value="method.key" v-for="method in availablePaymentMethods"><img :src="method.icon"/>{{ method.label }}</option>
      </select>
         <div class="empty-space col-xs-b10"></div>
         <div class="simple-article size-2">* For credit/debit card payments, you will be redirected to the addPay payment platform to perform continue payment. Once payment has been made, a confirmation email will be sent to you and you will be returned to LulaBooks.</div>
@@ -89,9 +89,10 @@ export default {
             });
         },
         postPaymentPrepare: function() {
+            this.$root.$emit('activateLoader')
             this.$http.get('/api/payment/prepare/' + this.payment_method + '/' + this.shipping).then((response) => {
-                if (response.data.method != 'METH_PAYMENT_BANK_TRANSFER') {
-                    location.href = response.data.status.redirect;
+                if (response.data.method != 'OFFLINE') {
+                    location.href = response.data.direct;
                 } else {
                     this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please follow the directions within the email sent to ' + response.data.payer.email +
                         ' in order to complete your transaction.';
