@@ -82,6 +82,11 @@ export default {
         }
 
     },
+    watch: {
+        shipping: function(){
+            this.$root.$emit('ShippingRequired');
+        }
+    },
     methods: {
         getPaymentMethods: function() {
             this.$http.get('/api/payment/methods').then((response) => {
@@ -89,12 +94,14 @@ export default {
             });
         },
         postPaymentPrepare: function() {
+            window.scrollTo(0, 0);
             this.$root.$emit('activateLoader')
             this.$http.get('/api/payment/prepare/' + this.payment_method + '/' + this.shipping).then((response) => {
-                if (response.data.method != 'OFFLINE') {
+                if (response.data.service.key != 'OFFLINE') {
                     location.href = response.data.direct;
                 } else {
-                    this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please follow the directions within the email sent to ' + response.data.payer.email +
+                    this.$root.$emit('activateLoader')
+                    this.complete = 'Thank you, an email has been sent to you as confirmation of your order. Please follow the directions within the email sent to ' + response.data.customer.email +
                         ' in order to complete your transaction.';
                 }
             });

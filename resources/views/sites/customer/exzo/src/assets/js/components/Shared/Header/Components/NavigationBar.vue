@@ -18,7 +18,7 @@
                                     <router-link tag="a" :to="'/products/' + category.id">{{ category.name }}</router-link>
                                 </li>
                                 <li :class="{ 'active': $route.name == 'FAQ'}">
-                                    <router-link tag="a" to="/faq">FAQ</router-link>
+                                    <router-link tag="a" to="/faq">How It Works</router-link>
                                 </li>
                                 <!-- <li :class="{ 'active': $route.name == 'Terms'}">
                                     <router-link tag="a" to="/terms">Terms and Conditions</router-link>

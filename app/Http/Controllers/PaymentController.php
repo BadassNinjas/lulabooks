@@ -61,9 +61,18 @@ class PaymentController extends Controller
     public function getPreparedPayment($payment_method,$shipping)
     {
         $user = Auth::user();
-        $payment_reference = '';
 
         $api = new OpenAPI();
+
+        $transaction = new Transaction();
+
+        $shipping_fee = 0;
+
+        
+        if($shipping === 'true' ){
+          $transaction->shipping = 'yes';
+          $shipping_fee = 70;
+        }
 
         $http = $api->transactions()
                     ->instantiate()
@@ -74,7 +83,7 @@ class PaymentController extends Controller
                     ->withCustomerEmail($user->billing_detail->email)
                     ->withServiceIntent('SALE')
                     ->withServiceKey($payment_method)
-                    ->withAmountValue(ShopKit::getShoppingCart()->getPriceTotal())
+                    ->withAmountValue(ShopKit::getShoppingCart()->getPriceTotal()+$shipping_fee)
                     ->withAmountCurrencyCode('ZAR')
                     ->withNotifyUrl('https://lulabooks.dev/api/payment/notify')
                     ->create();
@@ -88,7 +97,7 @@ class PaymentController extends Controller
             Log::info("Dang it! Error '{$errorCode}' with message '{$errorMsg}'.");
         }
        
-        $transaction = new Transaction();
+        
         $transaction->payment_ref = $http->getReference();
         $transaction->user_id = $user->id;
         $transaction->items = json_encode(ShopKit::getShoppingCart()->getItems());
@@ -96,11 +105,8 @@ class PaymentController extends Controller
         $transaction->payment_method = $payment_method;
         $transaction->payment_status = 'UNPAID';
 
-        if($shipping === 'true' ){
-          $transaction->shipping = 'yes';
-        }
+        $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal()+$shipping_fee;
 
-        $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal();
         $transaction->save();
 
         ShopKit::getShoppingCart()->emptyCart();

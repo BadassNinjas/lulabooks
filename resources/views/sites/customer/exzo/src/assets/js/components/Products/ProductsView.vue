@@ -15,7 +15,7 @@
                 <div class="products-wrapper">
                     <div class="row nopadding">
                         <div v-if="Products.data.length">
-                            <div class="col-sm-4" v-for="product in Products.data">
+                            <div class="col-sm-4 col-xs-6" v-for="product in Products.data">
                                 <div class="product-shortcode style-1">
                                     <div class="title">
                                         <div class="simple-article size-1 color col-xs-b5"><a href="#">{{ category.name }}</a></div>
@@ -53,7 +53,7 @@
             </vue-pagination>
         </div>
         <div class="col-md-3 col-md-pull-9">
-            <div class="h4 col-xs-b10">categories</div>
+            <div class="h4 col-xs-b10">UWC Faculty Courses</div>
             <ul class="categories-menu transparent">
                 <category-tree :categories="categories"></category-tree>
             </ul>
@@ -124,7 +124,7 @@ export default {
     },
     methods: {
         getProducts() {
-            
+            window.scrollTo(0, 0);
             this.$http.get('/api/render/products/'+this.category.id+'?page='+this.Products.current_page).then((response) => {
                 if (response.data.success) {
                     

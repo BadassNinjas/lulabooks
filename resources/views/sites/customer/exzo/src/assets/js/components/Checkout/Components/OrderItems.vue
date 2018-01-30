@@ -44,7 +44,8 @@
                 shipping and handling
             </div>
             <div class="col-xs-6 col-xs-text-right">
-                <div class="color">free shipping for UWC students</div>
+                <div class="color" v-if="shipping">R70</div>
+                <div class="color" v-else >R0</div>
             </div>
         </div>
     </div>
@@ -54,7 +55,8 @@
                 order total
             </div>
             <div class="col-xs-6 col-xs-text-right">
-                <div class="color">R {{ (ShoppingCart.total).toFixed(2) }}</div>
+                <div class="color" v-if="shipping">R {{ (ShoppingCart.total+70).toFixed(2) }}</div>
+                <div class="color" v-else >R {{ (ShoppingCart.total).toFixed(2) }}</div>
             </div>
         </div>
     </div>
@@ -69,13 +71,20 @@ export default {
             that.ShoppingCart = ShoppingCart;
         });
         this.$root.$emit('ShoppingCartDataRequested');
+
+        this.$root.$on('ShippingRequired', function(ShoppingCart) {
+            that.shipping = !that.shipping;
+        });
+
     },
     data() {
         return {
             ShoppingCart: {
                 items: [],
                 total: '0.00',
-            }
+            },
+            shippingPrice: 70,
+            shipping: false
         }
     },
 }

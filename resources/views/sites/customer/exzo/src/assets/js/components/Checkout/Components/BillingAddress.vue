@@ -1,7 +1,7 @@
 <template>
 <div>
     <form v-on:submit.prevent="submitBillingDetails()">
-        <h4 class="h4 col-xs-b25">billing details</h4>
+        <h4 class="h4 col-xs-b25">Shipping details</h4>
         <div class="alert alert-danger" v-if="error">
             <p>{{ error }}</p>
         </div>

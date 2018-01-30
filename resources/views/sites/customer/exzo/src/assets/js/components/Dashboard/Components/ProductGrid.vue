@@ -3,7 +3,7 @@
     <div class="empty-space col-xs-b35 col-md-b20"></div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="h4 col-xs-b25 text-center">FEATURE BOOKS</div>
+            <div class="h4 col-xs-b25 text-center">All Books</div>
         </div>
         
       <div class="col-sm-4" v-for="product in Products.data">
@@ -77,10 +77,12 @@ export default {
     },
     methods: {
         setProductview: function(Product) {
+            
             this.$root.$emit('ProductViewSelected', Product);
         },
         getProducts() {
             //this.$root.$emit('activateLoader');
+            window.scrollTo(0, 500);
             this.$http.get('/api/render/products?page='+this.Products.current_page).then((response) => {
                 if (response.data.success) {
                     
