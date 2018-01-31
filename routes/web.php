@@ -13,6 +13,7 @@
 Route::get('/api/products', 'ProductController@getProducts');
 Route::get('/api/products/{productId}', 'ProductController@getProduct');
 Route::put('/api/products/{productId}', 'ProductController@createOrUpdateProduct');
+Route::get('/api/products/assoc/{productId}', 'ProductController@findAssocProduct');
 Route::delete('/api/products/{productId}', 'ProductController@deleteProduct');
 Route::delete('/api/products/deleteImage/{imageId}', 'ProductController@deleteImage');
 Route::post('/api/products', 'ProductController@createOrUpdateProduct');

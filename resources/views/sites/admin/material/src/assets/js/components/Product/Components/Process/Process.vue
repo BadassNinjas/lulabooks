@@ -86,12 +86,14 @@ export default {
         var that = this;
 
         this.$root.$on('CreateProductReceived', function(data) {
-            that.product = data;
+            that.payload = data;
+            that.product = that.payload;
             that.dropzoneOptions.url = '/api/products/' + that.product.id + '/image';
             that.process.step = 2;
         });
         this.$root.$on('UpdateProductReceived', function(data) {
-            that.product = data;
+            that.payload = data;
+            that.product = that.payload;
             that.dropzoneOptions.url = '/api/products/' + that.product.id + '/image';
             that.process.step = 2;
         });
@@ -125,12 +127,14 @@ export default {
             dropzoneOptions: {},
             categoryTreeData: [],
             categoryTreeControlsEnabled: false,
+            payload: null
         }
     },
     methods: {
         instance: function(withId) {
             this.reset(withId);
             this.fetchProduct(withId);
+            this.fetchAssocProduct(withId);
             this.fetchCategories();
         },
         reset: function(withId) {
@@ -157,10 +161,12 @@ export default {
         onImageuploadSuccess: function(file) {},
         updateProductDetail: function() {
             this.product.detail = this.$refs.SummerNote.getContent();
-            this.$http.put('/api/products/' + this.product.id, this.product).then((response) => {
+            var payload = {
+                product: this.product,
+            }
+            this.$http.put('/api/products/' + this.product.id, payload).then((response) => {
                 if (response.data.success) {
-                    this.product = response.data.payload;
-
+                    this.product = response.data.payload
                 } else {
                     alert(response.data.payload.error.desc);
                 }
@@ -173,6 +179,17 @@ export default {
                 }
             });
         },
+        fetchAssocProduct: function(id){
+            var that = this;
+            this.$http.get('/api/products/assoc/' + id).then((response) => {
+                
+                if (response.data.success) {
+
+                    this.$root.$emit('assocProduct', response.data.payload);
+                    
+                }
+            });
+        },
         fetchCategories: function() {
             var that = this;
             this.$http.get('/api/categories').then((response) => {
@@ -182,9 +199,10 @@ export default {
             });
         },
         updateProductCategory: function(categoryId) {
-            var payload = this.product;
-
-            payload.category_id = categoryId;
+            var payload = {
+                product: this.product,
+                category_id: categoryId
+            }
 
             this.$http.put('/api/products/' + this.product.id, payload).then((response) => {
                 if (response.data.success) {

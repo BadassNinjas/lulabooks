@@ -143,21 +143,27 @@ export default {
                 }
             });
         },
-        postProduct: function(product) {
-          this.$http.post('/api/products', product).then((response) => {
+        postProduct: function(payload) {
+          this.$http.post('/api/products', payload).then((response) => {
               if (response.data.success) {
+                
                   this.$root.$emit('CreateProductReceived', response.data.payload);
               } else {
                   alert(response.data.payload.error.desc);
               }
           });
         },
-        putProduct: function(product) {
-          this.$http.put('/api/products/' + product.id, product).then((response) => {
-              if (response.data.success) {
-                  this.$root.$emit('UpdateProductReceived', response.data.payload);
-              } else {
-                  alert(response.data.payload.error.desc);
+        putProduct: function(payload) {
+            
+            var that = this;
+            this.$http.put('/api/products/'+payload.product.id, payload).then((response) => {
+                
+                if (response.data.success) {
+                    
+                    that.$root.$emit('UpdateProductReceived', response.data.payload);
+                } else {
+                    
+                    alert(response.data.payload.error.desc);
               }
           });
         },

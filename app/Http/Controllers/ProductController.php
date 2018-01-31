@@ -28,6 +28,26 @@ class ProductController extends Controller
         return Response::build($product);
     }
 
+    public function findAssocProduct($productId){
+
+        $product = Product::find($productId);
+        
+        if(!is_null($product)){
+            if($product->type === 'book'){
+                $bookproduct = BookProduct::where('product_id','=',$product->id)->where('grade','=','new')->first();
+    
+                return Response::build($bookproduct);
+            }
+            else{
+                $stationeryproduct = StationeryProduct::where('product_id','=',$product->id)->first();
+    
+                return Response::build($stationeryproduct);
+            }
+        }
+
+        return Response::build('failed to find product');
+    }
+
     public function getProducts()
     {
         return Response::build(Product::paginate(request('per_page', 15)));
@@ -35,8 +55,9 @@ class ProductController extends Controller
 
     public function createOrUpdateProduct($productId = null)
     {
-        $product = Product::updateOrCreate(['id' => $productId], request()->all());
-
+        $product = Product::updateOrCreate(['id' => $productId],request('product'));
+        Log::info('our product '.$product);
+        
         if (request('category_id', false) && !is_null($product)) {
             if (!is_null($product->category)) {
                 while (($category = $product->category) != null) {
@@ -55,23 +76,31 @@ class ProductController extends Controller
             }
           }
 
-        $product->type = request('type');
+        $product->type = request('product')['type'];
         $product->save();
 
         $grade = request('grade');
 
         if($product->type === 'book'){
-
+    
             if(!is_null($grade)){
               $bookproduct = BookProduct::updateOrCreate(['product_id'=>$product->id,'grade'=>$grade]);
-              $bookproduct->in_stock = (int)$bookproduct->in_stock+(int)request('stock');
+              $bookproduct->in_stock = (int)request('in_stock');
               $bookproduct->save();
+              Log::info($bookproduct);
+            }
+            else {
+                $bookproduct = BookProduct::updateOrCreate(['product_id'=>$product->id,'grade'=>'new']);
+                $bookproduct->in_stock = (int)request('in_stock');
+                $bookproduct->save();
+                Log::info($bookproduct);
             }
 
         }
         else{
+            Log::info('type'. $product->type);
             $stationeryproduct = StationeryProduct::updateOrCreate(['product_id'=>$product->id]);
-            $stationeryproduct->in_stock = (int)$stationeryproduct->in_stock+(int)request('stock');
+            $stationeryproduct->in_stock = request('in_stock');
             $stationeryproduct->save();
         }
 
@@ -83,36 +112,36 @@ class ProductController extends Controller
           $product = Product::find($productId);
           $productAvailableCount = 0;
 
-          if($product->type === 'stationery'){
-            $productAvailableCount = $product->stationeryproduct()->where('product_id','=',$product->id)->first()->in_stock;
+          if(!is_null($product)){
+            if($product->type === 'stationery'){
+                $productAvailableCount = StationeryProduct::where('product_id','=',$product->id)->first()->in_stock;
+                
+              }
+              else{
+                $bookproduct = $product->bookproduct()->where('product_id','=',$product->id)->get();
+    
+                switch ($grade) {
+                  case '0.9':
+                    if(!is_null($bookproduct->where('grade','=','A-GRADE')->first())){
+                      $productAvailableCount = $product->bookproduct()->where('grade','=','A-GRADE')->first()->in_stock;
+                    }
+    
+                    break;
+                  case '0.85':
+                    if(!is_null($bookproduct->where('grade','=','B-GRADE')->first())){
+                      $productAvailableCount = $product->bookproduct()->where('grade','=','B-GRADE')->first()->in_stock;
+                    }
+                    break;
+                  default:
+                    if(!is_null($bookproduct->where('grade','=','new')->first())){
+                      $productAvailableCount = $product->bookproduct()->where('grade','=','new')->first()->in_stock;
+                    }
+                    break;
+                }
+    
+              }
+              Log::info($productAvailableCount);
           }
-          else{
-            $bookproduct = $product->bookproduct()->where('product_id','=',$product->id)->get();
-
-            switch ($grade) {
-              case '0.9':
-                if(!is_null($bookproduct->where('grade','=','A-GRADE')->first())){
-                  $productAvailableCount = $bookproduct->where('grade','=','A-GRADE')->first()->in_stock;
-                }
-
-                break;
-              case '0.85':
-                if(!is_null($bookproduct->where('grade','=','B-GRADE')->first())){
-                  $productAvailableCount = $bookproduct->where('grade','=','B-GRADE')->first()->in_stock;
-                }
-                break;
-              default:
-                if(!is_null($bookproduct->where('grade','=','new')->first())){
-                  $productAvailableCount = $bookproduct->where('grade','=','new')->first()->in_stock;
-                }
-                break;
-            }
-
-          }
-
-
-
-
 
           return Response::build((int)$productAvailableCount);
     }
