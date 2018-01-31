@@ -81,6 +81,7 @@ class PaymentController extends Controller
                     ->withCustomerFirstname($user->billing_detail->firstname)
                     ->withCustomerLastname($user->billing_detail->lastname)
                     ->withCustomerEmail($user->billing_detail->email)
+                    ->withCustomerMobile($user->billing_detail->phone)
                     ->withServiceIntent('SALE')
                     ->withServiceKey($payment_method)
                     ->withAmountValue(ShopKit::getShoppingCart()->getPriceTotal()+$shipping_fee)
@@ -97,13 +98,14 @@ class PaymentController extends Controller
             Log::info("Dang it! Error '{$errorCode}' with message '{$errorMsg}'.");
         }
        
-        
+        Log::info('payment_ref: '.$http->getReference());
         $transaction->payment_ref = $http->getReference();
         $transaction->user_id = $user->id;
         $transaction->items = json_encode(ShopKit::getShoppingCart()->getItems());
         $transaction->status = 'UNRESOLVED';
         $transaction->payment_method = $payment_method;
         $transaction->payment_status = 'UNPAID';
+        $transaction->addpay_transaction_id = $http->getId();
 
         $transaction->items_total = ShopKit::getShoppingCart()->getPriceTotal()+$shipping_fee;
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Base\Controller;
 use App\Helpers\Response;
 use App\Models\Transaction;
+use AddPay\Foundation\Protocol\API\OpenAPI;
 
 class OrdersController extends Controller
 {
@@ -28,6 +29,22 @@ class OrdersController extends Controller
         return Response::build($order);
     }
 
+    public function checkAddPayStatus($addpay_transaction_id){
+
+        $api = new OpenAPI();
+
+        $http = $api->transactions()
+                    ->find($addpay_transaction_id);
+
+        if ($http->succeeds()) {
+            return Response::build($http->getStatus());
+        } else {
+            $errorCode = $http->getErrorCode();
+            $errorMsg  = $http->getErrorMessage();
+
+            return Response::build("Dang it! Error '{$errorCode}' with message '{$errorMsg}'.");
+        }
+    }
 
     public function getOrders()
     {

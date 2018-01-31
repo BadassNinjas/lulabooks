@@ -68,6 +68,21 @@
                                         <td>Order Shipping Required?</td>
                                           <td>{{ order.shipping }}</td>
                                     </tr>
+                                    <tr>
+                                        <td>AddPay Transaction Id</td>
+                                          <td>{{ order.addpay_transaction_id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AddPay Transaction Status</td>
+                                          <td style="text-align: center;line-height: 20px;">
+                                            <button class="btn btn-sm btn-primary" @click.prevent="getAddPayStatus()">
+                                                Get Status
+                                            </button>
+                                          </td>
+                                          <td>
+                                            {{status}}
+                                          </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <br/><br/>
@@ -200,6 +215,7 @@ export default {
             error: false,
             state: 'listing',
             order: {},
+            status:'not updated',
             columns: [{
                     name: 'id',
                     title: 'ID',
@@ -274,6 +290,16 @@ export default {
         showEditScreen: function(order) {
             this.order = order;
             this.state = 'editing';
+        },
+         getAddPayStatus: function(){
+             this.$http.get('/api/transaction/'+this.order.addpay_transaction_id).then((response) => {
+                if (response.data.success) {
+                    this.status = response.data.payload;
+                }
+                else{
+                    this.status = "ajax request failed";
+                }
+            });
         },
         showConfirmRequestDelete: function(requestId) {
             var that = this;

@@ -55,6 +55,7 @@ Route::get('/api/orders', 'OrdersController@getOrders');
 Route::put('/api/orders/{orderid}', 'OrdersController@submitOrder');
 Route::delete('/api/orders/{orderid}', 'OrdersController@deleteOrder');
 
+Route::get('/api/transaction/{addpay_transaction_id}','OrdersController@checkAddPayStatus');
 Route::post('/api/contact', 'ContactController@submitContactMessage');
 
 Route::post('/api/checkout/billing', 'CheckoutController@updateBillingDetail');
