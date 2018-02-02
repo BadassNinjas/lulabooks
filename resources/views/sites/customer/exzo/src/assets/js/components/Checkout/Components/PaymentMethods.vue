@@ -9,7 +9,7 @@
         <br>
         <br>
         <select class="form-control simple-input" v-model="payment_method">
-          <option :value="method.key" v-for="method in availablePaymentMethods"><img :src="method.icon"/>{{ method.label }}</option>
+          <option :value="method.key" v-for="method in availablePaymentMethods"><img :src="method.icon" />{{ method.label }}</option>
      </select>
         <div class="empty-space col-xs-b10"></div>
         <div class="simple-article size-2">* For credit/debit card payments, you will be redirected to the addPay payment platform to perform continue payment. Once payment has been made, a confirmation email will be sent to you and you will be returned to LulaBooks.</div>
@@ -36,7 +36,7 @@
         <div class="empty-space col-xs-b30"></div>
         <div v-if="agreeToTerms" class="button block size-2 style-3" style="transition:background-color 2s ease" @click="postPaymentPrepare()">
             <span class="button-wrapper">
-             <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+             <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt="button-icon"></span>
             <span class="text">place order</span>
             </span>
             <input type="submit" />
@@ -47,7 +47,7 @@
             <div class="button block size-2 style-3 disabled" style="transition:background-color 2s ease" @click="postPaymentPrepare()">
            
             <span class="button-wrapper">
-             <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+             <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt="button-icon"></span>
             <span class="text">place order</span>
             </span>
             <input type="submit" />

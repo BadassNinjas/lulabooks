@@ -11,7 +11,7 @@
     <div class="cart-toggle hidden-xs hidden-sm">
         <div class="cart-overflow">
             <div class="cart-entry clearfix" v-for="item in ShoppingCart.items">
-                <a class="cart-entry-thumbnail" href="#"><img :src="item.originalItem.images[0].path" alt="" style="width:60px;height:60px;" /></a>
+                <a class="cart-entry-thumbnail" href="#"><img :src="item.originalItem.images[0].path" alt="cart-icon" style="width:60px;height:60px;" /></a>
                 <div class="cart-entry-description">
                     <table>
                         <tr>
@@ -46,7 +46,7 @@
             <div class="col-xs-6 text-right">
                 <router-link tag="a" class="button size-2 style-3" to="/checkout">
                     <span class="button-wrapper">
-                           <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                           <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt="button-icon"></span>
                     <span class="text">proceed to checkout</span>
                     </span>
                 </router-link>

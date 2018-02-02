@@ -4,14 +4,14 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="icon-description-shortcode style-1">
-                <img class="icon" src="/img/customer/exzo/icon-25.png" alt="">
+                <img class="icon" src="/img/customer/exzo/icon-25.png" alt="button-icon">
                 <div class="title h6">address</div>
                 <div class="description simple-article size-2">ROBERT SOBUKWE ROAD, UWC, BELLVILLE</div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="icon-description-shortcode style-1">
-                <img class="icon" src="/img/customer/exzo/icon-23.png" alt="">
+                <img class="icon" src="/img/customer/exzo/icon-23.png" alt="button-icon">
                 <div class="title h6">phone</div>
                 <div class="description simple-article size-2" style="line-height: 26px;">
                     <a href="tel:+27799479680">+27 79 947 9680</a>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-sm-4">
             <div class="icon-description-shortcode style-1">
-                <img class="icon" src="/img/customer/exzo/icon-28.png" alt="">
+                <img class="icon" src="/img/customer/exzo/icon-28.png" alt="button-icon">
                 <div class="title h6">email</div>
                 <div class="description simple-article size-2"><a href="mailto:info@lulabooks.mobi">info@lulabooks.mobi</a></div>
             </div>
@@ -79,7 +79,7 @@
             <div class="col-lg-4">
                 <div class="button block size-2 style-3">
                     <span class="button-wrapper">
-                 <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                 <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt="button-icon"></span>
                     <span class="text">Submit</span>
                     </span>
                     <input type="submit" />

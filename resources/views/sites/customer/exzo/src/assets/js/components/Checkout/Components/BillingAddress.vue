@@ -55,7 +55,7 @@
             <div class="col-sm-12">
                 <div class="button block size-2 style-3">
                     <span class="button-wrapper">
-                   <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                   <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt="button-icon"></span>
                     <span class="text">Next</span>
                     </span>
                     <input type="submit" />

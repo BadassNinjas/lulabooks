@@ -85,7 +85,7 @@
                 <div class="col-lg-4">
                     <div class="button block size-2 style-3">
                         <span class="button-wrapper">
-                     <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                     <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt="button-icon"></span>
                         <span class="text">Submit</span>
                         </span>
                         <input type="submit" />

@@ -7,7 +7,7 @@
             <div class="footer-top">
                 <div class="row">
                     <div class="col-sm-4 col-md-3 col-xs-b30 col-md-b0">
-                        <img src="/img/lulalogowhite.png" alt="" style="height:60px;width:150px;" />
+                        <img alt="lula-logo" src="/img/lulalogowhite.png" style="height:60px;width:150px;" />
                         <div class="empty-space col-xs-b20"></div>
                         <div class="simple-article size-2 light fulltransparent">We are all about buying and selling University text books. We have a full range of new, second hand and e-books and are focussed on providing convenience and cutting costs for students.</div>
                     </div>
@@ -51,9 +51,9 @@
                     </div>
                     <div class="col-lg-4 col-xs-text-center col-lg-text-right">
                         <div class="footer-payment-icons">
-                            <a class="entry"><img src="img/customer/exzo/thumbnail-6.jpg" alt="" /></a>
-                            <a class="entry"><img src="img/customer/exzo/thumbnail-8.jpg" alt="" /></a>
-                            <a class="entry"><img src="img/customer/exzo/thumbnail-9.jpg" alt="" /></a>
+                            <a class="entry"><img src="img/customer/exzo/thumbnail-6.jpg" alt="payment-methods" /></a>
+                            <a class="entry"><img src="img/customer/exzo/thumbnail-8.jpg" alt="payment-methods" /></a>
+                            <a class="entry"><img src="img/customer/exzo/thumbnail-9.jpg" alt="payment-methods" /></a>
                         </div>
                     </div>
                 </div>

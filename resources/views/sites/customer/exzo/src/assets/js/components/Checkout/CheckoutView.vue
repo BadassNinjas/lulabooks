@@ -15,7 +15,7 @@
                     <br/><br/>
                     <div class="button block size-2 style-3" @click="state.phase = 'billing-address'">
                         <span class="button-wrapper">
-                     <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt=""></span>
+                     <span class="icon"><img src="/img/customer/exzo/icon-4.png" alt="button"></span>
                         <span class="text">Continue as <b>{{ user.email }}</b></span>
                         </span>
                         <input type="button" />
