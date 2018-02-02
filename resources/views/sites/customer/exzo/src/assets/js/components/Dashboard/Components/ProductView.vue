@@ -127,14 +127,14 @@
 
 <script>
 export default {
-    name: 'books',
+    name: 'Home',
     metaInfo: {
         // title will be injected into parent titleTemplate
-        title: this.product.name + ' | Lulabooks',
+        title: 'Home | Lulabooks',
         meta: [
             { charset: 'utf-8' },
-            { name: 'description', content: 'Buy ' + this.product.name + ' for the price of '+this.product.price },
-            { name: 'keywords', content: this.product.name+' buy, sell, new, secondhand, textbooks, academic, university, sell your books, delivery, online payment' }
+            { name: 'description', content: 'We sell new and second hand university textbooks at very low prices. Visit us now to view our selection' },
+            { name: 'keywords', content: 'buy, sell, new, secondhand, textbooks, academic, university, sell your books, delivery, online payment' }
 
         ]
     },
@@ -169,7 +169,6 @@ export default {
         }
 
     },
-    
     watch: {
       Grade: function(){
         this.$http.get('/api/availability/'+ this.Product.id+'/'+this.Grade).then((response) => {
