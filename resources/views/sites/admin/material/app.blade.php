@@ -8,11 +8,11 @@
 
         <title>LulaBooks Admin</title>
 
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
+        <link rel="dns-prefetch" href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="/css/admin.min.css">
-        <link rel="apple-touch-icon-precomposed" href="/img/lulafavicon180.png">
-        <link rel="icon" href="/img/lulafavicon196.png">
+        <link rel="dns-prefetch" rel="stylesheet" href="/css/admin.min.css">
+        <link rel="dns-prefetch" rel="apple-touch-icon-precomposed" href="/img/lulafavicon180.png">
+        <link rel="dns-prefetch" rel="icon" href="/img/lulafavicon196.png">
     </head>
     <body>
           <div id="app"></div>
