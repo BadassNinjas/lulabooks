@@ -132,6 +132,17 @@
 
 
 export default {
+    name: 'sale-request',
+    metaInfo: {
+        // title will be injected into parent titleTemplate
+        title: 'Sale Request | Lulabooks',
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'description', content: 'We sell your secondhand textbooks on your behalf. sign up to sell your books' },
+            { name: 'keywords', content: 'sell, secondhand, textbooks, academic, university, sell your books, delivery, online payment' }
+
+        ]
+    },
     mounted() {
         this.addBook();
 

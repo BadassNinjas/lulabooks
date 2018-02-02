@@ -127,6 +127,17 @@
 
 <script>
 export default {
+    name: 'books',
+    metaInfo: {
+        // title will be injected into parent titleTemplate
+        title: this.product.name + ' | Lulabooks',
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'description', content: 'Buy ' + this.product.name + ' for the price of '+this.product.price },
+            { name: 'keywords', content: this.product.name+' buy, sell, new, secondhand, textbooks, academic, university, sell your books, delivery, online payment' }
+
+        ]
+    },
     mounted() {
         var that = this;
 

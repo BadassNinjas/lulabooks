@@ -90,8 +90,20 @@
     <div class="empty-space col-xs-b50"></div>
 </div>
 </template>
+
 <script>
 export default {
+    name: 'contact',
+    metaInfo: {
+        // title will be injected into parent titleTemplate
+        title: 'Contact Us | Lulabooks',
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'description', content: 'We sell new and second hand university textbooks at very low prices. Visit us now to view our selection' },
+            { name: 'keywords', content: 'buy, sell, new, secondhand, textbooks, academic, university, sell your books, delivery, online payment' }
+
+        ]
+    },
     data: function() {
         return {
             payload: {

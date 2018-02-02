@@ -74,6 +74,16 @@
 import CategoryTree from './Components/CategoryTree.vue';
 import VuePagination from './../Shared/Pagination.vue'
 export default {
+    name: 'Textbooks',
+    metaInfo: {
+        title: 'Textbooks | Lulabooks',
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'description', content: 'We sell new and second hand university textbooks at very low prices. Visit us now to view our selection' },
+            { name: 'keywords', content: 'buy, sell, new, secondhand, textbooks, academic, university, sell your books, delivery, online payment' }
+
+        ]
+    },
     watch: {
         '$route' (to, from) {
             this.checkRoute(to);

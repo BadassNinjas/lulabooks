@@ -2,9 +2,12 @@ window._ = require('lodash');
 window.Vue = require('vue');
 window.VueResource = require('vue-resource');
 
+import Meta from 'vue-meta'
+
 var PulseLoader = require('vue-spinner/src/PulseLoader.vue');
 
 Vue.use(window.VueResource);
+Vue.use(Meta);
 
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', System.CSRF);
