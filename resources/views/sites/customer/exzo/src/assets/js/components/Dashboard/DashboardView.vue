@@ -48,7 +48,7 @@ export default {
     name: 'Home',
     metaInfo: {
         // title will be injected into parent titleTemplate
-        title: 'Home | Lulabooks',
+        title: 'Lulabooks',
         meta: [
             { charset: 'utf-8' },
             { name: 'description', content: 'We sell new and second hand university textbooks at very low prices. Visit us now to view our selection' },
