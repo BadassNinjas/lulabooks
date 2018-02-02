@@ -9,7 +9,7 @@
         <title>LulaBooks</title>
         <!-- Facebook Meta -->
         <meta property="og:image" content="{{asset('img/favicon.png')}}"/>
-        <meta property="og:title" content="LAMPS Skills Network exhibition signup page"/>
+        <meta property="og:title" content="Lulabooks online store"/>
         <meta property="og:url" content="https://lulabooks.mobi"/>
         <meta property="og:description" content="We Sell New and Second hand Textbooks at very low prices"/>
         
