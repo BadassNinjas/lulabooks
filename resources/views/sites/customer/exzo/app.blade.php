@@ -7,13 +7,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
 
         <title>LulaBooks</title>
-
+        <!-- Facebook Meta -->
+        <meta property="og:image" content="{{asset('img/favicon.png')}}"/>
+        <meta property="og:title" content="LAMPS Skills Network exhibition signup page"/>
+        <meta property="og:url" content="https://lulabooks.mobi"/>
+        <meta property="og:description" content="We Sell New and Second hand Textbooks at very low prices"/>
+        
+        <!--Twitter Meta -->
+        <meta propery="twitter:card" content="summary" />
+        <meta propery="twitter:title" content="Lulabooks online store" />
+        <meta propery="twitter:image" content="{{asset('img/favicon.png')}}" />
+        <meta propery="twitter:description" content="We Sell New and Second hand Textbooks at very low prices" />
+        <link rel="icon" href="{{asset('img/favicon.png')}}" type="image/x-icon"/>
+        <link rel="shortcut icon" href="{{asset('img/favicon.png')}}" type="image/x-icon"/>
         <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway:700,900" rel="stylesheet">
 
-        <link rel="stylesheet" href="/css/customer.min.css">
+        <link rel="stylesheet" href="{{asset('css/customer.min.css')}}">
 
-        <link rel="apple-touch-icon-precomposed" href="/img/lulalogo.png">
-        <link rel="icon" href="/img/favicon.png">
+        <link rel="apple-touch-icon-precomposed" href="{{asset('img/lulalogo.png')}}">
+        <link rel="icon" href="{{asset('img/favicon.png')}}">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-92189096-1"></script>
@@ -46,7 +58,7 @@
               AuthCheckComplete: false
             }
           </script>
-          <script async defer src="/js/customer.min.js"></script>
+          <script async defer src="{{asset('js/customer.min.js')}}"></script>
           <script async defer type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     </body>
 </html>

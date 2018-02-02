@@ -17,13 +17,13 @@
                                 <div class="h6 animate-to-green"><a href="#">{{ product.name }}</a></div>
                             </div>
                             <div class="preview">
-                                <img v-if="product.images.length" :src="product.images[0].path" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
-                                <img v-else="!product.images.length" src="/img/box.png" alt="" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
+                                <img v-if="product.images.length" :src="product.images[0].path" alt="product-image" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
+                                <img v-else="!product.images.length" src="/img/box.png" alt="product-img" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                                 <div class="preview-buttons valign-middle">
                                     <div class="valign-middle-content open-popup" data-rel="ProductView" @click="setProductView(product)">
                                         <a class="button size-2 style-3" href="#">
                                             <span class="button-wrapper">
-                                                    <span class="icon"><img src="/img/customer/exzo/icon-1.png" alt=""></span>
+                                                    <span class="icon"><img src="/img/customer/exzo/icon-1.png" alt="product-image"></span>
                                             <span class="text">More Information</span>
                                             </span>
                                         </a>

@@ -10,13 +10,13 @@
                             <section class="regular slider" v-if="Product.images.length">
                                 <hr/>
                                 <center>
-                                    <img style="border: 1px solid whitesmoke; cursor: pointer; padding: 7px;" :src="image.path" width="64" height="64" v-for="image in Product.images" @click="ProductSelectedImage = image.path">
+                                    <img alt="product-image"style="border: 1px solid whitesmoke; cursor: pointer; padding: 7px;" :src="image.path" width="64" height="64" v-for="image in Product.images" @click="ProductSelectedImage = image.path">
                                 </center>
                                 <hr/>
                                 <br/>
                                 <div>
                                     <center>
-                                        <img class="img img-responsive" :src="ProductSelectedImage ? ProductSelectedImage : Product.images[0].path" />
+                                        <img alt="product-image " class="img img-responsive" :src="ProductSelectedImage ? ProductSelectedImage : Product.images[0].path" />
                                     </center>
                                 </div>
                             </section>
@@ -24,7 +24,7 @@
                                 <br/>
                                 <div>
                                     <center>
-                                        <img class="img img-responsive" src="/img/customer/box.jpg" />
+                                        <img alt="product-image"class="img img-responsive" src="/img/customer/box.jpg" />
                                     </center>
                                 </div>
                             </section>
@@ -101,7 +101,7 @@
                             <div v-if="Available !== 0" class="col-sm-6">
                                 <a class="button size-2 style-3 block" @click="ProductAdd()">
                                     <span class="button-wrapper">
-                                      <span class="icon"><img src="/img/customer/exzo/icon-3.png" alt=""></span>
+                                      <span class="icon"><img src="/img/customer/exzo/icon-3.png" alt="button-icon"></span>
                                     <span class="text">add to cart</span>
                                     </span>
                                 </a>
@@ -109,7 +109,7 @@
                             <div v-else class="col-sm-6">
                                 <a class="button size-2 style-3 block">
                                     <span class="button-wrapper">
-                                      <span class="icon"><img src="/img/customer/exzo/icon-3.png" alt=""></span>
+                                      <span class="icon"><img src="/img/customer/exzo/icon-3.png" alt="button-icon"></span>
                                     <span class="text"><strike>add to cart</strike></span>
                                     </span>
                                 </a>
