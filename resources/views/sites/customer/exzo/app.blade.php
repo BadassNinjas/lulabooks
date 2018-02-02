@@ -46,7 +46,7 @@
               AuthCheckComplete: false
             }
           </script>
-          <script defer src="/js/customer.min.js"></script>
-          <script defer type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+          <script async defer src="/js/customer.min.js"></script>
+          <script async defer type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     </body>
 </html>
