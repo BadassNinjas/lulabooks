@@ -4,6 +4,7 @@
         <div>
             <h1 style="font-weight: 300;" class="text-center">{{ process.creatingProduct ? 'Add a New Product' : 'Modify Product Properties' }}</h1>
         </div>
+
         <br><br>
         <form v-on:submit.prevent="submitForm()">
             <div>
@@ -19,7 +20,7 @@
                     <span class="input-group-addon"></span>
                     <div class="fg-line" :class="{ 'fg-toggled': product.caption.length }">
                         <input type="text" class="input-lg form-control fg-input" v-model="product.caption">
-                        <label class="fg-label">Think of a great caption to market this product!</label>
+                        <label class="fg-label">Think of a great caption for this product!</label>
                     </div>
                 </div>
                 <br>
