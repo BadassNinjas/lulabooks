@@ -17,8 +17,8 @@
         <form v-on:submit.prevent="submitRequest()" v-if="!isComplete">
             <div class="row" v-if="error">
                 <div class="col-lg-12">
-                    <div class="alert alert-danger">
-                        <p>{{ error }}</p>
+                    <div class="alert alert-danger" v-for="err in errors">
+                        <p>{{ err }}</p>
                     </div>
                 </div>
             </div>
@@ -160,6 +160,7 @@ export default {
             booksDone: 0,
             success: false,
             error: false,
+            errors:[],
             result: false,
             isComplete: false
 
@@ -183,6 +184,8 @@ export default {
         submitRequest: function() {
             var that = this;
 
+            window.scrollTo(0,0);
+
             that.$root.$emit('activateLoader');
 
             this.books.forEach(function(entry) {
@@ -193,16 +196,27 @@ export default {
 
                 that.$http.post('/api/sales/request', payload).then((response) => {
 
-                    that.booksDone++;
+                   if(response.data.success){
+                        that.booksDone++;
                     
-                    that.isComplete = !that.isComplete;
+                        that.$root.$emit('activateLoader');
+                        
+                        console.log(response.data);
+                        that.isComplete = !that.isComplete;
+                   }
+                   else{
+                       that.error = !that.error;
+                       that.errors = response.data.error.desc;
 
-                    that.$root.$emit('activateLoader');
-                    
-                    console.log(response.data);
+                       console.log(that.errors);
+                       that.$root.$emit('activateLoader');
+                   }
                     
                 });
             });
+            
+            
+
         }
     }
 }

@@ -24,16 +24,16 @@ class SalesRequestController extends Controller
         }
 
         $validator = Validator::make(request()->only($input), [
-          'firstname' => 'required',
-          'lastname' => 'required',
+          'firstname' => 'required|max:32',
+          'lastname' => 'required|max:32',
           'email' => 'required|email',
-          'phone' => 'required',
-          'name' => 'required',
-          'isbn' => 'required',
+          'phone' => 'required|max:10|min:10',
+          'name' => 'required|max:64',
+          'isbn' => 'required|max:13|min:10',
           'grade' => 'required',
       ]);
         if ($validator->fails()) {
-            return Response::build($validator->errors()->first(), 500);
+            return Response::build($validator->errors()->all(), 500);
         }
 
         $sales_request = SalesRequest::updateOrCreate(['id' => $requestId], request()->only($input));
