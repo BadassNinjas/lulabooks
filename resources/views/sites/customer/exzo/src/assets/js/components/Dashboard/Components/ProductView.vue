@@ -50,7 +50,7 @@
                           </div>
 
 
-
+                            <div class="empty-space col-xs-b20 col-sm-b30 col-md-b0 col-lg-b0"></div>
                             <div class="col-sm-6 col-sm-text-right">
                                 <div class="simple-article size-5 grey">PRICE: <span class="color" >R{{ (Product.price*Grade).toFixed(2) }}</span></div>
                             </div>
@@ -98,6 +98,7 @@
                                     <span class="plus" @click="OrderQuantityIncrease()"></span>
                                 </div>
                             </div>
+                            <div class="empty-space col-xs-b20 col-sm-b30 col-md-b0 col-lg-b0"></div>
                             <div v-if="Available !== 0" class="col-sm-6">
                                 <a class="button size-2 style-3 block" @click="ProductAdd()">
                                     <span class="button-wrapper">
