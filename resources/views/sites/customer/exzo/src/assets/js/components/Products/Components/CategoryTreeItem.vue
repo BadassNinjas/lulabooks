@@ -14,6 +14,7 @@ export default {
     ],
     methods: {
         emitClickedCategory: function(e) {
+            window.scrollTo(0,0);
             this.$root.$emit('ClickedCategory', this.item);
 
             $(e.target).parent().find('ul').first().slideToggle();

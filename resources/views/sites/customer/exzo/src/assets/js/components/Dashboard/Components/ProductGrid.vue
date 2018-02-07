@@ -58,6 +58,7 @@ export default {
         });*/
         that.getProducts();
         //that.$root.$emit('ProductListDataRequested');
+        window.scrollTo(0,0);
     },
     data() {
         return {
