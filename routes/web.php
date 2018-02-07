@@ -49,6 +49,7 @@ Route::get('/api/render/cities/{region_id}', 'RenderController@getCitiesOnRegion
 Route::get('/testEmail','RenderController@testSendingEmail');
 Route::get('/api/sales/request', 'SalesRequestController@getSalesRequests');
 Route::post('/api/sales/request', 'SalesRequestController@submitSalesRequest');
+Route::get('/api/sales/request/delete-all', 'SalesRequestController@deleteAllSalesRequests');
 Route::put('/api/sales/request/{requestId}', 'SalesRequestController@submitSalesRequest');
 Route::delete('/api/sales/request/{requestId}', 'SalesRequestController@deleteSalesRequest');
 

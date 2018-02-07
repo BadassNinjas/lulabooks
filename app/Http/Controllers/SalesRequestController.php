@@ -11,6 +11,7 @@ use App\Mail\saleRequestUserMail;
 use App\Mail\saleRequestAdminMail;
 use App\Models\User;
 use Log;
+use DB;
 
 
 class SalesRequestController extends Controller
@@ -60,6 +61,12 @@ class SalesRequestController extends Controller
         return Response::build("success success");
     }
 
+    public function deleteAllSalesRequests(){
+
+        $request = SalesRequest::truncate();
+
+        return Response::build('all entries in the sale request database have been delete');
+    }
 
     public function getSalesRequests()
     {
