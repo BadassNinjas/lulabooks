@@ -21,6 +21,7 @@
                         <input type="button" />
                     </div>
                     <br/>
+                    
                     <div class="button block size-2 style-1 noshadow" @click="state.phase = 'pre-auth'">
                         <span class="button-wrapper">
                      <span class="icon"><i class="fa fa-arrow-right"></i></span>

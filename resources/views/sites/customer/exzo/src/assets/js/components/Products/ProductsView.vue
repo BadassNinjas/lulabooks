@@ -3,7 +3,7 @@
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="row">
         <div class="col-md-9 col-md-push-3">
-            <div class="align-inline spacing-1" v-if="Products.data.length">
+            <div class="align-inline spacing-1" v-if="Products.data != 'undefined'">
                 <div class="h4"><span v-if="category.parent">{{ category.parent.name }} &raquo; </span> {{ category.name }}</div>
             </div>
             <div class="align-inline spacing-1" v-else-if="Products.data.length == 0">
@@ -14,8 +14,8 @@
             <div class="products-content">
                 <div class="products-wrapper">
                     <div class="row nopadding">
-                        <div v-if="Products.data.length">
-                            <div class="col-sm-4 col-xs-6" v-for="product in Products.data">
+                        <div v-if="Products.data != 'undefined'">
+                            <div class="col-sm-4" v-for="product in Products.data">
                                 <div class="product-shortcode style-1">
                                     <div class="title">
                                         <div class="simple-article size-1 color col-xs-b5"><a href="#">{{ category.name }}</a></div>
@@ -25,7 +25,7 @@
                                         <img v-if="product.images.length" :src="product.images[0].path" alt="product-image" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                                         <img v-else="!product.images.length" src="/img/customer/box.jpg" alt="product-image" class="img img-responsive" style="min-height: 100px; max-height: 100px;">
                                         <div class="preview-buttons valign-middle">
-                                            <div class="valign-middle-content open-popup" data-rel="products-image" @click="setProductView(product)">
+                                            <div class="valign-middle-content open-popup" data-rel="ProductView" @click="setProductView(product)">
                                                 <a class="button size-2 style-3" href="#">
                                                     <span class="button-wrapper">
                                                               <span class="icon"><img src="/img/customer/exzo/icon-1.png" alt="button-icon"></span>
@@ -47,11 +47,13 @@
                     </div>
                 </div>
             </div>
+            <div class="empty-space col-xs-b30 col-sm-b45"></div>
             <vue-pagination  :pagination="Products"
                 @paginate="getProducts()"
-                :offset="4">
+                :offset="offset">
             </vue-pagination>
         </div>
+        <div class="empty-space col-xs-b30 col-sm-b45 col-md-b0"></div>
         <div class="col-md-3 col-md-pull-9">
             <div class="h4 col-xs-b10">UWC Faculty Courses</div>
             <ul class="categories-menu transparent">
@@ -60,13 +62,6 @@
         </div>
     </div>
     
-    <div class="empty-space col-xs-b50"></div>
-    <div class="empty-space col-xs-b50"></div>
-    <div class="empty-space col-xs-b50"></div>
-    <div class="empty-space col-xs-b50"></div>
-    <div class="empty-space col-xs-b50"></div>
-    <div class="empty-space col-xs-b50"></div>
-    <div class="empty-space col-xs-b50"></div>
     <div class="empty-space col-xs-b50"></div>
 </div>
 </template>
@@ -89,7 +84,7 @@ export default {
             this.checkRoute(to);
         }
     },
-    mounted() {
+    created() {
         var that = this;
 
         this.$root.$on('CategoryDataReceived', function(categories) {
@@ -143,6 +138,7 @@ export default {
             });
         },
         setProductView: function(product) {
+            console.log('productViewClicked')
             this.$root.$emit('ProductViewSelected', product);
         },
         checkRoute: function(to) {

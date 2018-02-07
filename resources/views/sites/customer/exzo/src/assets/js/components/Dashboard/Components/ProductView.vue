@@ -137,7 +137,7 @@ export default {
 
         ]
     },
-    mounted() {
+    created() {
         var that = this;
 
         this.$root.$on('ProductViewSelected', function(Product) {
@@ -147,6 +147,7 @@ export default {
             that.Available = 10;
             that.Grade = 1;
             that.checkAvailability();
+            console.log(Product);
         });
 
     },

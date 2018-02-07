@@ -18,6 +18,7 @@ Route::delete('/api/products/{productId}', 'ProductController@deleteProduct');
 Route::delete('/api/products/deleteImage/{imageId}', 'ProductController@deleteImage');
 Route::post('/api/products', 'ProductController@createOrUpdateProduct');
 Route::get('/api/products/search/{search_term}', 'ProductController@searchProducts');
+Route::get('/api/featured','ProductController@getFeatured');
 
 Route::get('/api/availability/{productId}/{grade}', 'ProductController@checkAvailability');
 

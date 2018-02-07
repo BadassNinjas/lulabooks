@@ -28,6 +28,17 @@ class ProductController extends Controller
         return Response::build($product);
     }
 
+    public function getFeatured(){
+
+        $products = Product::where('featured','=','1')->get();
+
+        if(is_null($products)){
+            Response::build('no featured products');
+        }
+
+        return Response::build($products);
+    }
+
     public function findAssocProduct($productId){
 
         $product = Product::find($productId);

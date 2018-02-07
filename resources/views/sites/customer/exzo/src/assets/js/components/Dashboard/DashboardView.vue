@@ -37,13 +37,15 @@
             <hr/>
         </div>
     </div>
+    <div class="empty-space col-xs-b20 col-sm-b30 col-md-b40 col-lg-b80"></div>
+    <!--<tab-slider></tab-slider>-->
     <product-grid></product-grid>
 </div>
 </template>
 
 <script>
 import ProductGrid from './Components/ProductGrid.vue';
-
+import TabSlider from './Components/TabSlider.vue'
 export default {
     name: 'Home',
     metaInfo: {
@@ -58,6 +60,7 @@ export default {
     },
     components: {
         ProductGrid,
+        TabSlider
     }
 }
 </script>

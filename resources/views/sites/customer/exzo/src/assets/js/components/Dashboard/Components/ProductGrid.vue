@@ -87,7 +87,7 @@ export default {
                 if (response.data.success) {
                     
                     this.Products = response.data.payload;
-                    //this.$root.$emit('activateLoader');
+                    this.$root.$emit('featured', this.Products);
                 }
             });
         }

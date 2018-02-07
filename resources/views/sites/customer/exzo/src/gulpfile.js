@@ -23,5 +23,6 @@ elixir(mix => {
         './assets/js/plugins/jquery-ui.min.js',
         './assets/js/plugins/jquery.throttle.js',
         './assets/js/plugins/jquery.knob.js',
+        './assets/js/plugins/swiper.jquery.min.js',
     ], '../../../../../../public/js/customer.min.js');
 });
