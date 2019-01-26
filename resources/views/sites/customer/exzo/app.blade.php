@@ -58,7 +58,7 @@
               AuthCheckComplete: false
             }
           </script>
-          <script async defer src="{{asset('js/customer.min.js')}}"></script>
+          <script src="{{asset('js/customer.min.js')}}"></script>
           <script async defer type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     </body>
 </html>
